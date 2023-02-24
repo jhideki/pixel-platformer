@@ -5,3 +5,4 @@ TODO list:
 - add glow
 - create mobs
 - combat
+- clean up player movement

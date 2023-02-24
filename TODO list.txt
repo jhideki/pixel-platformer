@@ -1,0 +1,7 @@
+TODO list:
+- finish art style
+  - make more tiles + background
+- animate prefabs
+- add glow
+- create mobs
+- combat

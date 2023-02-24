@@ -1,0 +1,10 @@
+TODO list:
+- finish art style
+  - make more tiles
+  - background
+- animate prefabs (souls)
+- clean up character design
+- add glow
+- create mobs
+- combat
+  - fix up animations

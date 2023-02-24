@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         coll = GetComponent<BoxCollider2D>()
-;        sprite = GetComponent<SpriteRenderer>();
+;       sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -63,7 +63,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             state = MovementState.idle;
-            anim.SetBool("running", false);
         }
 
         if (rb.velocity.y > 0.1f)

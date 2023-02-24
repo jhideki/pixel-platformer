@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ItemCollector : MonoBehaviour
 {
-
+    [SerializeField] private AudioSource collectSoundEffect;
     private int souls = 0;
 
     [SerializeField] private Text soulsText;
@@ -16,8 +16,10 @@ public class ItemCollector : MonoBehaviour
         if (collision.gameObject.CompareTag("Soul"))
         {
             Destroy(collision.gameObject);
+
             souls++;
             soulsText.text = "Souls: " + souls;
+            collectSoundEffect.Play();
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerLife : MonoBehaviour
 {
-
+    [SerializeField] private AudioSource deathSoundEffect;
     private Animator anim;
     private Rigidbody2D rb;
     // Start is called before the first frame update
@@ -19,6 +19,7 @@ public class PlayerLife : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Trap")) 
         {
+            deathSoundEffect.Play();
             Die();
         }
     }

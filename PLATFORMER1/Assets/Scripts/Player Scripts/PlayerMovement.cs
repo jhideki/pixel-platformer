@@ -18,10 +18,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 14f;
     [SerializeField] private LayerMask jumpableGround;
+ 
 
     private enum MovementState { idle, running, jumping, falling }
 
     [SerializeField] private AudioSource jumpSoundEffect;
+
+
     
 
 
@@ -34,10 +37,12 @@ public class PlayerMovement : MonoBehaviour
 ;       sprite = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
+    // old version of movment
+
     private void Update()
     {
         dirX = Input.GetAxisRaw("Horizontal");
+
         rb.velocity = new Vector2(moveSpeed * dirX, rb.velocity.y);
 
 
@@ -84,6 +89,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
+        
+
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, jumpableGround);
     }
 }

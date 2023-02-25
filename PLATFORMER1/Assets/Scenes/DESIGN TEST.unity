@@ -203,8 +203,18 @@ PrefabInstance:
       value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 911438765847685586, guid: 260a4ecb71917ae49967e6eddf8182c6, type: 3}
-      propertyPath: orthographic size
-      value: 7.9611692
+
+      propertyPath: m_BackGroundColor.b
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 911438765847685586, guid: 260a4ecb71917ae49967e6eddf8182c6, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 911438765847685586, guid: 260a4ecb71917ae49967e6eddf8182c6, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.21960786
+
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 260a4ecb71917ae49967e6eddf8182c6, type: 3}
@@ -294,7 +304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 670820051}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.23, y: 0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -337,7 +347,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1475,6 +1485,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741826
+
   - first: {x: 5, y: -2, z: 0}
     second:
       serializedVersion: 2
@@ -4455,6 +4466,7 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
+
   - m_RefCount: 0
     m_Data:
       e00: 0
@@ -4489,6 +4501,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -15, y: -6, z: 0}
   m_Size: {x: 40, y: 23, z: 1}
+
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -4508,6 +4521,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+
 --- !u!66 &670820058
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -5289,6 +5303,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
 --- !u!1 &1660107311
 GameObject:
   m_ObjectHideFlags: 0

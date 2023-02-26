@@ -99,6 +99,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  Camera_maxx: 0
+  Camera_minx: 0
+  Camera_y_offset: 0
+  Camera_offx: 0
+  Camera_offy: 0
+  lanes: []
 --- !u!114 &3939869747782616400
 MonoBehaviour:
   m_ObjectHideFlags: 0

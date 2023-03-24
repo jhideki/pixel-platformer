@@ -29,6 +29,8 @@ public class PlayerMovement2 : MonoBehaviour
     public bool IsWallJumping { get; private set; }
     public bool IsSliding { get; private set; }
 
+    public bool isCrouching;
+
     //Timers (also all fields, could be private and a method returning a bool could be used)
     public float LastOnGroundTime { get; private set; }
     public float LastOnWallTime { get; private set; }
@@ -46,7 +48,9 @@ public class PlayerMovement2 : MonoBehaviour
     private Vector2 _moveInput;
     public float LastPressedJumpTime { get; private set; }
 
+
     //Set all of these up in the inspector
+
     [Header("Checks")]
     [SerializeField] private Transform _groundCheckPoint;
     //Size of groundCheck depends on the size of your character generally you want them slightly small than width (for ground) and height (for the wall check)
@@ -65,6 +69,7 @@ public class PlayerMovement2 : MonoBehaviour
         anim = GetComponent<Animator>();
         RB = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+
     }
 
     private void Start()
@@ -100,6 +105,15 @@ public class PlayerMovement2 : MonoBehaviour
         {
             OnJumpUpInput();
         }
+
+        if (_moveInput.y < 0 && !IsJumping)
+        {
+            isCrouching = true;
+        }
+        else if (_moveInput.y >= 0)
+        {
+            isCrouching = false;
+        }
         #endregion
 
         #region COLLISION CHECKS
@@ -125,6 +139,8 @@ public class PlayerMovement2 : MonoBehaviour
             LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
         }
         #endregion
+
+        
 
         #region JUMP CHECKS
         if (IsJumping && RB.velocity.y < 0)
@@ -457,6 +473,8 @@ public class PlayerMovement2 : MonoBehaviour
 
         anim.SetInteger("state", (int)state);
     }
+
+
 }
 
 // created by Dawnosaur :D

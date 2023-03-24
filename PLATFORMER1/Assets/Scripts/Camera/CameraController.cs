@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private List<GameObject> lanes;
 
-    void Start() 
+    void Start()
     {
 
         //Position of the first lane
@@ -40,14 +40,11 @@ public class CameraController : MonoBehaviour
             yVal = offsety + (i * spacing);
             lanes.Add(Object.Instantiate(lane, new Vector3(offsetx, yVal, 0), Quaternion.identity));
         }
-     
+
     }
 
     private void Update()
     {
-        
-        
-
 
         if (player.position.x >= Camera_minx && player.position.x <= Camera_maxx)
         {
@@ -55,9 +52,7 @@ public class CameraController : MonoBehaviour
         }
 
         checkLanes();
-       
 
-        //float yCoord = Mathf.Lerp(transform.position.y, targetYCoord, Time.deltaTime * followSpeed);
         transform.position = new Vector3(Camerax_pos + Camera_offx, Cameray_pos + Camera_offy, transform.position.z);
 
     }
@@ -72,6 +67,7 @@ public class CameraController : MonoBehaviour
                 if ((player.position.y > lanes[i].GetComponent<Transform>().position.y) && (player.position.y <= lanes[i + 1].GetComponent<Transform>().position.y))
                 {
                     Cameray_pos = lanes[i].GetComponent<Transform>().position.y;
+
                     break;
                 }
             }
@@ -79,12 +75,14 @@ public class CameraController : MonoBehaviour
             if (i == lanes.Count - 1)
             {
                 Cameray_pos = lanes[i - 1].GetComponent<Transform>().position.y;
+                Debug.Log("lane pos: " + Cameray_pos);
             }
 
         }
         else
         {
             Cameray_pos = lanes[0].GetComponent<Transform>().position.y;
+
         }
     }
 

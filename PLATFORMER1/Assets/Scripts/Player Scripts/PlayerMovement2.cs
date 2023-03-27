@@ -140,7 +140,7 @@ public class PlayerMovement2 : MonoBehaviour
         }
         #endregion
 
-        
+
 
         #region JUMP CHECKS
         if (IsJumping && RB.velocity.y < 0)
@@ -168,6 +168,7 @@ public class PlayerMovement2 : MonoBehaviour
         //Jump
         if (CanJump() && LastPressedJumpTime > 0)
         {
+
             IsJumping = true;
             IsWallJumping = false;
             _isJumpCut = false;
@@ -350,7 +351,7 @@ public class PlayerMovement2 : MonoBehaviour
         float force = Data.jumpForce;
         if (RB.velocity.y < 0)
             force -= RB.velocity.y;
-      
+
         RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
         #endregion
     }

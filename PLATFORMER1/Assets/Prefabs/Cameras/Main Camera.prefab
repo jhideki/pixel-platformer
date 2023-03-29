@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 911438765847685584}
   - component: {fileID: 911438765847685420}
   - component: {fileID: 3939869747782616400}
+  - component: {fileID: 2067062648168721305}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -101,9 +102,11 @@ MonoBehaviour:
   player: {fileID: 0}
   Camera_maxx: 0
   Camera_minx: 0
-  Camera_y_offset: 0
   Camera_offx: 0
-  Camera_offy: 0
+  Camera_offy: 10
+  lane: {fileID: 0}
+  numLanes: 0
+  spacing: 0
   lanes: []
 --- !u!114 &3939869747782616400
 MonoBehaviour:
@@ -138,3 +141,26 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &2067062648168721305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911438765847685585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_AssetsPPU: 16
+  m_RefResolutionX: 320
+  m_RefResolutionY: 180
+  m_CropFrame: 0
+  m_GridSnapping: 2
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0

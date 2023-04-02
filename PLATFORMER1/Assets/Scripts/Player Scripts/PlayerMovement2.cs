@@ -98,6 +98,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.J))
         {
+
             OnJumpInput();
         }
 
@@ -260,7 +261,9 @@ public class PlayerMovement2 : MonoBehaviour
     public void OnJumpUpInput()
     {
         if (CanJumpCut() || CanWallJumpCut())
+        {
             _isJumpCut = true;
+        }
     }
     #endregion
 
@@ -340,6 +343,7 @@ public class PlayerMovement2 : MonoBehaviour
     #region JUMP METHODS
     private void Jump()
     {
+
         //Ensures we can't call Jump multiple times from one press
         LastPressedJumpTime = 0;
         LastOnGroundTime = 0;

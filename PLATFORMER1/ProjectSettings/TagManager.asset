@@ -7,6 +7,7 @@ TagManager:
   - Background
   - Soul
   - Trap
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -49,4 +50,7 @@ TagManager:
     locked: 0
   - name: Terrain
     uniqueID: 1109305759
+    locked: 0
+  - name: Player
+    uniqueID: 1416326081
     locked: 0

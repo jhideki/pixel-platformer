@@ -16,6 +16,8 @@ public class CameraController : MonoBehaviour
     private float Camera_down;
     private float Cameray_pos;
     private float Camerax_pos;
+
+    [SerializeField] private float smoothing = 1f;
     [SerializeField] private float Camera_offx;
     [SerializeField] private float Camera_offy;
 
@@ -52,8 +54,9 @@ public class CameraController : MonoBehaviour
         }
 
         checkLanes();
+        float smoothedPosition = Mathf.Lerp(transform.position.y, Cameray_pos + Camera_offy, smoothing * Time.deltaTime);
 
-        transform.position = new Vector3(Camerax_pos + Camera_offx, Cameray_pos + Camera_offy, transform.position.z);
+        transform.position = new Vector3(Camerax_pos + Camera_offx, smoothedPosition, transform.position.z);
 
     }
 

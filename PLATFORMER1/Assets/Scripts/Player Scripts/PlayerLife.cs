@@ -18,26 +18,36 @@ public class PlayerLife : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("Bullet")) 
+
         {
             deathSoundEffect.Play();
             Die();
         }
     }
 
-    private void Die() 
+    private void OnParticleCollision(GameObject other)
+    {
+        if (other.gameObject.CompareTag("Trap"))
+        {
+            deathSoundEffect.Play();
+            Die();
+        }
+    }
+
+    private void Die()
     {
         if (rb.bodyType != RigidbodyType2D.Static)
         {
             rb.bodyType = RigidbodyType2D.Static;
         }
-        
+
         anim.SetTrigger("death");
     }
 
-    private void RestartLevel() 
+    private void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
- 
+
 }

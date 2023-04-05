@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class PassThrough : MonoBehaviour     
+public class PassThrough : MonoBehaviour
 {
     private Collider2D platformCollider;
     public bool onPlatform;
@@ -21,16 +21,16 @@ public class PassThrough : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (onPlatform && movementScript.isCrouching)
         {
+
             platformCollider.enabled = false;
             StartCoroutine(EnableCollider());
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-    { 
+    {
         onPlatform = true;
     }
 
@@ -41,9 +41,9 @@ public class PassThrough : MonoBehaviour
 
     private IEnumerator EnableCollider()
     {
-        
+
         yield return new WaitForSeconds(0.2f);
-        
+
         platformCollider.enabled = true;
     }
 }

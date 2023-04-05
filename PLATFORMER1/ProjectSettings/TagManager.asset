@@ -8,6 +8,8 @@ TagManager:
   - Soul
   - Trap
   - Platform
+  - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX

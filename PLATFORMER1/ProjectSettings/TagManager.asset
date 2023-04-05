@@ -7,6 +7,9 @@ TagManager:
   - Background
   - Soul
   - Trap
+  - Platform
+  - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX

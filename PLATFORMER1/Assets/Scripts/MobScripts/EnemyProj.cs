@@ -9,7 +9,7 @@ public class EnemyProj : MonoBehaviour
     [SerializeField] private float shot_space;
     [SerializeField] private float blast_rad;
 
-    
+
     private Animator anim;
     private float timer;
     private GameObject player;
@@ -18,7 +18,7 @@ public class EnemyProj : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponent<Animator>();
-        
+
     }
 
     // Update is called once per frame
@@ -28,44 +28,45 @@ public class EnemyProj : MonoBehaviour
         float distance = Vector2.Distance(transform.position, player.transform.position);
         //Debug.Log(distance);
 
-        if(distance < blast_rad)
+
+        if (distance < blast_rad)
         {
             timer += Time.deltaTime;
 
             if (timer > shot_space)
             {
-                timer = 0;               
-                shoot();
+                timer = 0;
+                StartCoroutine(Shoot());
             }
 
-            
-        }
-
-        if(timer > 1.2)
-        {
-            anim.SetBool("Attck", false);
-            Debug.Log("fag");
         }
 
     }
 
-    void shoot()
+    IEnumerator Shoot()
     {
-        if(IsFacingRight()){
-            if (player.transform.position.x >= transform.position.x && player.transform.position.y >= transform.position.y){
-                Instantiate(bullet, bulletpos.position, Quaternion.identity);
+        if (IsFacingRight())
+        {
+            if (player.transform.position.x >= transform.position.x && player.transform.position.y >= transform.position.y)
+            {
                 anim.SetBool("Attck", true);
+                yield return new WaitForSeconds(0.5f);
+                Instantiate(bullet, bulletpos.position, Quaternion.identity);
+                anim.SetBool("Attck", false);
+
             }
         }
-
         else
         {
             if (player.transform.position.x <= transform.position.x && player.transform.position.y >= transform.position.y)
             {
-                Instantiate(bullet, bulletpos.position, Quaternion.identity);
                 anim.SetBool("Attck", true);
+                yield return new WaitForSeconds(0.5f);
+                Instantiate(bullet, bulletpos.position, Quaternion.identity);
+                anim.SetBool("Attck", false);
             }
         }
+
     }
 
     private bool IsFacingRight()

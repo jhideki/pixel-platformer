@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: TILES_2
+  m_Name: RuleTileStone
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: -2070582016, guid: 6b4c36e77074db04992c8f62f908b0ff, type: 3}
   m_DefaultGameObject: {fileID: 0}

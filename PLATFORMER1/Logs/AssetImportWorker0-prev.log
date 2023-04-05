@@ -15,7 +15,7 @@ D:/games i made/PIXILART-PLATFORMER/PLATFORMER1
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-51728
+56131
 Successfully changed project path to: D:/games i made/PIXILART-PLATFORMER/PLATFORMER1
 D:/games i made/PIXILART-PLATFORMER/PLATFORMER1
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,11 +47,11 @@ D:/games i made/PIXILART-PLATFORMER/PLATFORMER1
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [17260] Host "[IP] 192.168.56.1 [Port] 0 [Flags] 2 [Guid] 2541327775 [EditorId] 2541327775 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-81S8G8J) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [22148] Host "[IP] 192.168.56.1 [Port] 0 [Flags] 2 [Guid] 47317104 [EditorId] 47317104 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-81S8G8J) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [17260] Host "[IP] 192.168.56.1 [Port] 0 [Flags] 2 [Guid] 2541327775 [EditorId] 2541327775 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-81S8G8J) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [22148] Host "[IP] 192.168.56.1 [Port] 0 [Flags] 2 [Guid] 47317104 [EditorId] 47317104 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-81S8G8J) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 120.77 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 122.55 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.19f1 (c9714fde33b6)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.19f1/Editor/Data/Resources/UnitySubsystems
@@ -67,92 +67,92 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.19f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.19f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.19f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56504
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56824
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.19f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.19f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.008514 seconds.
+Registered in 0.008417 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 112.70 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 120.01 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.645 seconds
+- Completed reload, in  0.694 seconds
 Domain Reload Profiling:
-	ReloadAssembly (645ms)
-		BeginReloadAssembly (74ms)
+	ReloadAssembly (695ms)
+		BeginReloadAssembly (87ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (461ms)
-			LoadAssemblies (72ms)
+		EndReloadAssembly (489ms)
+			LoadAssemblies (84ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (95ms)
+			SetupTypeCache (100ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (24ms)
-			SetupLoadedEditorAssemblies (297ms)
+			RebuildScriptCaches (26ms)
+			SetupLoadedEditorAssemblies (312ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (9ms)
+				InitializePlatformSupportModulesInManaged (11ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (113ms)
+				RefreshPlugins (120ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (127ms)
-				ProcessInitializeOnLoadMethodAttributes (46ms)
+				ProcessInitializeOnLoadAttributes (137ms)
+				ProcessInitializeOnLoadMethodAttributes (43ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.007111 seconds.
+Registered in 0.007316 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\games i made\PIXILART-PLATFORMER\PLATFORMER1\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\games i made\PIXILART-PLATFORMER\PLATFORMER1\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 120.72 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 119.87 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.338 seconds
+- Completed reload, in  1.341 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1339ms)
+	ReloadAssembly (1342ms)
 		BeginReloadAssembly (114ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (5ms)
+			DisableScriptedObjects (6ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (20ms)
-		EndReloadAssembly (1109ms)
-			LoadAssemblies (96ms)
+			CreateAndSetChildDomain (19ms)
+		EndReloadAssembly (1096ms)
+			LoadAssemblies (99ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (266ms)
+			SetupTypeCache (263ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (81ms)
-			SetupLoadedEditorAssemblies (618ms)
+			RebuildScriptCaches (65ms)
+			SetupLoadedEditorAssemblies (628ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (6ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (121ms)
-				BeforeProcessingInitializeOnLoad (119ms)
-				ProcessInitializeOnLoadAttributes (263ms)
-				ProcessInitializeOnLoadMethodAttributes (99ms)
-				AfterProcessingInitializeOnLoad (9ms)
+				RefreshPlugins (120ms)
+				BeforeProcessingInitializeOnLoad (121ms)
+				ProcessInitializeOnLoadAttributes (283ms)
+				ProcessInitializeOnLoadMethodAttributes (86ms)
+				AfterProcessingInitializeOnLoad (11ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (5ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 1.22 ms, found 4 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 1.11 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 5405 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 59 unused Assets / (1.0 MB). Loaded Objects now: 5857.
 Memory consumption went from 215.8 MB to 214.9 MB.
-Total: 3.948100 ms (FindLiveObjects: 0.458300 ms CreateObjectMapping: 0.180000 ms MarkObjects: 2.757000 ms  DeleteObjects: 0.551500 ms)
+Total: 4.117000 ms (FindLiveObjects: 0.494700 ms CreateObjectMapping: 0.175500 ms MarkObjects: 3.029300 ms  DeleteObjects: 0.416200 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -166,130 +166,77 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 281162.568313 seconds.
-  path: Assets/Prefabs/Player/Player 1.prefab
-  artifactKey: Guid(d793dd882d43f07418d33d8436d67e4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Player/Player 1.prefab using Guid(d793dd882d43f07418d33d8436d67e4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f4c8bac9d8a012ad9acff0295a071e84') in 0.354396 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 563.397116 seconds.
-  path: Assets/Art/Characters/Main Character/mc.png
-  artifactKey: Guid(eef6a46a8656e7e45ab2698b9238faaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/Characters/Main Character/mc.png using Guid(eef6a46a8656e7e45ab2698b9238faaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c97091cb4644be328c7a5227cfea123d') in 0.071417 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 4.967421 seconds.
-  path: Assets/Art/Characters/Main Character/idle.png
-  artifactKey: Guid(fd9d3969ca0072f4aa0aa939dded2963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/Characters/Main Character/idle.png using Guid(fd9d3969ca0072f4aa0aa939dded2963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '639772770e2ce0632adeb7b3cdc14ad0') in 0.019786 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 335.679229 seconds.
-  path: Assets/Animations/Player/Player.controller
-  artifactKey: Guid(084e2223e5e08d34781ffd5a61a57194) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Player/Player.controller using Guid(084e2223e5e08d34781ffd5a61a57194) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60d7be4b679bfaab6dcc1f25102f127d') in 0.006490 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 218.915688 seconds.
-  path: Assets/Animations/Player/Player_Death.anim
-  artifactKey: Guid(25bbe3c3bd8bce24390819c67c7956eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Player/Player_Death.anim using Guid(25bbe3c3bd8bce24390819c67c7956eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22fe84d9cd4c5c8b5b61a20358d119bf') in 0.003947 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.490566 seconds.
-  path: Assets/Animations/Player/Player_Idle.anim
-  artifactKey: Guid(a7e75d7bab00dc24fa3bff72b5aa311b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animations/Player/Player_Idle.anim using Guid(a7e75d7bab00dc24fa3bff72b5aa311b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69926607808dd04b03601aa04dfad720') in 0.003348 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 340.094902 seconds.
-  path: Assets/Art/Characters/Main Character/idle.png
-  artifactKey: Guid(fd9d3969ca0072f4aa0aa939dded2963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/Characters/Main Character/idle.png using Guid(fd9d3969ca0072f4aa0aa939dded2963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f38b041650922f8093e4e9b78726a1fc') in 0.012859 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 13.406448 seconds.
-  path: Assets/Art/Characters/Main Character/idle.png
-  artifactKey: Guid(fd9d3969ca0072f4aa0aa939dded2963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/Characters/Main Character/idle.png using Guid(fd9d3969ca0072f4aa0aa939dded2963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1acbae0eebbcd2a70727f332ce620806') in 0.020977 seconds 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.006529 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\games i made\PIXILART-PLATFORMER\PLATFORMER1\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\games i made\PIXILART-PLATFORMER\PLATFORMER1\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 1.05 ms, found 4 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.363 seconds
-Domain Reload Profiling:
-	ReloadAssembly (1363ms)
-		BeginReloadAssembly (157ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (9ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (40ms)
-		EndReloadAssembly (1080ms)
-			LoadAssemblies (120ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (304ms)
-			ReleaseScriptCaches (3ms)
-			RebuildScriptCaches (63ms)
-			SetupLoadedEditorAssemblies (508ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (16ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (100ms)
-				ProcessInitializeOnLoadAttributes (278ms)
-				ProcessInitializeOnLoadMethodAttributes (99ms)
-				AfterProcessingInitializeOnLoad (13ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (16ms)
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 2.85 ms, found 4 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5283 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 34 unused Assets / (0.9 MB). Loaded Objects now: 5930.
-Memory consumption went from 213.4 MB to 212.5 MB.
-Total: 4.771500 ms (FindLiveObjects: 0.477900 ms CreateObjectMapping: 0.162700 ms MarkObjects: 3.708800 ms  DeleteObjects: 0.421100 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 1296.378601 seconds.
+  Time since last request: 328239.265691 seconds.
   path: Assets/Art/Terrain/Tiles/tiles_1.png
   artifactKey: Guid(ca419c90723c5354082f8efb566a42c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/Terrain/Tiles/tiles_1.png using Guid(ca419c90723c5354082f8efb566a42c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6a29e06ed397e967f5e721890761dbd9') in 0.084959 seconds 
+Start importing Assets/Art/Terrain/Tiles/tiles_1.png using Guid(ca419c90723c5354082f8efb566a42c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d38b9e503323ffb0a3f206382125f76') in 0.155313 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 17.974381 seconds.
-  path: Assets/Art/Terrain/Tiles/tiles_1.png
-  artifactKey: Guid(ca419c90723c5354082f8efb566a42c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/Terrain/Tiles/tiles_1.png using Guid(ca419c90723c5354082f8efb566a42c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '91344811b285f318688d60b2ecf2edf5') in 0.040398 seconds 
+  Time since last request: 98.843537 seconds.
+  path: Assets/Art/Traps/Saws/saw.png
+  artifactKey: Guid(40af0e59b64b54b48847c12826e9cdf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Traps/Saws/saw.png using Guid(40af0e59b64b54b48847c12826e9cdf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c8c986b67cde3c0d6c9433f3180fdae') in 0.064668 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 517.685546 seconds.
-  path: Assets/Art/Terrain/Tiles/tiles_1.png
-  artifactKey: Guid(ca419c90723c5354082f8efb566a42c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Art/Terrain/Tiles/tiles_1.png using Guid(ca419c90723c5354082f8efb566a42c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29b5db62945018700b9ff8f132e9e2b8') in 0.043861 seconds 
+  Time since last request: 0.000032 seconds.
+  path: Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Light/Split_Edge@3x.png
+  artifactKey: Guid(4d2d8fb4fc2041441980b4ec253532b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Light/Split_Edge@3x.png using Guid(4d2d8fb4fc2041441980b4ec253532b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72a43305124cbdf9038395d3015bd974') in 0.098486 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 772.671694 seconds.
-  path: Assets/Prefabs/Tile rules/TILES_1.asset
-  artifactKey: Guid(894e454b2163b3846b95bc23c5ba0283) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prefabs/Tile rules/TILES_1.asset using Guid(894e454b2163b3846b95bc23c5ba0283) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8261072444a08f2fe74f9270b1575175') in 0.019065 seconds 
+  Time since last request: 0.000034 seconds.
+  path: Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Light/Split_Edge@2x.png
+  artifactKey: Guid(3c84cd9c7ddd51c4b959d02c41aced07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Light/Split_Edge@2x.png using Guid(3c84cd9c7ddd51c4b959d02c41aced07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7116697182005829aa15a7e9271bf230') in 0.077267 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Selected/Split Bones@3x.png
+  artifactKey: Guid(29f90cd6202745c448e74a1398b1c731) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Selected/Split Bones@3x.png using Guid(29f90cd6202745c448e74a1398b1c731) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ddae0484714439bd99949870ca10f97a') in 0.090575 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Light/Split Bones.png
+  artifactKey: Guid(59bc7a7ca0683ac439e255a533670885) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Light/Split Bones.png using Guid(59bc7a7ca0683ac439e255a533670885) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2976d8105892e593c0cdeef03f11a6c9') in 0.074426 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Art/Items/soul.png
+  artifactKey: Guid(419eb12f3d8f8a742aab9cc91388f851) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Items/soul.png using Guid(419eb12f3d8f8a742aab9cc91388f851) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cbff5a03a766a1fe5d98de2894a16b6d') in 0.053179 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Light/Split Bones@3x.png
+  artifactKey: Guid(6b35476d10ed5614a949de8f7c45b534) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Light/Split Bones@3x.png using Guid(6b35476d10ed5614a949de8f7c45b534) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '776c21cdaf739076bf038e68aba29046') in 0.049109 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Light/Split_Edge.png
+  artifactKey: Guid(900065f34a33d2e478bf93a0191f68de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Light/Split_Edge.png using Guid(900065f34a33d2e478bf93a0191f68de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7d547aaa6d5b73e441d79540135d370') in 0.060019 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Selected/Split Bones@2x.png
+  artifactKey: Guid(652f381007a2d2247a40aa63c91c2565) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.2d.animation/Editor/Assets/SkinningModule/Icons/Selected/Split Bones@2x.png using Guid(652f381007a2d2247a40aa63c91c2565) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2e27435ed2227b5ee6d08abc23fa5fc3') in 0.034557 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Packages/com.unity.2d.path/Editor/Handles/ShapeTool.png
+  artifactKey: Guid(0601759dc49769849996e4dae10a2204) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.2d.path/Editor/Handles/ShapeTool.png using Guid(0601759dc49769849996e4dae10a2204) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89f1e0679f16c37338dace6646a5f456') in 0.055697 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Packages/com.unity.collab-proxy/Editor/PlasticSCM/Assets/Images/secondarytabclosehover.png
+  artifactKey: Guid(8fac55fff4ce5fa40a7b2efefc0e617a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.collab-proxy/Editor/PlasticSCM/Assets/Images/secondarytabclosehover.png using Guid(8fac55fff4ce5fa40a7b2efefc0e617a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f8c48d2b7f85378e5dda5d4052f0efa') in 0.029829 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

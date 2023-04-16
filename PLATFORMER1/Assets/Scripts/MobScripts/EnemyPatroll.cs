@@ -19,10 +19,11 @@ public class EnemyPatroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsFacingRight())
+        if (IsFacingRight())
         {
             myRigidbody.velocity = new Vector2(moveSpeed, 0f);
-        } else
+        }
+        else
         {
             myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
         }

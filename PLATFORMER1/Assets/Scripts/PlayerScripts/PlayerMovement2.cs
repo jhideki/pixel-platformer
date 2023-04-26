@@ -41,6 +41,9 @@ public class PlayerMovement2 : MonoBehaviour
     private bool _isJumpCut;
     private bool _isJumpFalling;
 
+    //Dash
+    private Transform trans;
+
     //Wall Jump
     private float _wallJumpStartTime;
     private int _lastWallJumpDir;
@@ -69,6 +72,7 @@ public class PlayerMovement2 : MonoBehaviour
         anim = GetComponent<Animator>();
         RB = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        trans = GetComponent<Transform>();
 
     }
 
@@ -105,6 +109,11 @@ public class PlayerMovement2 : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.J))
         {
             OnJumpUpInput();
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            OnDashInput();
         }
 
         if (_moveInput.y < 0 && !IsJumping)
@@ -265,6 +274,11 @@ public class PlayerMovement2 : MonoBehaviour
             _isJumpCut = true;
         }
     }
+
+    public void OnDashInput()
+    {
+        StartCoroutine(dash());
+    }
     #endregion
 
     #region GENERAL METHODS
@@ -272,10 +286,29 @@ public class PlayerMovement2 : MonoBehaviour
     {
         RB.gravityScale = scale;
     }
+
+
     #endregion
 
     //MOVEMENT METHODS
     #region RUN METHODS
+    IEnumerator dash()
+    {
+        anim.SetBool("dash", true);
+        Vector3 curPosition = trans.position;
+        if (IsFacingRight)
+        {
+            curPosition.x += Data.dashDistance;
+        }
+        else
+        {
+            curPosition.x -= Data.dashDistance;
+        }
+
+        yield return new WaitForSeconds(Data.dashSpeed);
+        trans.position = curPosition;
+        anim.SetBool("dash", false);
+    }
     private void Run(float lerpAmount)
     {
         //Calculate the direction we want to move in and our desired velocity

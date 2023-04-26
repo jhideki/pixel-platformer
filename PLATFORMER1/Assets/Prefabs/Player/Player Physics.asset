@@ -18,6 +18,8 @@ MonoBehaviour:
   maxFallSpeed: 25
   fastFallGravityMult: 2
   maxFastFallSpeed: 30
+  dashSpeed: 0.1
+  dashDistance: 5.5
   runMaxSpeed: 14
   runAcceleration: 2
   runAccelAmount: 7.142857

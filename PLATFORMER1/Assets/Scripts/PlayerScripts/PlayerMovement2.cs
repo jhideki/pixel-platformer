@@ -277,6 +277,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     public void OnDashInput()
     {
+
         StartCoroutine(dash());
     }
     #endregion
@@ -295,6 +296,8 @@ public class PlayerMovement2 : MonoBehaviour
     IEnumerator dash()
     {
         anim.SetBool("dash", true);
+        yield return new WaitForSeconds(0.04f);
+        anim.SetBool("dash", false);
         Vector3 curPosition = trans.position;
         if (IsFacingRight)
         {
@@ -305,9 +308,8 @@ public class PlayerMovement2 : MonoBehaviour
             curPosition.x -= Data.dashDistance;
         }
 
-        yield return new WaitForSeconds(Data.dashSpeed);
         trans.position = curPosition;
-        anim.SetBool("dash", false);
+
     }
     private void Run(float lerpAmount)
     {

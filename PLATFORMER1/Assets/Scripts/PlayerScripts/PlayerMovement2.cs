@@ -29,8 +29,14 @@ public class PlayerMovement2 : MonoBehaviour
     public bool IsWallJumping { get; private set; }
     public bool IsSliding { get; private set; }
 
-    public bool isDashing;
+    public bool hasDashed;
     public bool isCrouching;
+    public bool isRunning;
+
+    // If true player cannot move in both x and y directions
+    private bool blockMovement;
+
+    public float blockMovementTime = 0.4f;
 
     //Timers (also all fields, could be private and a method returning a bool could be used)
     public float LastOnGroundTime { get; private set; }
@@ -98,11 +104,15 @@ public class PlayerMovement2 : MonoBehaviour
         _moveInput.x = Input.GetAxisRaw("Horizontal");
         _moveInput.y = Input.GetAxisRaw("Vertical");
 
-
-        Debug.Log(isDashing);
-
         if (_moveInput.x != 0)
+        {
             CheckDirectionToFace(_moveInput.x > 0);
+            isRunning = true;
+        }
+        else
+        {
+            isRunning = false;
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.J))
         {
@@ -255,9 +265,13 @@ public class PlayerMovement2 : MonoBehaviour
     {
         //Handle Run
         if (IsWallJumping)
+        {
             Run(Data.wallJumpRunLerp);
-        else
+        }
+        else if (!blockMovement)
+        {
             Run(1);
+        }
 
         //Handle Slide
         if (IsSliding)
@@ -303,6 +317,8 @@ public class PlayerMovement2 : MonoBehaviour
         anim.SetBool("dash", true);
         yield return new WaitForSeconds(0.04f);
         anim.SetBool("dash", false);
+        hasDashed = true;
+        blockMovement = true;
         Vector3 curPosition = trans.position;
         if (IsFacingRight)
         {
@@ -314,7 +330,11 @@ public class PlayerMovement2 : MonoBehaviour
         }
 
         trans.position = curPosition;
-        isDashing = true;
+
+        //reset dash
+        yield return new WaitForSeconds(blockMovementTime);
+        blockMovement = false;
+        // hasDashed = false;
 
     }
     private void Run(float lerpAmount)

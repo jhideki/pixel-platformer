@@ -29,6 +29,7 @@ public class PlayerMovement2 : MonoBehaviour
     public bool IsWallJumping { get; private set; }
     public bool IsSliding { get; private set; }
 
+    public bool isDashing;
     public bool isCrouching;
 
     //Timers (also all fields, could be private and a method returning a bool could be used)
@@ -96,6 +97,9 @@ public class PlayerMovement2 : MonoBehaviour
         #region INPUT HANDLER
         _moveInput.x = Input.GetAxisRaw("Horizontal");
         _moveInput.y = Input.GetAxisRaw("Vertical");
+
+
+        Debug.Log(isDashing);
 
         if (_moveInput.x != 0)
             CheckDirectionToFace(_moveInput.x > 0);
@@ -295,6 +299,7 @@ public class PlayerMovement2 : MonoBehaviour
     #region RUN METHODS
     IEnumerator dash()
     {
+
         anim.SetBool("dash", true);
         yield return new WaitForSeconds(0.04f);
         anim.SetBool("dash", false);
@@ -309,6 +314,7 @@ public class PlayerMovement2 : MonoBehaviour
         }
 
         trans.position = curPosition;
+        isDashing = true;
 
     }
     private void Run(float lerpAmount)

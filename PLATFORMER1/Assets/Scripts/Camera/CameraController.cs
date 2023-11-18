@@ -12,6 +12,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float Camera_maxx;
     [SerializeField] private float Camera_minx;
 
+    private PlayerMovement2 movementScript;
+
     private float Camera_up;
     private float Camera_down;
     private float Cameray_pos;
@@ -28,9 +30,11 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private List<GameObject> lanes;
 
+    private float prevLocation;
+
     void Start()
     {
-
+        movementScript = player.GetComponent<PlayerMovement2>();
         //Position of the first lane
         float offsety = lane.transform.position.y;
         float offsetx = lane.transform.position.x;
@@ -47,16 +51,34 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-
         if (player.position.x >= Camera_minx && player.position.x <= Camera_maxx)
         {
             Camerax_pos = player.position.x;
         }
 
         checkLanes();
+        //smooth in the y direction
         float smoothedPosition = Mathf.Lerp(transform.position.y, Cameray_pos + Camera_offy, smoothing * Time.deltaTime);
 
-        transform.position = new Vector3(Camerax_pos + Camera_offx, smoothedPosition, transform.position.z);
+        //smooth when dashing in the x direction
+        if (movementScript.isDashing)
+        {
+            float smoothedXPosition = Mathf.Lerp(transform.position.x, Camerax_pos + Camera_offx, smoothing * Time.deltaTime);
+            transform.position = new Vector3(smoothedXPosition, smoothedPosition, transform.position.z);
+        }
+        else
+        {
+            transform.position = new Vector3(Camerax_pos + Camera_offx, smoothedPosition, transform.position.z);
+        }
+
+
+        if ((Camerax_pos + Camera_offx > prevLocation + 5.0) || (Camerax_pos + Camera_offx < prevLocation - 5.0))
+        {
+            movementScript.isDashing = false;
+        }
+
+        prevLocation = Camerax_pos + Camera_offx;
+
 
     }
 

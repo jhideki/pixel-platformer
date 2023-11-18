@@ -13623,6 +13623,18 @@ PrefabInstance:
       propertyPath: MinDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2290498002308862084, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2290498002308862084, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2290498002308862084, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2331364825639222805, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1

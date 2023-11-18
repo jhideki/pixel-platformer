@@ -20,6 +20,7 @@ public class CameraController : MonoBehaviour
     private float Camerax_pos;
 
     [SerializeField] private float smoothing = 1f;
+    [SerializeField] private float smoothingx = 2f;
     [SerializeField] private float Camera_offx;
     [SerializeField] private float Camera_offy;
 
@@ -29,8 +30,6 @@ public class CameraController : MonoBehaviour
 
 
     [SerializeField] private List<GameObject> lanes;
-
-    private float prevLocation;
 
     void Start()
     {
@@ -58,27 +57,24 @@ public class CameraController : MonoBehaviour
 
         checkLanes();
         //smooth in the y direction
-        float smoothedPosition = Mathf.Lerp(transform.position.y, Cameray_pos + Camera_offy, smoothing * Time.deltaTime);
-
+        float smoothedPositionY = Mathf.Lerp(transform.position.y, Cameray_pos + Camera_offy, smoothing * Time.deltaTime);
+        //smooth in the x direction
+        float smoothedPositionX = Mathf.Lerp(transform.position.x, Camerax_pos + Camera_offx, smoothingx * Time.deltaTime);
         //smooth when dashing in the x direction
-        if (movementScript.isDashing)
+        if (movementScript.hasDashed)
         {
-            float smoothedXPosition = Mathf.Lerp(transform.position.x, Camerax_pos + Camera_offx, smoothing * Time.deltaTime);
-            transform.position = new Vector3(smoothedXPosition, smoothedPosition, transform.position.z);
+            transform.position = new Vector3(smoothedPositionX, smoothedPositionY, transform.position.z);
+
+            if (Mathf.Abs(transform.position.x - player.position.x) < 0.018f)
+            {
+                movementScript.hasDashed = false;
+            }
+
         }
         else
         {
-            transform.position = new Vector3(Camerax_pos + Camera_offx, smoothedPosition, transform.position.z);
+            transform.position = new Vector3(Camerax_pos + Camera_offx, smoothedPositionY, transform.position.z);
         }
-
-
-        if ((Camerax_pos + Camera_offx > prevLocation + 5.0) || (Camerax_pos + Camera_offx < prevLocation - 5.0))
-        {
-            movementScript.isDashing = false;
-        }
-
-        prevLocation = Camerax_pos + Camera_offx;
-
 
     }
 

@@ -17,6 +17,13 @@ public class PlayerRunData : ScriptableObject
 
     [Space(20)]
 
+    [Header("Dash")]
+
+    public float dashSpeed;
+    public float dashDistance;
+
+    [Space(20)]
+
     [Header("Run")]
     public float runMaxSpeed; //Target speed we want the player to reach.
     public float runAcceleration; //The speed at which our player accelerates to max speed, can be set to runMaxSpeed for instant acceleration down to 0 for none at all

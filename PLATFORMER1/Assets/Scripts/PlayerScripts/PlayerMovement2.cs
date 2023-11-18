@@ -29,6 +29,7 @@ public class PlayerMovement2 : MonoBehaviour
     public bool IsWallJumping { get; private set; }
     public bool IsSliding { get; private set; }
 
+    public bool isDashing;
     public bool isCrouching;
 
     //Timers (also all fields, could be private and a method returning a bool could be used)
@@ -40,6 +41,9 @@ public class PlayerMovement2 : MonoBehaviour
     //Jump
     private bool _isJumpCut;
     private bool _isJumpFalling;
+
+    //Dash
+    private Transform trans;
 
     //Wall Jump
     private float _wallJumpStartTime;
@@ -69,6 +73,7 @@ public class PlayerMovement2 : MonoBehaviour
         anim = GetComponent<Animator>();
         RB = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        trans = GetComponent<Transform>();
 
     }
 
@@ -93,6 +98,9 @@ public class PlayerMovement2 : MonoBehaviour
         _moveInput.x = Input.GetAxisRaw("Horizontal");
         _moveInput.y = Input.GetAxisRaw("Vertical");
 
+
+        Debug.Log(isDashing);
+
         if (_moveInput.x != 0)
             CheckDirectionToFace(_moveInput.x > 0);
 
@@ -105,6 +113,11 @@ public class PlayerMovement2 : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.J))
         {
             OnJumpUpInput();
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            OnDashInput();
         }
 
         if (_moveInput.y < 0 && !IsJumping)
@@ -265,6 +278,12 @@ public class PlayerMovement2 : MonoBehaviour
             _isJumpCut = true;
         }
     }
+
+    public void OnDashInput()
+    {
+
+        StartCoroutine(dash());
+    }
     #endregion
 
     #region GENERAL METHODS
@@ -272,10 +291,32 @@ public class PlayerMovement2 : MonoBehaviour
     {
         RB.gravityScale = scale;
     }
+
+
     #endregion
 
     //MOVEMENT METHODS
     #region RUN METHODS
+    IEnumerator dash()
+    {
+
+        anim.SetBool("dash", true);
+        yield return new WaitForSeconds(0.04f);
+        anim.SetBool("dash", false);
+        Vector3 curPosition = trans.position;
+        if (IsFacingRight)
+        {
+            curPosition.x += Data.dashDistance;
+        }
+        else
+        {
+            curPosition.x -= Data.dashDistance;
+        }
+
+        trans.position = curPosition;
+        isDashing = true;
+
+    }
     private void Run(float lerpAmount)
     {
         //Calculate the direction we want to move in and our desired velocity

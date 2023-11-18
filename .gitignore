@@ -12,6 +12,7 @@
 **/[Aa]ssets/AssetStoreTools*sysinfo.txt
 # Unity3D generated meta files
 **/[Aa]ssets/AssetStoreTools*.pidb.meta
+**/Library
 
 ###
 # VS/MD solution and project files

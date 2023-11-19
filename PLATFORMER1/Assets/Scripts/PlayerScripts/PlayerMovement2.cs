@@ -30,6 +30,7 @@ public class PlayerMovement2 : MonoBehaviour
     public bool IsSliding { get; private set; }
 
     public bool hasDashed;
+    private bool canDash;
     public bool isCrouching;
     public bool isRunning;
 
@@ -125,7 +126,7 @@ public class PlayerMovement2 : MonoBehaviour
             OnJumpUpInput();
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) && canDash)
         {
             OnDashInput();
         }
@@ -147,6 +148,7 @@ public class PlayerMovement2 : MonoBehaviour
             if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping) //checks if set box overlaps with ground
             {
                 LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
+                canDash = true;
             }
 
             //Right Wall Check
@@ -164,7 +166,10 @@ public class PlayerMovement2 : MonoBehaviour
         }
         #endregion
 
-
+        if (RB.velocity.y != 0)
+        {
+            canDash = false;
+        }
 
         #region JUMP CHECKS
         if (IsJumping && RB.velocity.y < 0)

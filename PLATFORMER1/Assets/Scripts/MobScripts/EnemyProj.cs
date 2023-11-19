@@ -8,7 +8,7 @@ public class EnemyProj : MonoBehaviour
     public Transform bulletpos;
     [SerializeField] private float shot_space;
     [SerializeField] private float blast_rad;
-
+    [SerializeField] private float down_diff;
 
     private Animator anim;
     private float timer;

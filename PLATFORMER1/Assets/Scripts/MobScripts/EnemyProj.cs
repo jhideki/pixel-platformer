@@ -9,7 +9,6 @@ public class EnemyProj : MonoBehaviour
     [SerializeField] private float shot_space;
     [SerializeField] private float blast_rad;
 
-
     private Animator anim;
     private float timer;
     private GameObject player;

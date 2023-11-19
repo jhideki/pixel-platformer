@@ -31,6 +31,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     public bool hasDashed;
     private bool canDash;
+
     public bool isCrouching;
     public bool isRunning;
 
@@ -102,8 +103,11 @@ public class PlayerMovement2 : MonoBehaviour
         #endregion
 
         #region INPUT HANDLER
+
         _moveInput.x = Input.GetAxisRaw("Horizontal");
         _moveInput.y = Input.GetAxisRaw("Vertical");
+
+        Debug.Log("x: " + _moveInput.x);
 
         if (_moveInput.x != 0)
         {
@@ -142,28 +146,36 @@ public class PlayerMovement2 : MonoBehaviour
         #endregion
 
         #region COLLISION CHECKS
-        if (!IsJumping)
+
+
+        //Ground Check
+        if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping) //checks if set box overlaps with ground
         {
-            //Ground Check
-            if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping) //checks if set box overlaps with ground
-            {
-                LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
-                canDash = true;
-            }
-
-            //Right Wall Check
-            if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)
-                    || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
-                LastOnWallRightTime = Data.coyoteTime;
-
-            //Right Wall Check
-            if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)
-                || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
-                LastOnWallLeftTime = Data.coyoteTime;
-
-            //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
-            LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+            LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
+            canDash = true;
         }
+
+        //Right Wall Check
+        if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)
+                || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)))
+        {
+            LastOnWallRightTime = Data.coyoteTime;
+
+        }
+
+        //left Wall Check
+        if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)
+            || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)))
+        {
+            LastOnWallLeftTime = Data.coyoteTime;
+            //Debug.Log("on left wall");
+
+        }
+
+        //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
+        LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
+
+
         #endregion
 
         if (RB.velocity.y != 0)
@@ -204,25 +216,19 @@ public class PlayerMovement2 : MonoBehaviour
             _isJumpFalling = false;
             Jump();
         }
-        //WALL JUMP
-        else if (CanWallJump() && LastPressedJumpTime > 0)
-        {
-            IsWallJumping = true;
-            IsJumping = false;
-            _isJumpCut = false;
-            _isJumpFalling = false;
-            _wallJumpStartTime = Time.time;
-            _lastWallJumpDir = (LastOnWallRightTime > 0) ? -1 : 1;
-
-            WallJump(_lastWallJumpDir);
-        }
         #endregion
 
         #region SLIDE CHECKS
-        if (CanSlide() && ((LastOnWallLeftTime > 0 && _moveInput.x < 0) || (LastOnWallRightTime > 0 && _moveInput.x > 0)))
+        if (((LastOnWallLeftTime > 0 && _moveInput.x < 0) || (LastOnWallRightTime > 0 && _moveInput.x > 0)))
+        {
+            Debug.Log("sliding");
             IsSliding = true;
+        }
         else
+        {
             IsSliding = false;
+        }
+
         #endregion
 
         #region GRAVITY
@@ -273,14 +279,17 @@ public class PlayerMovement2 : MonoBehaviour
         {
             Run(Data.wallJumpRunLerp);
         }
-        else if (!blockMovement)
+        else if (!blockMovement && !IsSliding)
         {
             Run(1);
         }
 
         //Handle Slide
         if (IsSliding)
+        {
             Slide();
+        }
+
     }
 
     #region INPUT CALLBACKS
@@ -385,8 +394,10 @@ public class PlayerMovement2 : MonoBehaviour
 
         float movement = speedDif * accelRate;
 
+
         //Convert this to a vector and apply to rigidbody
         RB.AddForce(movement * Vector2.right, ForceMode2D.Force);
+
 
         /*
 		 * For those interested here is what AddForce() will do

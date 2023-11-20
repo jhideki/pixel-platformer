@@ -6,6 +6,10 @@ public class PlayerCombat : MonoBehaviour
 {
 
     private Animator anim;
+    public PlayerRunData data;
+    public Rigidbody2D RB;
+
+    private float oldMovementDeacceleration;
     [SerializeField] private Transform attackPoint;
 
     [SerializeField] private float attackRange = 0.5f;
@@ -15,18 +19,21 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        RB = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Attack();
+            oldMovementDeacceleration = data.runDeccelAmount;
+            StartCoroutine(Attack());
         }
     }
 
-    void Attack()
+    IEnumerator Attack()
     {
+        data.runDeccelAmount *= 0.05f;
         anim.SetTrigger("attack");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
@@ -35,7 +42,12 @@ public class PlayerCombat : MonoBehaviour
             Debug.Log("hit");
             enemy.GetComponent<Enemy>().takeDamage(100);
         }
+        yield return new WaitForSeconds(0.04f);
+
+        data.runDeccelAmount = oldMovementDeacceleration;
+
     }
+
 
     void OnDrawGizmosSelected()
     {

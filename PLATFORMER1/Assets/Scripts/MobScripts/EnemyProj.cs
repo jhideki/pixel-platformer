@@ -8,7 +8,6 @@ public class EnemyProj : MonoBehaviour
     public Transform bulletpos;
     [SerializeField] private float shot_space;
     [SerializeField] private float blast_rad;
-    [SerializeField] private float down_diff;
 
     private Animator anim;
     private float timer;
@@ -58,7 +57,7 @@ public class EnemyProj : MonoBehaviour
         }
         else
         {
-            if (player.transform.position.x <= transform.position.x && player.transform.position.y >= transform.position.y)
+            if (player.transform.position.x <= transform.position.x && player.transform.position.y >= transform.position.y )
             {
                 anim.SetBool("Attck", true);
                 yield return new WaitForSeconds(0.5f);

@@ -57,7 +57,7 @@ public class EnemyProj : MonoBehaviour
         }
         else
         {
-            if (player.transform.position.x <= transform.position.x && player.transform.position.y >= transform.position.y)
+            if (player.transform.position.x <= transform.position.x && player.transform.position.y >= transform.position.y )
             {
                 anim.SetBool("Attck", true);
                 yield return new WaitForSeconds(0.5f);

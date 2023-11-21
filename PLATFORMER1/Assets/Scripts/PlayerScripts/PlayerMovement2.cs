@@ -106,7 +106,7 @@ public class PlayerMovement2 : MonoBehaviour
         _moveInput.x = Input.GetAxisRaw("Horizontal");
         _moveInput.y = Input.GetAxisRaw("Vertical");
 
-        Debug.Log("x: " + _moveInput.x);
+
 
         if (_moveInput.x != 0)
         {
@@ -214,7 +214,6 @@ public class PlayerMovement2 : MonoBehaviour
         #region SLIDE CHECKS
         if (((LastOnWallLeftTime > 0 && _moveInput.x < 0) || (LastOnWallRightTime > 0 && _moveInput.x > 0)))
         {
-            Debug.Log("sliding");
             IsSliding = true;
         }
         else

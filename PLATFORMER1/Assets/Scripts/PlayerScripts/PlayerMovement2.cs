@@ -19,7 +19,7 @@ public class PlayerMovement2 : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sprite;
 
-    private enum MovementState { idle, running, jumping, falling }
+    private enum MovementState { idle, running, jumping, falling, sliding }
 
     //Variables control the various actions the player can perform at any time.
     //These are fields which can are public allowing for other sctipts to read them
@@ -133,7 +133,7 @@ public class PlayerMovement2 : MonoBehaviour
             OnDashInput();
         }
 
-        if(Input.GetKeyUp(KeyCode.W))
+        if (Input.GetKeyUp(KeyCode.W))
         {
             OnUpdashInput();
         }
@@ -269,8 +269,8 @@ public class PlayerMovement2 : MonoBehaviour
         {
             candash = 0;
         }
-        Debug.Log("candash"+candash);
-        Debug.Log("LastOnGroundTime" + LastOnGroundTime);
+
+        Debug.Log(IsSliding);
 
         // for animations
         UpdateAnimationState();
@@ -369,7 +369,8 @@ public class PlayerMovement2 : MonoBehaviour
         hasDashed = true;
         blockMovement = true;
         Vector3 curPosition = trans.position;
-        if (candash < 1) {
+        if (candash < 1)
+        {
             if (IsFacingRight)
             {
                 curPosition.x += Data.dashDistance;
@@ -584,11 +585,15 @@ public class PlayerMovement2 : MonoBehaviour
             state = MovementState.idle;
         }
 
-        if (RB.velocity.y > 0.1f)
+        if (IsSliding)
+        {
+            state = MovementState.sliding;
+        }
+        else if (RB.velocity.y > 0.1f && !IsSliding)
         {
             state = MovementState.jumping;
         }
-        else if (RB.velocity.y < -.1f)
+        else if (RB.velocity.y < -.1f && !IsSliding)
         {
             state = MovementState.falling;
         }

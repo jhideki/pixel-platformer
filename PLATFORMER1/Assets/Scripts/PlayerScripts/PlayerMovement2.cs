@@ -30,6 +30,7 @@ public class PlayerMovement2 : MonoBehaviour
     public bool IsSliding { get; private set; }
 
     public bool hasDashed;
+    public int candash = 0;
 
     public bool isCrouching;
     public bool isRunning;
@@ -106,8 +107,6 @@ public class PlayerMovement2 : MonoBehaviour
         _moveInput.x = Input.GetAxisRaw("Horizontal");
         _moveInput.y = Input.GetAxisRaw("Vertical");
 
-
-
         if (_moveInput.x != 0)
         {
             CheckDirectionToFace(_moveInput.x > 0);
@@ -132,6 +131,11 @@ public class PlayerMovement2 : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             OnDashInput();
+        }
+
+        if(Input.GetKeyUp(KeyCode.W))
+        {
+            OnUpdashInput();
         }
 
         if (_moveInput.y < 0 && !IsJumping)
@@ -260,6 +264,14 @@ public class PlayerMovement2 : MonoBehaviour
         }
         #endregion
 
+        //so that can only up dash once per jump
+        if (LastOnGroundTime > 0)
+        {
+            candash = 0;
+        }
+        Debug.Log("candash"+candash);
+        Debug.Log("LastOnGroundTime" + LastOnGroundTime);
+
         // for animations
         UpdateAnimationState();
     }
@@ -304,6 +316,11 @@ public class PlayerMovement2 : MonoBehaviour
 
         StartCoroutine(dash());
     }
+
+    public void OnUpdashInput()
+    {
+        StartCoroutine(updash());
+    }
     #endregion
 
     #region GENERAL METHODS
@@ -343,6 +360,37 @@ public class PlayerMovement2 : MonoBehaviour
         // hasDashed = false;
 
     }
+
+    IEnumerator updash()
+    {
+        anim.SetBool("dash", true);
+        yield return new WaitForSeconds(0.04f);
+        anim.SetBool("dash", false);
+        hasDashed = true;
+        blockMovement = true;
+        Vector3 curPosition = trans.position;
+        if (candash < 1) {
+            if (IsFacingRight)
+            {
+                curPosition.x += Data.dashDistance;
+                curPosition.y += Data.dashDistance;
+            }
+            else
+            {
+                curPosition.x -= Data.dashDistance;
+                curPosition.y += Data.dashDistance;
+            }
+        }
+
+        trans.position = curPosition;
+        candash++;
+
+        //reset dash
+        yield return new WaitForSeconds(blockMovementTime);
+        blockMovement = false;
+        // hasDashed = false;
+    }
+
     private void Run(float lerpAmount)
     {
         //Calculate the direction we want to move in and our desired velocity

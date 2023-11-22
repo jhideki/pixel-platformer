@@ -160,7 +160,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         //Right Wall Check
         if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)
-                || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)))
+                || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
         {
             LastOnWallRightTime = Data.coyoteTime;
 
@@ -168,7 +168,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         //left Wall Check
         if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)
-            || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)))
+            || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
         {
             LastOnWallLeftTime = Data.coyoteTime;
         }
@@ -212,6 +212,17 @@ public class PlayerMovement2 : MonoBehaviour
             _isJumpCut = false;
             _isJumpFalling = false;
             Jump();
+        }
+        else if (CanWallJump() && LastPressedJumpTime > 0)
+        {
+            IsWallJumping = true;
+            IsJumping = false;
+            _isJumpCut = false;
+            _isJumpFalling = false;
+            _wallJumpStartTime = Time.time;
+            _lastWallJumpDir = (LastOnWallRightTime > 0) ? -1 : 1;
+
+            WallJump(_lastWallJumpDir);
         }
         #endregion
 

@@ -283,8 +283,6 @@ public class PlayerMovement2 : MonoBehaviour
         {
             candash = 0;
         }
-        Debug.Log(LastOnGroundTime);
-        //Debug.Log(IsSliding);
 
         // for animations
         UpdateAnimationState();
@@ -351,20 +349,40 @@ public class PlayerMovement2 : MonoBehaviour
     IEnumerator dash()
     {
 
+
         anim.SetBool("dash", true);
         yield return new WaitForSeconds(0.04f);
         anim.SetBool("dash", false);
         hasDashed = true;
         blockMovement = true;
         Vector3 curPosition = trans.position;
-        if (IsFacingRight)
+        Vector2 dashOffset = checkDash();
+        if (dashOffset == Vector2.zero)
         {
-            curPosition.x += Data.dashDistance;
+            if (IsFacingRight)
+            {
+                curPosition.x += Data.dashDistance;
+            }
+            else
+            {
+                curPosition.x -= Data.dashDistance;
+            }
         }
         else
         {
-            curPosition.x -= Data.dashDistance;
+
+            if (IsFacingRight)
+            {
+                curPosition.x = dashOffset.x + 29.0f;
+            }
+            else
+            {
+                curPosition.x = dashOffset.x - 29.0f;
+            }
+
         }
+
+
 
         trans.position = curPosition;
 
@@ -383,27 +401,95 @@ public class PlayerMovement2 : MonoBehaviour
         hasDashed = true;
         blockMovement = true;
         Vector3 curPosition = trans.position;
-        if (candash < 1)
+        Vector2 dashOffset = checkAngleDash();
+        Debug.Log(dashOffset);
+        if (dashOffset == Vector2.zero)
+        {
+            if (candash < 1)
+            {
+                if (IsFacingRight)
+                {
+                    curPosition.x += Data.dashDistance;
+                    curPosition.y += jump_up;
+                }
+                else
+                {
+                    curPosition.x -= Data.dashDistance;
+                    curPosition.y += jump_up;
+                }
+            }
+        }
+        else
         {
             if (IsFacingRight)
             {
-                curPosition.x += Data.dashDistance;
-                curPosition.y += jump_up;
+                curPosition.x = dashOffset.x + 29.0f;
+                curPosition.y = dashOffset.y + 21.0f;
             }
             else
             {
-                curPosition.x -= Data.dashDistance;
-                curPosition.y += jump_up;
+                curPosition.x = dashOffset.x - 29.0f;
+                curPosition.y = dashOffset.y + 21.0f;
             }
         }
 
+
         trans.position = curPosition;
+        Debug.Log(trans.position.y);
         candash++;
 
         //reset dash
         yield return new WaitForSeconds(blockMovementTime);
         blockMovement = false;
         // hasDashed = false;
+    }
+
+    // returns position of the edge of the object that player collides with
+    Vector2 checkDash()
+    {
+        // Perform a raycast to check for obstacles in the path of the dash
+        Vector2 dashDirection = IsFacingRight ? Vector2.right : Vector2.left;
+        RaycastHit2D hit = Physics2D.Raycast(trans.position, dashDirection, Data.dashDistance, _groundLayer);
+
+        // Adjust the layer mask according to your game's setup
+        // For example, you might create a layer called "Obstacle" and set the layerMask accordingly.
+        // LayerMask obstacleLayerMask = LayerMask.GetMask("Obstacle");
+
+        // If the ray hits an obstacle, return the edge position; otherwise, return Vector2.zero
+        if (hit.collider != null)
+        {
+            float obstacleEdgeX = hit.point.x - (IsFacingRight ? hit.collider.bounds.extents.x : -hit.collider.bounds.extents.x);
+            float obstacleEdgeY = trans.position.y; // Assuming you only dash horizontally
+            return new Vector2(obstacleEdgeX, obstacleEdgeY);
+        }
+        else
+        {
+            return Vector2.zero;
+        }
+    }
+
+    Vector2 checkAngleDash()
+    {
+        // Perform a raycast to check for obstacles in the path of the dash
+        Vector2 dashDirection = IsFacingRight ? new Vector2(Data.dashDistance, jump_up).normalized : new Vector2(-Data.dashDistance, jump_up).normalized;
+
+        RaycastHit2D hit = Physics2D.Raycast(trans.position, dashDirection, Data.dashDistance, _groundLayer);
+
+        // Adjust the layer mask according to your game's setup
+        // For example, you might create a layer called "Obstacle" and set the layerMask accordingly.
+        // LayerMask obstacleLayerMask = LayerMask.GetMask("Obstacle");
+
+        // If the ray hits an obstacle, return the edge position; otherwise, return Vector2.zero
+        if (hit.collider != null)
+        {
+            float obstacleEdgeX = hit.point.x - (IsFacingRight ? hit.collider.bounds.extents.x : -hit.collider.bounds.extents.x);
+            float obstacleEdgeY = hit.point.y - hit.collider.bounds.extents.y; // Assuming you only dash horizontally
+            return new Vector2(obstacleEdgeX, obstacleEdgeY);
+        }
+        else
+        {
+            return Vector2.zero;
+        }
     }
 
     private void Run(float lerpAmount)

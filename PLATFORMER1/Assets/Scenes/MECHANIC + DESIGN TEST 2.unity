@@ -1509,7 +1509,7 @@ GameObject:
   - component: {fileID: 588537337}
   m_Layer: 7
   m_Name: with collider
-  m_TagString: Platform
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11725,7 +11725,7 @@ GameObject:
   - component: {fileID: 630457750}
   - component: {fileID: 630457752}
   - component: {fileID: 630457751}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: no-collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13910,6 +13910,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.22
       objectReference: {fileID: 0}
+    - target: {fileID: 3405523086845737481, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
+      propertyPath: jump_up
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3405523086845737481, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
+      propertyPath: tilemap
+      value: 
+      objectReference: {fileID: 588537341}
     - target: {fileID: 3405523086845737481, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
       propertyPath: isRunning
       value: 0

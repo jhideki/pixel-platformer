@@ -30,7 +30,7 @@ public class PlayerMovement2 : MonoBehaviour
     public bool IsSliding { get; private set; }
 
     public bool hasDashed;
-    public int candash = 0;
+    private int candash = 0;
 
     public bool isCrouching;
     public bool isRunning;
@@ -74,6 +74,9 @@ public class PlayerMovement2 : MonoBehaviour
 
     [Header("Layers & Tags")]
     [SerializeField] private LayerMask _groundLayer;
+
+    //amount up on updash
+    [SerializeField] private int jump_up;
     #endregion
 
     private void Awake()
@@ -280,8 +283,8 @@ public class PlayerMovement2 : MonoBehaviour
         {
             candash = 0;
         }
-
-        Debug.Log(IsSliding);
+        Debug.Log(LastOnGroundTime);
+        //Debug.Log(IsSliding);
 
         // for animations
         UpdateAnimationState();
@@ -385,12 +388,12 @@ public class PlayerMovement2 : MonoBehaviour
             if (IsFacingRight)
             {
                 curPosition.x += Data.dashDistance;
-                curPosition.y += Data.dashDistance;
+                curPosition.y += jump_up;
             }
             else
             {
                 curPosition.x -= Data.dashDistance;
-                curPosition.y += Data.dashDistance;
+                curPosition.y += jump_up;
             }
         }
 

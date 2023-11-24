@@ -36,6 +36,9 @@ public class EnemyPatroll : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody.velocity.x)), transform.localScale.y);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("CollideTerrain"))
+        {
+            transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody.velocity.x)), transform.localScale.y);
+        }
     }
 }

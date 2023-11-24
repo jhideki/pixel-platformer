@@ -20,8 +20,8 @@ TagManager:
   - Background
   - Ground
   - Enemy
-  - 
-  - 
+  - CollideTerrain
+  - CollidePlayer
   - 
   - 
   - 

@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mob_1
       objectReference: {fileID: 0}
+    - target: {fileID: 3090681803235342711, guid: 31bcad77c55b4a244985582adbbef97c, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4466777857574323021, guid: 31bcad77c55b4a244985582adbbef97c, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -208,8 +212,20 @@ PrefabInstance:
       value: -0.87927127
       objectReference: {fileID: 0}
     - target: {fileID: 7728023741118546662, guid: 31bcad77c55b4a244985582adbbef97c, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728023741118546662, guid: 31bcad77c55b4a244985582adbbef97c, type: 3}
       propertyPath: m_IncludeLayers.m_Bits
-      value: 512
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728023741118546662, guid: 31bcad77c55b4a244985582adbbef97c, type: 3}
+      propertyPath: m_CallbackLayers.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728023741118546662, guid: 31bcad77c55b4a244985582adbbef97c, type: 3}
+      propertyPath: m_ContactCaptureLayers.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -220,7 +236,7 @@ PrefabInstance:
       addedObject: {fileID: 1631485837}
     - targetCorrespondingSourceObject: {fileID: 3090681803235342711, guid: 31bcad77c55b4a244985582adbbef97c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1631485845}
+      addedObject: {fileID: 1631485853}
   m_SourcePrefab: {fileID: 100100000, guid: 31bcad77c55b4a244985582adbbef97c, type: 3}
 --- !u!1001 &442587741
 PrefabInstance:
@@ -13052,7 +13068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
---- !u!61 &1631485845
+--- !u!61 &1631485853
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13064,27 +13080,27 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1911
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1911
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1911
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1911
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1911
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08, y: 0.1}
+  m_Offset: {x: -0.08, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}

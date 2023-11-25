@@ -56,8 +56,10 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-
-            enemy.GetComponent<Enemy>().takeDamage(lightAttackDamage);
+            if (enemy.gameObject.layer != LayerMask.NameToLayer("Ground"))
+            {
+                enemy.GetComponent<Enemy>().takeDamage(lightAttackDamage);
+            }
         }
         yield return new WaitForSeconds(0.04f);
 
@@ -75,7 +77,10 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().takeDamage(heavyAttackDamage);
+            if (enemy.gameObject.layer != LayerMask.NameToLayer("Ground"))
+            {
+                enemy.GetComponent<Enemy>().takeDamage(heavyAttackDamage);
+            }
         }
         yield return new WaitForSeconds(0.04f);
 

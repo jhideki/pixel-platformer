@@ -19,6 +19,8 @@ public class PlayerMovement2 : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sprite;
 
+    private PlayerLife playerLife;
+
     private enum MovementState { idle, running, jumping, falling, sliding }
 
     //Variables control the various actions the player can perform at any time.
@@ -31,6 +33,8 @@ public class PlayerMovement2 : MonoBehaviour
 
     public bool hasDashed;
     private int candash = 0;
+    private bool playerDied;
+    public bool isDashing;
 
     public bool isCrouching;
     public bool isRunning;
@@ -71,6 +75,7 @@ public class PlayerMovement2 : MonoBehaviour
     [SerializeField] private Transform _frontWallCheckPoint;
     [SerializeField] private Transform _backWallCheckPoint;
     [SerializeField] private Vector2 _wallCheckSize = new Vector2(0.5f, 1f);
+    [SerializeField] private float raycastRadius = 1.0f;
 
     [Header("Layers & Tags")]
     [SerializeField] private LayerMask _groundLayer;
@@ -85,6 +90,7 @@ public class PlayerMovement2 : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         trans = GetComponent<Transform>();
+        playerLife = GetComponent<PlayerLife>();
 
     }
 
@@ -283,8 +289,6 @@ public class PlayerMovement2 : MonoBehaviour
         {
             candash = 0;
         }
-        Debug.Log(LastOnGroundTime);
-        //Debug.Log(IsSliding);
 
         // for animations
         UpdateAnimationState();
@@ -352,58 +356,157 @@ public class PlayerMovement2 : MonoBehaviour
     {
 
         anim.SetBool("dash", true);
+        isDashing = true;
         yield return new WaitForSeconds(0.04f);
         anim.SetBool("dash", false);
         hasDashed = true;
         blockMovement = true;
         Vector3 curPosition = trans.position;
-        if (IsFacingRight)
+        Vector2 dashOffset = checkDash();
+        if (dashOffset == Vector2.zero)
         {
-            curPosition.x += Data.dashDistance;
+            if (IsFacingRight)
+            {
+                curPosition.x += Data.dashDistance;
+            }
+            else
+            {
+                curPosition.x -= Data.dashDistance;
+            }
         }
         else
         {
-            curPosition.x -= Data.dashDistance;
+
+            if (IsFacingRight)
+            {
+                curPosition.x = dashOffset.x + 29.0f;
+            }
+            else
+            {
+                curPosition.x = dashOffset.x - 29.0f;
+            }
+
         }
 
         trans.position = curPosition;
 
+        if (playerDied)
+        {
+            playerLife.Die();
+        }
+
         //reset dash
         yield return new WaitForSeconds(blockMovementTime);
         blockMovement = false;
-        // hasDashed = false;
+        isDashing = false;
 
     }
 
     IEnumerator updash()
     {
         anim.SetBool("dash", true);
+        isDashing = true;
         yield return new WaitForSeconds(0.04f);
         anim.SetBool("dash", false);
         hasDashed = true;
         blockMovement = true;
         Vector3 curPosition = trans.position;
-        if (candash < 1)
+        Vector2 dashOffset = checkAngleDash();
+        Debug.Log(dashOffset);
+        if (dashOffset == Vector2.zero)
+        {
+            if (candash < 1)
+            {
+                if (IsFacingRight)
+                {
+                    curPosition.x += Data.dashDistance;
+                    curPosition.y += jump_up;
+                }
+                else
+                {
+                    curPosition.x -= Data.dashDistance;
+                    curPosition.y += jump_up;
+                }
+            }
+        }
+        else
         {
             if (IsFacingRight)
             {
-                curPosition.x += Data.dashDistance;
-                curPosition.y += jump_up;
+                curPosition.x = dashOffset.x + 29.0f;
+                curPosition.y = dashOffset.y + 21.0f;
             }
             else
             {
-                curPosition.x -= Data.dashDistance;
-                curPosition.y += jump_up;
+                curPosition.x = dashOffset.x - 29.0f;
+                curPosition.y = dashOffset.y + 21.0f;
             }
         }
 
+
         trans.position = curPosition;
+
+        if (playerDied)
+        {
+            playerLife.Die();
+        }
         candash++;
 
         //reset dash
         yield return new WaitForSeconds(blockMovementTime);
         blockMovement = false;
-        // hasDashed = false;
+        isDashing = false;
+    }
+
+    // returns position of the edge of the object that player collides with
+    Vector2 checkDash()
+    {
+        // Perform a raycast to check for obstacles in the path of the dash
+        Vector2 dashDirection = IsFacingRight ? Vector2.right : Vector2.left;
+        RaycastHit2D hit = Physics2D.CircleCast(trans.position, raycastRadius, dashDirection, Data.dashDistance, _groundLayer);
+
+        if (hit.collider.CompareTag("Trap"))
+        {
+            playerDied = true;
+        }
+
+        // If the ray hits an obstacle, return the edge position; otherwise, return Vector2.zero
+        if (hit.collider != null)
+        {
+            float obstacleEdgeX = hit.point.x - (IsFacingRight ? hit.collider.bounds.extents.x : -hit.collider.bounds.extents.x);
+            float obstacleEdgeY = trans.position.y; // Assuming you only dash horizontally
+            return new Vector2(obstacleEdgeX, obstacleEdgeY);
+        }
+        else
+        {
+            return Vector2.zero;
+        }
+    }
+
+    Vector2 checkAngleDash()
+    {
+
+        Vector2 dashDirection = IsFacingRight ? new Vector2(Data.dashDistance, jump_up).normalized : new Vector2(-Data.dashDistance, jump_up).normalized;
+
+        RaycastHit2D hit = Physics2D.CircleCast(trans.position, raycastRadius, dashDirection, Data.dashDistance, _groundLayer);
+        Debug.DrawRay(trans.position, dashDirection * Data.dashDistance, Color.red, 0.1f);
+
+        if (hit.collider.CompareTag("Trap"))
+        {
+            playerDied = true;
+        }
+
+        // If the CircleCast hits an obstacle, return the edge position; otherwise, return Vector2.zero
+        if (hit.collider != null)
+        {
+            float obstacleEdgeX = hit.point.x - (IsFacingRight ? hit.collider.bounds.extents.x : -hit.collider.bounds.extents.x);
+            float obstacleEdgeY = hit.point.y - hit.collider.bounds.extents.y; // Assuming you only dash horizontally
+            return new Vector2(obstacleEdgeX, obstacleEdgeY);
+        }
+        else
+        {
+            return Vector2.zero;
+        }
     }
 
     private void Run(float lerpAmount)

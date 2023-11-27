@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Player_Dash_2
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -18,22 +18,24 @@ AnimationClip:
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves:
-  - curve:
+  - serializedVersion: 2
+    curve:
     - time: 0
       value: {fileID: -56347349, guid: 99ed58e6312611d4484b5b8d2cce8160, type: 3}
-    - time: 0.05
+    - time: 0.125
       value: {fileID: 1689095969, guid: 99ed58e6312611d4484b5b8d2cce8160, type: 3}
-    - time: 0.15
+    - time: 0.375
       value: {fileID: -1029767378, guid: 99ed58e6312611d4484b5b8d2cce8160, type: 3}
-    - time: 0.25
+    - time: 0.625
       value: {fileID: 496688433, guid: 99ed58e6312611d4484b5b8d2cce8160, type: 3}
-    - time: 0.35
+    - time: 0.875
       value: {fileID: -56347349, guid: 99ed58e6312611d4484b5b8d2cce8160, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 20
+    flags: 2
+  m_SampleRate: 8
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -47,6 +49,8 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: -56347349, guid: 99ed58e6312611d4484b5b8d2cce8160, type: 3}
     - {fileID: 1689095969, guid: 99ed58e6312611d4484b5b8d2cce8160, type: 3}
@@ -58,7 +62,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.4
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

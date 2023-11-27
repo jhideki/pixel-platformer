@@ -13058,6 +13058,8 @@ GameObject:
   - component: {fileID: 1811179851}
   - component: {fileID: 1811179850}
   - component: {fileID: 1811179849}
+  - component: {fileID: 1811179853}
+  - component: {fileID: 1811179852}
   m_Layer: 7
   m_Name: spikes
   m_TagString: Trap
@@ -13493,6 +13495,76 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!66 &1811179852
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811179847}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths: []
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+  m_UseDelaunayMesh: 0
+  m_CompositeGameObject: {fileID: 1811179847}
+--- !u!50 &1811179853
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811179847}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &1816546777
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13921,6 +13993,10 @@ PrefabInstance:
     - target: {fileID: 3405523086845737481, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
       propertyPath: isRunning
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3405523086845737481, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
+      propertyPath: raycastRadius
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3405523086845737481, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
       propertyPath: _wallCheckSize.x

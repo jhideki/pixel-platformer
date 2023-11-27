@@ -19,6 +19,8 @@ public class PlayerMovement2 : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sprite;
 
+    private PlayerLife playerLife;
+
     private enum MovementState { idle, running, jumping, falling, sliding }
 
     //Variables control the various actions the player can perform at any time.
@@ -31,6 +33,8 @@ public class PlayerMovement2 : MonoBehaviour
 
     public bool hasDashed;
     private int candash = 0;
+    private bool playerDied;
+    public bool isDashing;
 
     public bool isCrouching;
     public bool isRunning;
@@ -71,6 +75,7 @@ public class PlayerMovement2 : MonoBehaviour
     [SerializeField] private Transform _frontWallCheckPoint;
     [SerializeField] private Transform _backWallCheckPoint;
     [SerializeField] private Vector2 _wallCheckSize = new Vector2(0.5f, 1f);
+    [SerializeField] private float raycastRadius = 1.0f;
 
     [Header("Layers & Tags")]
     [SerializeField] private LayerMask _groundLayer;
@@ -85,6 +90,7 @@ public class PlayerMovement2 : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         trans = GetComponent<Transform>();
+        playerLife = GetComponent<PlayerLife>();
 
     }
 
@@ -349,8 +355,8 @@ public class PlayerMovement2 : MonoBehaviour
     IEnumerator dash()
     {
 
-
         anim.SetBool("dash", true);
+        isDashing = true;
         yield return new WaitForSeconds(0.04f);
         anim.SetBool("dash", false);
         hasDashed = true;
@@ -382,20 +388,24 @@ public class PlayerMovement2 : MonoBehaviour
 
         }
 
-
-
         trans.position = curPosition;
+
+        if (playerDied)
+        {
+            playerLife.Die();
+        }
 
         //reset dash
         yield return new WaitForSeconds(blockMovementTime);
         blockMovement = false;
-        // hasDashed = false;
+        isDashing = false;
 
     }
 
     IEnumerator updash()
     {
         anim.SetBool("dash", true);
+        isDashing = true;
         yield return new WaitForSeconds(0.04f);
         anim.SetBool("dash", false);
         hasDashed = true;
@@ -435,13 +445,17 @@ public class PlayerMovement2 : MonoBehaviour
 
 
         trans.position = curPosition;
-        Debug.Log(trans.position.y);
+
+        if (playerDied)
+        {
+            playerLife.Die();
+        }
         candash++;
 
         //reset dash
         yield return new WaitForSeconds(blockMovementTime);
         blockMovement = false;
-        // hasDashed = false;
+        isDashing = false;
     }
 
     // returns position of the edge of the object that player collides with
@@ -449,11 +463,12 @@ public class PlayerMovement2 : MonoBehaviour
     {
         // Perform a raycast to check for obstacles in the path of the dash
         Vector2 dashDirection = IsFacingRight ? Vector2.right : Vector2.left;
-        RaycastHit2D hit = Physics2D.Raycast(trans.position, dashDirection, Data.dashDistance, _groundLayer);
+        RaycastHit2D hit = Physics2D.CircleCast(trans.position, raycastRadius, dashDirection, Data.dashDistance, _groundLayer);
 
-        // Adjust the layer mask according to your game's setup
-        // For example, you might create a layer called "Obstacle" and set the layerMask accordingly.
-        // LayerMask obstacleLayerMask = LayerMask.GetMask("Obstacle");
+        if (hit.collider.CompareTag("Trap"))
+        {
+            playerDied = true;
+        }
 
         // If the ray hits an obstacle, return the edge position; otherwise, return Vector2.zero
         if (hit.collider != null)
@@ -470,16 +485,18 @@ public class PlayerMovement2 : MonoBehaviour
 
     Vector2 checkAngleDash()
     {
-        // Perform a raycast to check for obstacles in the path of the dash
+
         Vector2 dashDirection = IsFacingRight ? new Vector2(Data.dashDistance, jump_up).normalized : new Vector2(-Data.dashDistance, jump_up).normalized;
 
-        RaycastHit2D hit = Physics2D.Raycast(trans.position, dashDirection, Data.dashDistance, _groundLayer);
+        RaycastHit2D hit = Physics2D.CircleCast(trans.position, raycastRadius, dashDirection, Data.dashDistance, _groundLayer);
+        Debug.DrawRay(trans.position, dashDirection * Data.dashDistance, Color.red, 0.1f);
 
-        // Adjust the layer mask according to your game's setup
-        // For example, you might create a layer called "Obstacle" and set the layerMask accordingly.
-        // LayerMask obstacleLayerMask = LayerMask.GetMask("Obstacle");
+        if (hit.collider.CompareTag("Trap"))
+        {
+            playerDied = true;
+        }
 
-        // If the ray hits an obstacle, return the edge position; otherwise, return Vector2.zero
+        // If the CircleCast hits an obstacle, return the edge position; otherwise, return Vector2.zero
         if (hit.collider != null)
         {
             float obstacleEdgeX = hit.point.x - (IsFacingRight ? hit.collider.bounds.extents.x : -hit.collider.bounds.extents.x);

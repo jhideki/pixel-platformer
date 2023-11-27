@@ -17,10 +17,11 @@ public class PlayerLife : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("Bullet")) 
+        if (collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("Bullet"))
 
         {
             deathSoundEffect.Play();
+
             Die();
         }
     }
@@ -34,7 +35,7 @@ public class PlayerLife : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         if (rb.bodyType != RigidbodyType2D.Static)
         {

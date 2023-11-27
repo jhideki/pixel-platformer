@@ -236,7 +236,7 @@ public class PlayerMovement2 : MonoBehaviour
         #endregion
 
         #region SLIDE CHECKS
-        if (((LastOnWallLeftTime > 0 && _moveInput.x < 0) || (LastOnWallRightTime > 0 && _moveInput.x > 0)))
+        if (CanSlide() && ((LastOnWallLeftTime > 0 && _moveInput.x < 0) || (LastOnWallRightTime > 0 && _moveInput.x > 0)))
         {
             IsSliding = true;
         }

@@ -465,14 +465,14 @@ public class PlayerMovement2 : MonoBehaviour
         Vector2 dashDirection = IsFacingRight ? Vector2.right : Vector2.left;
         RaycastHit2D hit = Physics2D.CircleCast(trans.position, raycastRadius, dashDirection, Data.dashDistance, _groundLayer);
 
-        if (hit.collider.CompareTag("Trap"))
-        {
-            playerDied = true;
-        }
 
         // If the ray hits an obstacle, return the edge position; otherwise, return Vector2.zero
         if (hit.collider != null)
         {
+            if (hit.collider.CompareTag("Trap"))
+            {
+                playerDied = true;
+            }
             float obstacleEdgeX = hit.point.x - (IsFacingRight ? hit.collider.bounds.extents.x : -hit.collider.bounds.extents.x);
             float obstacleEdgeY = trans.position.y; // Assuming you only dash horizontally
             return new Vector2(obstacleEdgeX, obstacleEdgeY);
@@ -491,14 +491,13 @@ public class PlayerMovement2 : MonoBehaviour
         RaycastHit2D hit = Physics2D.CircleCast(trans.position, raycastRadius, dashDirection, Data.dashDistance, _groundLayer);
         Debug.DrawRay(trans.position, dashDirection * Data.dashDistance, Color.red, 0.1f);
 
-        if (hit.collider.CompareTag("Trap"))
-        {
-            playerDied = true;
-        }
-
         // If the CircleCast hits an obstacle, return the edge position; otherwise, return Vector2.zero
         if (hit.collider != null)
         {
+            if (hit.collider.CompareTag("Trap"))
+            {
+                playerDied = true;
+            }
             float obstacleEdgeX = hit.point.x - (IsFacingRight ? hit.collider.bounds.extents.x : -hit.collider.bounds.extents.x);
             float obstacleEdgeY = hit.point.y - hit.collider.bounds.extents.y; // Assuming you only dash horizontally
             return new Vector2(obstacleEdgeX, obstacleEdgeY);
@@ -689,11 +688,13 @@ public class PlayerMovement2 : MonoBehaviour
     {
         MovementState state;
 
-        if (_moveInput.x > 0f)
+        if(IsSliding){
+             state = MovementState.sliding;
+        }else if (_moveInput.x > 0f && !IsSliding)
         {
             state = MovementState.running;
         }
-        else if (_moveInput.x < 0f)
+        else if (_moveInput.x < 0f && !IsSliding)
         {
             state = MovementState.running;
         }
@@ -702,11 +703,7 @@ public class PlayerMovement2 : MonoBehaviour
             state = MovementState.idle;
         }
 
-        if (IsSliding)
-        {
-            state = MovementState.sliding;
-        }
-        else if (RB.velocity.y > 0.1f && !IsSliding)
+       if (RB.velocity.y > 0.1f && !IsSliding)
         {
             state = MovementState.jumping;
         }

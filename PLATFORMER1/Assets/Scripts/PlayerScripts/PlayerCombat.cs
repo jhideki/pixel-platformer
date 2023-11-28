@@ -17,6 +17,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private int lightAttackDamage = 50;
     [SerializeField] private int heavyAttackDamage = 100;
+    [SerializeField] private GameObject hitbox;
 
     private bool isAttacking = false;
     private float attackCooldownlight = 1.0f;
@@ -47,18 +48,39 @@ public class PlayerCombat : MonoBehaviour
     }
 
     IEnumerator lightAttack()
-    {
+    { 
         isAttacking = true;
         nextAttackTime = Time.time + attackCooldownlight;
         data.runDeccelAmount *= 0.05f;
         anim.SetTrigger("lightAttack");
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
-        foreach (Collider2D enemy in hitEnemies)
+        // Assuming you have a separate collider for the hitbox
+        Collider2D hitboxCollider = GetComponentInChildren<Collider2D>();
+
+        //enemy.gameObject.layer != LayerMask.NameToLayer("Ground")/saving for later if needed
+        if (hitboxCollider != null)
         {
-            if (enemy.gameObject.layer != LayerMask.NameToLayer("Ground"))
+            ContactFilter2D contactFilter = new ContactFilter2D();
+            contactFilter.layerMask = enemyLayers;
+
+            List<Collider2D> hitEnemiesList = new List<Collider2D>();
+            Physics2D.OverlapCollider(hitboxCollider, contactFilter, hitEnemiesList);
+
+            foreach (Collider2D enemy in hitEnemiesList)
             {
-                enemy.GetComponent<Enemy>().takeDamage(lightAttackDamage);
+                Debug.Log("Hit enemy: " + enemy.gameObject.name + ", Layer: " + LayerMask.LayerToName(enemy.gameObject.layer));
+                Enemy enemyComponent = enemy.GetComponent<Enemy>();
+                if (enemyComponent != null)
+                {
+                    // Deal damage to the enemy
+                    enemyComponent.takeDamage(lightAttackDamage);
+                    Debug.Log("Dealt damage to enemy");
+                }
+                else
+                {
+                    Debug.LogError("Enemy object is missing the Enemy component: " + enemy.gameObject.name);
+                }
+
             }
         }
         yield return new WaitForSeconds(0.04f);

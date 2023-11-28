@@ -283,7 +283,7 @@ public class PlayerMovement2 : MonoBehaviour
         {
             candash = 0;
         }
-        Debug.Log(LastOnGroundTime);
+       //Debug.Log(LastOnGroundTime);
         //Debug.Log(IsSliding);
 
         // for animations

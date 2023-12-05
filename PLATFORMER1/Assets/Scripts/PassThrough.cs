@@ -32,6 +32,7 @@ public class PassThrough : MonoBehaviour
 
         if (movementScript.isDashing)
         {
+            platformCollider.enabled = true;
             platEffector.useOneWay = false;
         }
         else

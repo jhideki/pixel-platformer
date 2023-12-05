@@ -61,20 +61,9 @@ public class CameraController : MonoBehaviour
         //smooth in the x direction
         float smoothedPositionX = Mathf.Lerp(transform.position.x, Camerax_pos + Camera_offx, smoothingx * Time.deltaTime);
         //smooth when dashing in the x direction
-        if (movementScript.hasDashed)
-        {
-            transform.position = new Vector3(smoothedPositionX, smoothedPositionY, transform.position.z);
-
-            if (Mathf.Abs(transform.position.x - player.position.x) < 0.018f)
-            {
-                movementScript.hasDashed = false;
-            }
-
-        }
-        else
-        {
-            transform.position = new Vector3(Camerax_pos + Camera_offx, smoothedPositionY, transform.position.z);
-        }
+        
+        transform.position = new Vector3(Camerax_pos + Camera_offx, smoothedPositionY, transform.position.z);
+      
 
     }
 

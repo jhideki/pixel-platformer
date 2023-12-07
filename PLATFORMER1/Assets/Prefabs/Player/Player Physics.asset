@@ -18,15 +18,15 @@ MonoBehaviour:
   maxFallSpeed: 25
   fastFallGravityMult: 2
   maxFastFallSpeed: 30
-  dashAmount: 100
-  dashSpeed: 100
+  dashAmount: 1
+  dashSpeed: 150
   dashSleepTime: 0.01
-  dashAttackTime: 1
-  dashEndTime: 2
+  dashTime: 0.1
+  dashEndTime: 0.5
   dashEndSpeed: {x: 1, y: 0}
   dashEndRunLerp: 0
   dashRefillTime: 0.001
-  dashInputBufferTime: 0.388
+  dashInputBufferTime: 0.114
   runMaxSpeed: 14
   runAcceleration: 2
   runAccelAmount: 7.142857

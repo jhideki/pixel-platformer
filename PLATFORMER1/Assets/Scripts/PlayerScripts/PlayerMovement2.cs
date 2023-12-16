@@ -249,7 +249,7 @@ public class PlayerMovement2 : MonoBehaviour
         #endregion
 
         #region DASH CHECKS
-        if (CanDash() && LastPressedDashTime > 0)
+        if (CanDash() && LastPressedDashTime > 0 && !IsDashing)
         {
             //If not direction pressed, dash forward
             if (_moveInput != Vector2.zero)
@@ -323,7 +323,6 @@ public class PlayerMovement2 : MonoBehaviour
         {
             Slide();
         }
-
     }
 
     #region INPUT CALLBACKS
@@ -408,9 +407,7 @@ public class PlayerMovement2 : MonoBehaviour
     {
         //SHoet cooldown, so we can't constantly dash along the ground, again this is the implementation in Celeste, feel free to change it up
         _dashRefilling = true;
-        Debug.Log("refilling dash");
         yield return new WaitForSeconds(Data.dashRefillTime);
-        Debug.Log("done refilling");
         _dashRefilling = false;
         hasDashed = false;
         _dashesLeft = Mathf.Min(Data.numDashes, _dashesLeft + 1);
@@ -644,8 +641,5 @@ public class PlayerMovement2 : MonoBehaviour
 
         anim.SetInteger("state", (int)state);
     }
-
-
 }
 
-// created by Dawnosaur :D

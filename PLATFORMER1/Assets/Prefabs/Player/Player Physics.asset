@@ -20,7 +20,7 @@ MonoBehaviour:
   maxFastFallSpeed: 30
   dashAmount: 1
   dashSpeed: 150
-  dashSleepTime: 0
+  dashSleepTime: 3
   dashTime: 0.1
   dashEndTime: 0.5
   dashEndSpeed: {x: 1, y: 0}

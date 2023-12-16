@@ -251,9 +251,6 @@ public class PlayerMovement2 : MonoBehaviour
         #region DASH CHECKS
         if (CanDash() && LastPressedDashTime > 0)
         {
-            //Freeze game for split second. Adds juiciness and a bit of forgiveness over directional input
-            Sleep(Data.dashSleepTime);
-
             //If not direction pressed, dash forward
             if (_moveInput != Vector2.zero)
                 _lastDashDir = _moveInput;
@@ -261,7 +258,6 @@ public class PlayerMovement2 : MonoBehaviour
                 _lastDashDir = IsFacingRight ? Vector2.right : Vector2.left;
 
             IsDashing = true;
-            Debug.Log("isDashing set to true: " + DateTime.Now.ToString("HH:mm:ss.fff"));
             IsJumping = false;
             IsWallJumping = false;
             _isJumpCut = false;
@@ -361,27 +357,13 @@ public class PlayerMovement2 : MonoBehaviour
     {
         RB.gravityScale = scale;
     }
-
-    private void Sleep(float duration)
-    {
-        //Method used so we don't need to call StartCoroutine everywhere
-        //nameof() notation means we don't need to input a string directly.
-        //Removes chance of spelling mistakes and will improve error messages if any
-        StartCoroutine(nameof(PerformSleep), duration);
-    }
-
-    private IEnumerator PerformSleep(float duration)
-    {
-        Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(duration); //Must be Realtime since timeScale with be 0 
-        Time.timeScale = 1;
-    }
     #endregion
 
     //MOVEMENT METHODS
     #region RUN METHODS
     IEnumerator StartDash(Vector2 dir)
     {
+        yield return new WaitForSeconds(0.3f);
         LastOnGroundTime = 0;
         LastPressedDashTime = 0;
         float startTime = Time.time;
@@ -631,7 +613,6 @@ public class PlayerMovement2 : MonoBehaviour
         }
         else if (IsDashing)
         {
-            Debug.Log("set dash animation: " + DateTime.Now.ToString("HH:mm:ss.fff"));
             state = MovementState.dashing;
         }
         else if (_moveInput.x > 0f && !IsSliding)

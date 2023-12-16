@@ -2,6 +2,7 @@
 
 Welcome to our 2D Unity Platformer Game! This game is revolves around playing as Mushroom knight who trying to escape a dungeon. Game is still in early development stages.
 
+Gameplay screenshot:
 ![Gameplay Screenshot](/PLATFORMER1/Screenshots/gameplay.png)
 
 

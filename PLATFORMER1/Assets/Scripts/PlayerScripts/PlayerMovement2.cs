@@ -56,7 +56,7 @@ public class PlayerMovement2 : MonoBehaviour
     private Vector2 _lastDashDir;
     private bool _isDashAttacking;
     private int _dashesLeft;
-
+    public bool hasDashed;
     //Wall Jump
     private float _wallJumpStartTime;
     private int _lastWallJumpDir;
@@ -363,7 +363,11 @@ public class PlayerMovement2 : MonoBehaviour
     #region RUN METHODS
     IEnumerator StartDash(Vector2 dir)
     {
-        yield return new WaitForSeconds(0.3f);
+        float initalDashSpeed = Data.dashIntialSpeed;
+        float maxDashSpeed = Data.dashSpeed;
+        float accelerationTime = Data.dashAccelerationTime;
+
+        yield return new WaitForSeconds(Data.dashSleepTime);
         LastOnGroundTime = 0;
         LastPressedDashTime = 0;
         float startTime = Time.time;
@@ -373,16 +377,13 @@ public class PlayerMovement2 : MonoBehaviour
 
         while (Time.time - startTime <= Data.dashTime)
         {
-            // Check for wall collision
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, Data.dashSpeed * Time.deltaTime, _groundLayer);
-            if (hit.collider != null)
-            {
-                // Collision detected, stop the dash
-                break;
-            }
+
+            float timeElapsed = Time.time - startTime;
+            float currentSpeed = Mathf.Lerp(initalDashSpeed, maxDashSpeed, timeElapsed / accelerationTime);
+            currentSpeed = Mathf.Min(currentSpeed, maxDashSpeed);
 
             // Continue dashing
-            RB.velocity = dir.normalized * Data.dashSpeed;
+            RB.velocity = dir.normalized * currentSpeed;
             yield return null;
         }
 
@@ -398,6 +399,7 @@ public class PlayerMovement2 : MonoBehaviour
         }
 
         IsDashing = false;
+        hasDashed = true;
     }
 
 
@@ -406,9 +408,12 @@ public class PlayerMovement2 : MonoBehaviour
     {
         //SHoet cooldown, so we can't constantly dash along the ground, again this is the implementation in Celeste, feel free to change it up
         _dashRefilling = true;
+        Debug.Log("refilling dash");
         yield return new WaitForSeconds(Data.dashRefillTime);
+        Debug.Log("done refilling");
         _dashRefilling = false;
-        _dashesLeft = Mathf.Min(Data.dashAmount, _dashesLeft + 1);
+        hasDashed = false;
+        _dashesLeft = Mathf.Min(Data.numDashes, _dashesLeft + 1);
     }
 
     // to be implmented
@@ -583,7 +588,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     private bool CanDash()
     {
-        if (!IsDashing && _dashesLeft < Data.dashAmount && LastOnGroundTime > 0 && !_dashRefilling)
+        if (!IsDashing && _dashesLeft < Data.numDashes && LastOnGroundTime > 0 && !_dashRefilling)
         {
             StartCoroutine(nameof(RefillDash), 1);
         }

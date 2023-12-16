@@ -30,8 +30,9 @@ public class PassThrough : MonoBehaviour
             StartCoroutine(EnableCollider());
         }
 
-        if (movementScript.isDashing)
+        if (movementScript.IsDashing)
         {
+            platformCollider.enabled = true;
             platEffector.useOneWay = false;
         }
         else

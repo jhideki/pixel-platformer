@@ -15158,6 +15158,10 @@ PrefabInstance:
       propertyPath: m_Vertices.Array.data[47].position.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6561381788338847993, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7701798945265220602, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
       propertyPath: m_TagString
       value: Player

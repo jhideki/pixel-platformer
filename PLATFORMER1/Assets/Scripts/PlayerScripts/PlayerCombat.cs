@@ -17,6 +17,12 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private int lightAttackDamage = 50;
     [SerializeField] private int heavyAttackDamage = 100;
+    [SerializeField] private GameObject hitbox;
+
+    private bool isAttacking = false;
+    private float attackCooldownlight = 1.0f;
+    private float attackCooldownheavy = 1.5f;
+    private float nextAttackTime = 0f;
 
     void Start()
     {
@@ -26,50 +32,66 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (!isAttacking && Time.time >= nextAttackTime)
         {
-            oldMovementDeacceleration = data.runDeccelAmount;
-            StartCoroutine(lightAttack());
-        }
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            oldMovementDeacceleration = data.runDeccelAmount;
-            StartCoroutine(heavyAttack());
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                oldMovementDeacceleration = data.runDeccelAmount;
+                lightAttack();
+            }
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                oldMovementDeacceleration = data.runDeccelAmount;
+                heavyAttack();
+            }
         }
     }
 
-    IEnumerator lightAttack()
+   
+    void lightAttack()
+
     {
+        isAttacking = true;
+        nextAttackTime = Time.time + attackCooldownlight;
         data.runDeccelAmount *= 0.05f;
-        anim.SetTrigger("lightAttack");
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-        foreach (Collider2D enemy in hitEnemies)
-        {
-
-            enemy.GetComponent<Enemy>().takeDamage(lightAttackDamage);
-        }
-        yield return new WaitForSeconds(0.04f);
+        anim.SetTrigger("lightAttack"); 
 
         data.runDeccelAmount = oldMovementDeacceleration;
-
+        isAttacking = false;
     }
 
-    IEnumerator heavyAttack()
+    void heavyAttack()
     {
+        isAttacking = true;
+        nextAttackTime = Time.time + attackCooldownheavy;
+        data.runDeccelAmount *= 0.05f;
+        anim.SetTrigger("heavyAttack");
+
+        data.runDeccelAmount = oldMovementDeacceleration;
+        isAttacking = false;
+    }
+
+    /*IEnumerator heavyAttack()
+    {
+        isAttacking = true;
+        nextAttackTime = Time.time + attackCooldownheavy;
         data.runDeccelAmount *= 0.05f;
         anim.SetTrigger("heavyAttack");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().takeDamage(heavyAttackDamage);
+            if (enemy.gameObject.layer != LayerMask.NameToLayer("Ground"))
+            {
+                enemy.GetComponent<Enemy>().takeDamage(heavyAttackDamage);
+            }
         }
         yield return new WaitForSeconds(0.04f);
 
         data.runDeccelAmount = oldMovementDeacceleration;
+        isAttacking = false;
     }
-
+    */
 
     void OnDrawGizmosSelected()
     {

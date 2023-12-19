@@ -302,6 +302,7 @@ public class PlayerMovement2 : MonoBehaviour
             SetGravityScale(Data.gravityScale);
         }
         #endregion
+        
         // for animations
         UpdateAnimationState();
     }

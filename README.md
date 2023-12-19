@@ -1,2 +1,22 @@
-# pixel platformer
-Pixel-platformer is an unnamed game project revolving around 2d platforming made with Unity. This project is in an extremely early development phase and is not able to be installed at the moment. To view the game you will need to run the project in Unity. We are working on this project whenever we have time and are not working on school.
+# Untitiled 2D platformer game
+
+Welcome to our 2D Unity Platformer Game! This game is revolves around playing as Mushroom knight who trying to escape a dungeon. Game is still in early development stages.
+
+### Gameplay Screenshot
+![Gameplay Screenshot](/PLATFORMER1/Screenshots/gameplay.png)
+
+
+## Getting Started
+
+### Prerequisites
+
+- Unity 2020.3 or higher
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/awesome-unity-platformer.git
+   
+2. Open Project Unity Editor

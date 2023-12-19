@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
     private float Camerax_pos;
 
     [SerializeField] private float smoothing = 1f;
-    [SerializeField] private float smoothingx = 2f;
+    [SerializeField] private float smoothingx = 5f;
     [SerializeField] private float Camera_offx;
     [SerializeField] private float Camera_offy;
 
@@ -61,20 +61,17 @@ public class CameraController : MonoBehaviour
         //smooth in the x direction
         float smoothedPositionX = Mathf.Lerp(transform.position.x, Camerax_pos + Camera_offx, smoothingx * Time.deltaTime);
         //smooth when dashing in the x direction
+
         if (movementScript.hasDashed)
         {
+            Debug.Log("camera is smoothing");
             transform.position = new Vector3(smoothedPositionX, smoothedPositionY, transform.position.z);
-
-            if (Mathf.Abs(transform.position.x - player.position.x) < 0.018f)
-            {
-                movementScript.hasDashed = false;
-            }
-
         }
-        else
+        else if (!movementScript.hasDashed && !movementScript.IsDashing)
         {
             transform.position = new Vector3(Camerax_pos + Camera_offx, smoothedPositionY, transform.position.z);
         }
+
 
     }
 

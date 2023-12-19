@@ -19,8 +19,21 @@ public class PlayerRunData : ScriptableObject
 
     [Header("Dash")]
 
+    public int numDashes;
+    public float dashIntialSpeed;
+    public float dashAccelerationTime;
     public float dashSpeed;
-    public float dashDistance;
+    public float dashSleepTime; //Duration for which the game freezes when we press dash but before we read directional input and apply a force
+    [Space(5)]
+    public float dashTime;
+    [Space(5)]
+    public float dashEndTime; //Time after you finish the inital drag phase, smoothing the transition back to idle (or any standard state)
+    public Vector2 dashEndSpeed; //Slows down player, makes dash feel more responsive (used in Celeste)
+    [Range(0f, 1f)] public float dashEndRunLerp; //Slows the affect of player movement while dashing
+    [Space(5)]
+    public float dashRefillTime;
+    [Space(5)]
+    [Range(0.01f, 0.5f)] public float dashInputBufferTime;
 
     [Space(20)]
 

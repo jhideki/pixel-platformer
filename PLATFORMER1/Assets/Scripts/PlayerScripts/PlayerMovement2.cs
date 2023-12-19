@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using System;
 public class PlayerMovement2 : MonoBehaviour
 {
     //Scriptable object which holds all the player's movement parameters. If you don't want to use it
@@ -19,7 +19,9 @@ public class PlayerMovement2 : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sprite;
 
-    private enum MovementState { idle, running, jumping, falling, sliding }
+    private PlayerLife playerLife;
+
+    private enum MovementState { idle, running, jumping, falling, sliding, dashing }
 
     //Variables control the various actions the player can perform at any time.
     //These are fields which can are public allowing for other sctipts to read them
@@ -28,9 +30,8 @@ public class PlayerMovement2 : MonoBehaviour
     public bool IsJumping { get; private set; }
     public bool IsWallJumping { get; private set; }
     public bool IsSliding { get; private set; }
+    public bool IsDashing { get; private set; }
 
-    public bool hasDashed;
-    private int candash = 0;
 
     public bool isCrouching;
     public bool isRunning;
@@ -51,14 +52,18 @@ public class PlayerMovement2 : MonoBehaviour
     private bool _isJumpFalling;
 
     //Dash
-    private Transform trans;
-
+    private bool _dashRefilling;
+    private Vector2 _lastDashDir;
+    private bool _isDashAttacking;
+    private int _dashesLeft;
+    public bool hasDashed;
     //Wall Jump
     private float _wallJumpStartTime;
     private int _lastWallJumpDir;
 
     private Vector2 _moveInput;
     public float LastPressedJumpTime { get; private set; }
+    public float LastPressedDashTime { get; private set; }
 
 
     //Set all of these up in the inspector
@@ -84,7 +89,7 @@ public class PlayerMovement2 : MonoBehaviour
         anim = GetComponent<Animator>();
         RB = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
-        trans = GetComponent<Transform>();
+        playerLife = GetComponent<PlayerLife>();
 
     }
 
@@ -101,7 +106,7 @@ public class PlayerMovement2 : MonoBehaviour
         LastOnWallTime -= Time.deltaTime;
         LastOnWallRightTime -= Time.deltaTime;
         LastOnWallLeftTime -= Time.deltaTime;
-
+        LastPressedDashTime -= Time.deltaTime;
         LastPressedJumpTime -= Time.deltaTime;
         #endregion
 
@@ -153,32 +158,34 @@ public class PlayerMovement2 : MonoBehaviour
 
         #region COLLISION CHECKS
 
-
-        //Ground Check
-        if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping) //checks if set box overlaps with ground
+        if (!IsDashing && !IsJumping)
         {
-            LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
+            //Ground Check
+            if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping) //checks if set box overlaps with ground
+            {
+                LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
+
+            }
+
+            //Right Wall Check
+            if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)
+                    || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
+            {
+                LastOnWallRightTime = Data.coyoteTime;
+
+            }
+
+            //left Wall Check
+            if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)
+                || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
+            {
+                LastOnWallLeftTime = Data.coyoteTime;
+            }
+
+            //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
+            LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
 
         }
-
-        //Right Wall Check
-        if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)
-                || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
-        {
-            LastOnWallRightTime = Data.coyoteTime;
-
-        }
-
-        //left Wall Check
-        if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)
-            || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
-        {
-            LastOnWallLeftTime = Data.coyoteTime;
-        }
-
-        //Two checks needed for both left and right walls since whenever the play turns the wall checkPoints swap sides
-        LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
-
 
         #endregion
 
@@ -230,7 +237,7 @@ public class PlayerMovement2 : MonoBehaviour
         #endregion
 
         #region SLIDE CHECKS
-        if (((LastOnWallLeftTime > 0 && _moveInput.x < 0) || (LastOnWallRightTime > 0 && _moveInput.x > 0)))
+        if (CanSlide() && ((LastOnWallLeftTime > 0 && _moveInput.x < 0) || (LastOnWallRightTime > 0 && _moveInput.x > 0)))
         {
             IsSliding = true;
         }
@@ -239,6 +246,24 @@ public class PlayerMovement2 : MonoBehaviour
             IsSliding = false;
         }
 
+        #endregion
+
+        #region DASH CHECKS
+        if (CanDash() && LastPressedDashTime > 0 && !IsDashing)
+        {
+            //If not direction pressed, dash forward
+            if (_moveInput != Vector2.zero)
+                _lastDashDir = _moveInput;
+            else
+                _lastDashDir = IsFacingRight ? Vector2.right : Vector2.left;
+
+            IsDashing = true;
+            IsJumping = false;
+            IsWallJumping = false;
+            _isJumpCut = false;
+            StartCoroutine(nameof(StartDash), _lastDashDir);
+
+        }
         #endregion
 
         #region GRAVITY
@@ -277,15 +302,7 @@ public class PlayerMovement2 : MonoBehaviour
             SetGravityScale(Data.gravityScale);
         }
         #endregion
-
-        //so that can only up dash once per jump
-        if (LastOnGroundTime > 0)
-        {
-            candash = 0;
-        }
-       //Debug.Log(LastOnGroundTime);
-        //Debug.Log(IsSliding);
-
+        
         // for animations
         UpdateAnimationState();
     }
@@ -307,7 +324,6 @@ public class PlayerMovement2 : MonoBehaviour
         {
             Slide();
         }
-
     }
 
     #region INPUT CALLBACKS
@@ -327,8 +343,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     public void OnDashInput()
     {
-
-        StartCoroutine(dash());
+        LastPressedDashTime = Data.dashInputBufferTime;
     }
 
     public void OnUpdashInput()
@@ -342,69 +357,69 @@ public class PlayerMovement2 : MonoBehaviour
     {
         RB.gravityScale = scale;
     }
-
-
     #endregion
 
     //MOVEMENT METHODS
     #region RUN METHODS
-    IEnumerator dash()
+    IEnumerator StartDash(Vector2 dir)
     {
+        float initalDashSpeed = Data.dashIntialSpeed;
+        float maxDashSpeed = Data.dashSpeed;
+        float accelerationTime = Data.dashAccelerationTime;
 
-        anim.SetBool("dash", true);
-        yield return new WaitForSeconds(0.04f);
-        anim.SetBool("dash", false);
+        yield return new WaitForSeconds(Data.dashSleepTime);
+        LastOnGroundTime = 0;
+        LastPressedDashTime = 0;
+        float startTime = Time.time;
+        _dashesLeft--;
+        _isDashAttacking = true;
+        SetGravityScale(0);
+
+        while (Time.time - startTime <= Data.dashTime)
+        {
+
+            float timeElapsed = Time.time - startTime;
+            float currentSpeed = Mathf.Lerp(initalDashSpeed, maxDashSpeed, timeElapsed / accelerationTime);
+            currentSpeed = Mathf.Min(currentSpeed, maxDashSpeed);
+
+            // Continue dashing
+            RB.velocity = dir.normalized * currentSpeed;
+            yield return null;
+        }
+
+        // Reset after dash
+        startTime = Time.time;
+        _isDashAttacking = false;
+        SetGravityScale(Data.gravityScale);
+        RB.velocity = Data.dashEndSpeed * dir.normalized;
+
+        while (Time.time - startTime <= Data.dashEndTime)
+        {
+            yield return null;
+        }
+
+        IsDashing = false;
         hasDashed = true;
-        blockMovement = true;
-        Vector3 curPosition = trans.position;
-        if (IsFacingRight)
-        {
-            curPosition.x += Data.dashDistance;
-        }
-        else
-        {
-            curPosition.x -= Data.dashDistance;
-        }
-
-        trans.position = curPosition;
-
-        //reset dash
-        yield return new WaitForSeconds(blockMovementTime);
-        blockMovement = false;
-        // hasDashed = false;
-
     }
 
+
+    //Short period before the player is able to dash again
+    private IEnumerator RefillDash(int amount)
+    {
+        //SHoet cooldown, so we can't constantly dash along the ground, again this is the implementation in Celeste, feel free to change it up
+        _dashRefilling = true;
+        yield return new WaitForSeconds(Data.dashRefillTime);
+        _dashRefilling = false;
+        hasDashed = false;
+        _dashesLeft = Mathf.Min(Data.numDashes, _dashesLeft + 1);
+    }
+
+    // to be implmented
     IEnumerator updash()
     {
-        anim.SetBool("dash", true);
-        yield return new WaitForSeconds(0.04f);
-        anim.SetBool("dash", false);
-        hasDashed = true;
-        blockMovement = true;
-        Vector3 curPosition = trans.position;
-        if (candash < 1)
-        {
-            if (IsFacingRight)
-            {
-                curPosition.x += Data.dashDistance;
-                curPosition.y += jump_up;
-            }
-            else
-            {
-                curPosition.x -= Data.dashDistance;
-                curPosition.y += jump_up;
-            }
-        }
-
-        trans.position = curPosition;
-        candash++;
-
-        //reset dash
-        yield return new WaitForSeconds(blockMovementTime);
-        blockMovement = false;
-        // hasDashed = false;
+        yield return null;
     }
+
 
     private void Run(float lerpAmount)
     {
@@ -568,6 +583,15 @@ public class PlayerMovement2 : MonoBehaviour
         else
             return false;
     }
+
+    private bool CanDash()
+    {
+        if (!IsDashing && _dashesLeft < Data.numDashes && LastOnGroundTime > 0 && !_dashRefilling)
+        {
+            StartCoroutine(nameof(RefillDash), 1);
+        }
+        return _dashesLeft > 0;
+    }
     #endregion
 
 
@@ -586,11 +610,19 @@ public class PlayerMovement2 : MonoBehaviour
     {
         MovementState state;
 
-        if (_moveInput.x > 0f)
+        if (IsSliding)
+        {
+            state = MovementState.sliding;
+        }
+        else if (IsDashing)
+        {
+            state = MovementState.dashing;
+        }
+        else if (_moveInput.x > 0f && !IsSliding)
         {
             state = MovementState.running;
         }
-        else if (_moveInput.x < 0f)
+        else if (_moveInput.x < 0f && !IsSliding)
         {
             state = MovementState.running;
         }
@@ -599,11 +631,7 @@ public class PlayerMovement2 : MonoBehaviour
             state = MovementState.idle;
         }
 
-        if (IsSliding)
-        {
-            state = MovementState.sliding;
-        }
-        else if (RB.velocity.y > 0.1f && !IsSliding)
+        if (RB.velocity.y > 0.1f && !IsSliding)
         {
             state = MovementState.jumping;
         }
@@ -614,8 +642,5 @@ public class PlayerMovement2 : MonoBehaviour
 
         anim.SetInteger("state", (int)state);
     }
-
-
 }
 
-// created by Dawnosaur :D

@@ -11,11 +11,13 @@ public class PassThrough : MonoBehaviour
 
     [SerializeField] private Object player;
     private PlayerMovement2 movementScript;
+    private PlatformEffector2D platEffector;
     // Start is called before the first frame update
     void Start()
     {
         platformCollider = GetComponent<TilemapCollider2D>();
         movementScript = player.GetComponent<PlayerMovement2>();
+        platEffector = GetComponent<PlatformEffector2D>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,16 @@ public class PassThrough : MonoBehaviour
 
             platformCollider.enabled = false;
             StartCoroutine(EnableCollider());
+        }
+
+        if (movementScript.IsDashing)
+        {
+            platformCollider.enabled = true;
+            platEffector.useOneWay = false;
+        }
+        else
+        {
+            platEffector.useOneWay = true;
         }
     }
 

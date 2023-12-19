@@ -4,6 +4,24 @@ using UnityEngine;
 
 public class contact_script : MonoBehaviour
 {
+    private bool isHeavyAttack = false;
+    private bool isLightAttack = false;
+
+    void Update()
+    {
+        // Check for key presses
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            isHeavyAttack = true;
+            isLightAttack = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            isHeavyAttack = false;
+            isLightAttack = true;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
@@ -12,9 +30,31 @@ public class contact_script : MonoBehaviour
             Enemy enemyComponent = other.GetComponent<Enemy>();
             if (enemyComponent != null)
             {
-                enemyComponent.takeDamage(100);
-                Debug.Log("Dealt damage to enemy");
+                int damage = 0;
+
+                if (isHeavyAttack)
+                {
+                    damage = 200; // Heavy attack with 200 damage
+                    Debug.Log("Heavy attack - Dealt " + damage + " damage to enemy");
+                }
+                else if (isLightAttack)
+                {
+                    damage = 50; // Light attack with 50 damage
+                    Debug.Log("Light attack - Dealt " + damage + " damage to enemy");
+                }
+                else
+                {
+                    damage = 100; // Default damage for other cases
+                    Debug.Log("Dealt " + damage + " damage to enemy");
+                }
+
+                enemyComponent.takeDamage(damage);
             }
+
+            // Reset attack flags
+            isHeavyAttack = false;
+            isLightAttack = false;
         }
     }
 }
+//enemyComponent.takeDamage(100);

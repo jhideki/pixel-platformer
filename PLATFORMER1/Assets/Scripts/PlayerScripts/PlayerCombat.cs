@@ -42,7 +42,7 @@ public class PlayerCombat : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Q))
             {
                 oldMovementDeacceleration = data.runDeccelAmount;
-                StartCoroutine(heavyAttack());
+                heavyAttack();
             }
         }
     }
@@ -60,7 +60,18 @@ public class PlayerCombat : MonoBehaviour
         isAttacking = false;
     }
 
-    IEnumerator heavyAttack()
+    void heavyAttack()
+    {
+        isAttacking = true;
+        nextAttackTime = Time.time + attackCooldownheavy;
+        data.runDeccelAmount *= 0.05f;
+        anim.SetTrigger("heavyAttack");
+
+        data.runDeccelAmount = oldMovementDeacceleration;
+        isAttacking = false;
+    }
+
+    /*IEnumerator heavyAttack()
     {
         isAttacking = true;
         nextAttackTime = Time.time + attackCooldownheavy;
@@ -80,7 +91,7 @@ public class PlayerCombat : MonoBehaviour
         data.runDeccelAmount = oldMovementDeacceleration;
         isAttacking = false;
     }
-
+    */
 
     void OnDrawGizmosSelected()
     {

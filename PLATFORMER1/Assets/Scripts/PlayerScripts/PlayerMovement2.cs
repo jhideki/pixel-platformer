@@ -35,6 +35,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     public bool isCrouching;
     public bool isRunning;
+    public bool isIdle;
 
     // If true player cannot move in both x and y directions
     private bool blockMovement;
@@ -302,7 +303,7 @@ public class PlayerMovement2 : MonoBehaviour
             SetGravityScale(Data.gravityScale);
         }
         #endregion
-        
+
         // for animations
         UpdateAnimationState();
     }
@@ -323,6 +324,13 @@ public class PlayerMovement2 : MonoBehaviour
         if (IsSliding)
         {
             Slide();
+        }
+
+        // set isIdle (used to check if player is currently idle)
+        if(!IsSliding && !IsJumping && !IsDashing && !IsWallJumping && !isRunning){
+          isIdle = true;
+        }else{
+          isIdle = false;
         }
     }
 
@@ -643,4 +651,3 @@ public class PlayerMovement2 : MonoBehaviour
         anim.SetInteger("state", (int)state);
     }
 }
-

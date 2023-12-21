@@ -54,18 +54,8 @@ public class Companion : MonoBehaviour
           targetIdlePosition = player.position.x + idleMovementDistance;
         }
 
-        float distance = player.position.x - transform.position.x;
-        // Calculate the time it would take to cover that distance at the desired speed
-        float timeToReachTarget = Mathf.Abs(distance) / idleMoveSpeed;
-        // Calculate the interpolation factor based on time
-        float t = Mathf.Clamp01(Time.deltaTime / timeToReachTarget); 
-        // Use smoothedPositionX for horizontal movement
-        smoothedPositionX = Mathf.Lerp(transform.position.x, targetIdlePosition,t);
-
-        // Use the same y position as the player during idle
-        smoothedPositionY = Mathf.Lerp(transform.position.y, player.position.y + yOffset, smoothing * Time.deltaTime);
-
-        transform.position = new Vector3(smoothedPositionX, smoothedPositionY, transform.position.z);
+        Vector3 targetVector = new Vector3(targetIdlePosition,transform.position.y,transform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, targetVector,idleMoveSpeed*Time.deltaTime);
     }
 
     IEnumerator sleep()

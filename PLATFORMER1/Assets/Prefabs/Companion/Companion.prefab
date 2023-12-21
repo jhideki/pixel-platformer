@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   xOffset: -1
-  yOffset: 2
+  yOffset: 1.5
   smoothing: 2
-  idleSmoothing: 0.5
-  idleMovementDistance: 3
+  idleMoveSpeed: 0.3
+  idleMovementDistance: 0.5

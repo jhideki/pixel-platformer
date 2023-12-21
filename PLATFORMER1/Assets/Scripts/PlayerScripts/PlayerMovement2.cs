@@ -193,6 +193,7 @@ public class PlayerMovement2 : MonoBehaviour
         #region JUMP CHECKS
         if (IsJumping && RB.velocity.y < 0)
         {
+            //trail.Stop();
             IsJumping = false;
 
             if (!IsWallJumping)
@@ -309,7 +310,15 @@ public class PlayerMovement2 : MonoBehaviour
         if (isRunning)
         {
             CreateDust();
-            Debug.Log("creating dust!!!!!!!!!!!!!!!!");
+           // Debug.Log("creating dust!!!!!!!!!!!!!!!!");
+        }else if(IsJumping)
+        {
+            trail.Stop();
+           // Debug.Log("STOPPPPPPPPP");
+        }
+        else
+        {
+            trail.Stop();
         }
     }
 

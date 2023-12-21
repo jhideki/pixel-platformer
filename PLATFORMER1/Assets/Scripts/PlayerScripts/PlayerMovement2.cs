@@ -35,6 +35,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     public bool isCrouching;
     public bool isRunning;
+    public bool isIdle;
 
     // If true player cannot move in both x and y directions
     private bool blockMovement;
@@ -339,6 +340,12 @@ public class PlayerMovement2 : MonoBehaviour
         {
             Slide();
         }
+        if(!IsSliding && !IsDashing && !IsJumping && !isRunning){
+          isIdle = true;
+        }else{
+          isIdle = false;
+        }
+
     }
 
     #region INPUT CALLBACKS

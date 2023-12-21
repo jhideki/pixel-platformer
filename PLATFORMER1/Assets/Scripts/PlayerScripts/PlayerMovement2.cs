@@ -14,7 +14,7 @@ public class PlayerMovement2 : MonoBehaviour
     #region Variables
     //Components
     public Rigidbody2D RB { get; private set; }
-
+    public ParticleSystem trail;
     // for animations
     private Animator anim;
     private SpriteRenderer sprite;
@@ -193,6 +193,7 @@ public class PlayerMovement2 : MonoBehaviour
         #region JUMP CHECKS
         if (IsJumping && RB.velocity.y < 0)
         {
+            //trail.Stop();
             IsJumping = false;
 
             if (!IsWallJumping)
@@ -305,6 +306,20 @@ public class PlayerMovement2 : MonoBehaviour
         
         // for animations
         UpdateAnimationState();
+
+        if (isRunning)
+        {
+            CreateDust();
+           // Debug.Log("creating dust!!!!!!!!!!!!!!!!");
+        }else if(IsJumping)
+        {
+            trail.Stop();
+           // Debug.Log("STOPPPPPPPPP");
+        }
+        else
+        {
+            trail.Stop();
+        }
     }
 
     private void FixedUpdate()
@@ -423,6 +438,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void Run(float lerpAmount)
     {
+        //CreateDust();
         //Calculate the direction we want to move in and our desired velocity
         float targetSpeed = _moveInput.x * Data.runMaxSpeed;
         //We can reduce are control using Lerp() this smooths changes to are direction and speed
@@ -478,6 +494,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void Turn()
     {
+        //CreateDust();
         //stores scale and flips the player along the x axis, 
         Vector3 scale = transform.localScale;
         scale.x *= -1;
@@ -641,6 +658,27 @@ public class PlayerMovement2 : MonoBehaviour
         }
 
         anim.SetInteger("state", (int)state);
+    }
+    private void CreateDust()
+    {
+        Debug.Log("Creating dust!");
+
+        if (trail != null)
+        {
+            if (!trail.isPlaying)
+            {
+                Debug.Log("Particle system is not playing. Playing now.");
+                trail.Play();
+            }
+            else
+            {
+                Debug.Log("Particle system is already playing.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Particle system variable 'trail' is not assigned.");
+        }
     }
 }
 

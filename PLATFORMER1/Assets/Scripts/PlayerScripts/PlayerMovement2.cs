@@ -31,7 +31,7 @@ public class PlayerMovement2 : MonoBehaviour
     public bool IsWallJumping { get; private set; }
     public bool IsSliding { get; private set; }
     public bool IsDashing { get; private set; }
-
+    private int jumpsLeft;
 
     public bool isCrouching;
     public bool isRunning;
@@ -97,6 +97,7 @@ public class PlayerMovement2 : MonoBehaviour
     {
         SetGravityScale(Data.gravityScale);
         IsFacingRight = true;
+        jumpsLeft = 2;
     }
 
     private void Update()
@@ -215,14 +216,35 @@ public class PlayerMovement2 : MonoBehaviour
 
 
         //Jump
-        if (CanJump() && LastPressedJumpTime > 0)
+        if ( CanDoubleJump() && LastPressedJumpTime > 0)
         {
+            Debug.Log($"LastOnGroundTime: {LastOnGroundTime}, jumpsLeft: {jumpsLeft}");
 
-            IsJumping = true;
-            IsWallJumping = false;
-            _isJumpCut = false;
-            _isJumpFalling = false;
-            Jump();
+            if (IsJumping || IsWallJumping)
+            {
+                // Double jump
+                if(jumpsLeft > 0)
+                {
+                    jumpsLeft--;
+                    IsJumping = true;
+                    IsWallJumping = false;
+                    _isJumpCut = false;
+                    _isJumpFalling = false;
+                    Jump();
+                }
+            }
+            else
+            {
+               // Debug.Log(LastOnGroundTime);
+                // Reset jumps if on the ground
+                IsJumping = true;
+                IsWallJumping = false;
+                _isJumpCut = false;
+                _isJumpFalling = false;
+                Jump();
+                jumpsLeft--;
+            }
+
         }
         else if (CanWallJump() && LastPressedJumpTime > 0)
         {
@@ -236,7 +258,11 @@ public class PlayerMovement2 : MonoBehaviour
             WallJump(_lastWallJumpDir);
         }
         #endregion
-
+        Debug.Log(LastOnGroundTime);
+        if (LastOnGroundTime > 0)
+        {
+            jumpsLeft = 2;
+        }
         #region SLIDE CHECKS
         if (CanSlide() && ((LastOnWallLeftTime > 0 && _moveInput.x < 0) || (LastOnWallRightTime > 0 && _moveInput.x > 0)))
         {
@@ -547,6 +573,10 @@ public class PlayerMovement2 : MonoBehaviour
         RB.AddForce(force, ForceMode2D.Impulse);
         #endregion
     }
+    private bool CanDoubleJump()
+    {
+        return jumpsLeft > 0;
+    }
     #endregion
 
     #region OTHER MOVEMENT METHODS
@@ -661,23 +691,23 @@ public class PlayerMovement2 : MonoBehaviour
     }
     private void CreateDust()
     {
-        Debug.Log("Creating dust!");
+        //Debug.Log("Creating dust!");
 
         if (trail != null)
         {
             if (!trail.isPlaying)
             {
-                Debug.Log("Particle system is not playing. Playing now.");
+                //Debug.Log("Particle system is not playing. Playing now.");
                 trail.Play();
             }
             else
             {
-                Debug.Log("Particle system is already playing.");
+                //Debug.Log("Particle system is already playing.");
             }
         }
         else
         {
-            Debug.LogWarning("Particle system variable 'trail' is not assigned.");
+            //Debug.LogWarning("Particle system variable 'trail' is not assigned.");
         }
     }
 }

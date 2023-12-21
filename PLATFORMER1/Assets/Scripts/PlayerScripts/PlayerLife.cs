@@ -8,11 +8,17 @@ public class PlayerLife : MonoBehaviour
     [SerializeField] private AudioSource deathSoundEffect;
     private Animator anim;
     private Rigidbody2D rb;
+
+    // Number of lives
+    [SerializeField] private int maxLives = 3;
+    private int currentLives;
+
     // Start is called before the first frame update
     private void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        currentLives = maxLives;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -37,12 +43,21 @@ public class PlayerLife : MonoBehaviour
 
     public void Die()
     {
-        if (rb.bodyType != RigidbodyType2D.Static)
-        {
-            rb.bodyType = RigidbodyType2D.Static;
-        }
+        currentLives--;
 
-        anim.SetTrigger("death");
+        if(currentLives > 0)
+        {
+
+        }else
+        {
+            if (rb.bodyType != RigidbodyType2D.Static)
+            {
+                rb.bodyType = RigidbodyType2D.Static;
+            }
+
+            anim.SetTrigger("death");
+
+        }
     }
 
     private void RestartLevel()

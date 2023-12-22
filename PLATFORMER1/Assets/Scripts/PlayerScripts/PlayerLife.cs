@@ -13,6 +13,9 @@ public class PlayerLife : MonoBehaviour
     [SerializeField] private int maxLives = 3;
     private int currentLives;
 
+    //Take hearts
+    [SerializeField] private HealthController _healthController;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -29,6 +32,8 @@ public class PlayerLife : MonoBehaviour
             deathSoundEffect.Play();
 
             Die();
+            _healthController.playerHealth--;
+            _healthController.UpdateHealth();
         }
     }
 
@@ -38,6 +43,8 @@ public class PlayerLife : MonoBehaviour
         {
             deathSoundEffect.Play();
             Die();
+            _healthController.playerHealth--;
+            _healthController.UpdateHealth();
         }
     }
 

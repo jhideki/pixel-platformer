@@ -13788,6 +13788,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 466161258800193626, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
+      propertyPath: chainedAttackTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 466161258800193626, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
+      propertyPath: secondAttackOffsetTime
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1224765354863420836, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.11

@@ -18,81 +18,62 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private int lightAttackDamage = 50;
     [SerializeField] private int heavyAttackDamage = 100;
     [SerializeField] private GameObject hitbox;
+    [SerializeField] private float chainedAttackTime; // time period in which player must attack again to chain animations
+    [SerializeField] private float secondAttackOffsetTime; // time before second attack animation is enabled
 
     private bool isAttacking = false;
     private float attackCooldownlight = 1.0f;
     private float attackCooldownheavy = 1.5f;
     private float nextAttackTime = 0f;
+    private string animType; // animation trigger (set to singleAttack to not chain attacks)
+    private float startTime;
+    private bool isTiming;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         RB = GetComponent<Rigidbody2D>();
+        animType = "attack1";
     }
 
     void Update()
     {
-        if (!isAttacking && Time.time >= nextAttackTime)
+      if (Input.GetKeyDown(KeyCode.E))
+      {
+        //start defualt attack (this runs the first time player presses 'e')
+        if(!isTiming)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                oldMovementDeacceleration = data.runDeccelAmount;
-                lightAttack();
-            }
-            else if (Input.GetKeyDown(KeyCode.Q))
-            {
-                oldMovementDeacceleration = data.runDeccelAmount;
-                heavyAttack();
-            }
+          startTime = Time.time;
+          isTiming = true;
+          anim.SetTrigger("attack"); 
+          anim.SetBool("isChainAttack",false); 
         }
+        // player pressed 'e' again so set chain attack animation
+        if(Time.time - startTime < chainedAttackTime && Time.time - startTime > secondAttackOffsetTime) 
+        {
+          anim.SetBool("isChainAttack",true); 
+        }
+        else if(Time.time - startTime >= chainedAttackTime)
+        {
+          isTiming = false;
+        }
+
+        oldMovementDeacceleration = data.runDeccelAmount;
+        attack();
+      }
     }
 
    
-    void lightAttack()
-
+    void attack()
     {
-        isAttacking = true;
-        nextAttackTime = Time.time + attackCooldownlight;
-        data.runDeccelAmount *= 0.05f;
-        anim.SetTrigger("lightAttack"); 
-
-        data.runDeccelAmount = oldMovementDeacceleration;
-        isAttacking = false;
+      isAttacking = true;
+      nextAttackTime = Time.time + attackCooldownlight;
+      data.runDeccelAmount *= 0.05f;
+      data.runDeccelAmount = oldMovementDeacceleration;
+      isAttacking = false;
     }
 
-    void heavyAttack()
-    {
-        isAttacking = true;
-        nextAttackTime = Time.time + attackCooldownheavy;
-        data.runDeccelAmount *= 0.05f;
-        anim.SetTrigger("heavyAttack");
-
-        data.runDeccelAmount = oldMovementDeacceleration;
-        isAttacking = false;
-    }
-
-    /*IEnumerator heavyAttack()
-    {
-        isAttacking = true;
-        nextAttackTime = Time.time + attackCooldownheavy;
-        data.runDeccelAmount *= 0.05f;
-        anim.SetTrigger("heavyAttack");
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            if (enemy.gameObject.layer != LayerMask.NameToLayer("Ground"))
-            {
-                enemy.GetComponent<Enemy>().takeDamage(heavyAttackDamage);
-            }
-        }
-        yield return new WaitForSeconds(0.04f);
-
-        data.runDeccelAmount = oldMovementDeacceleration;
-        isAttacking = false;
-    }
-    */
-
+    // for debugging
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null)

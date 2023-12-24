@@ -17,6 +17,10 @@ public class Companion : MonoBehaviour
     private bool reachedTarget;
     private float waitTime = 0.25f;
 
+    //for stun logic
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+
     void Start()
     {
         movementScript = player.GetComponent<PlayerMovement2>();
@@ -43,6 +47,11 @@ public class Companion : MonoBehaviour
               reachedTarget = false;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Shoot();
+        }
     }
 
     void idleMovement()
@@ -61,5 +70,19 @@ public class Companion : MonoBehaviour
     IEnumerator sleep()
     {
         yield return new WaitForSeconds(waitTime);
+    }
+
+    void Shoot()
+    {
+        // Instantiate the bullet
+        GameObject bulletObject = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+        // Get the BulletScript component and call the Shoot method to set the direction
+        stun bulletScript = bulletObject.GetComponent<stun>();
+        if (bulletScript != null)
+        {
+            Vector2 shootDirection = transform.right; // or any other direction based on your game logic
+            bulletScript.Shoot(shootDirection);
+        }
     }
 }

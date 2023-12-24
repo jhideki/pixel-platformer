@@ -217,14 +217,14 @@ public class PlayerMovement2 : MonoBehaviour
 
 
         //Jump
-        if ( CanDoubleJump() && LastPressedJumpTime > 0)
+        if (CanDoubleJump() && LastPressedJumpTime > 0)
         {
             Debug.Log($"LastOnGroundTime: {LastOnGroundTime}, jumpsLeft: {jumpsLeft}");
 
             if (IsJumping || IsWallJumping)
             {
                 // Double jump
-                if(jumpsLeft > 0)
+                if (jumpsLeft > 0)
                 {
                     jumpsLeft--;
                     IsJumping = true;
@@ -236,7 +236,7 @@ public class PlayerMovement2 : MonoBehaviour
             }
             else
             {
-               // Debug.Log(LastOnGroundTime);
+                // Debug.Log(LastOnGroundTime);
                 // Reset jumps if on the ground
                 IsJumping = true;
                 IsWallJumping = false;
@@ -259,7 +259,7 @@ public class PlayerMovement2 : MonoBehaviour
             WallJump(_lastWallJumpDir);
         }
         #endregion
-        Debug.Log(LastOnGroundTime);
+
         if (LastOnGroundTime > 0)
         {
             jumpsLeft = 2;
@@ -330,18 +330,19 @@ public class PlayerMovement2 : MonoBehaviour
             SetGravityScale(Data.gravityScale);
         }
         #endregion
-        
+
         // for animations
         UpdateAnimationState();
 
         if (isRunning)
         {
             CreateDust();
-           // Debug.Log("creating dust!!!!!!!!!!!!!!!!");
-        }else if(IsJumping)
+            // Debug.Log("creating dust!!!!!!!!!!!!!!!!");
+        }
+        else if (IsJumping)
         {
             trail.Stop();
-           // Debug.Log("STOPPPPPPPPP");
+            // Debug.Log("STOPPPPPPPPP");
         }
         else
         {
@@ -366,10 +367,13 @@ public class PlayerMovement2 : MonoBehaviour
         {
             Slide();
         }
-        if(!IsSliding && !IsDashing && !IsJumping && !isRunning){
-          isIdle = true;
-        }else{
-          isIdle = false;
+        if (!IsSliding && !IsDashing && !IsJumping && !isRunning)
+        {
+            isIdle = true;
+        }
+        else
+        {
+            isIdle = false;
         }
 
     }

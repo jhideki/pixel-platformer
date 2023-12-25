@@ -120,6 +120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e054615fc022c4192cc976a6370845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minSwarm: 0
+  maxSwarm: 0
+  bug: {fileID: 0}
+  xRange: 0
+  yRange: 0
   moveSpeed: 1
   changeDirectionIntervalMin: 2
   changeDirectionIntervalMax: 5
@@ -170,7 +175,7 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.637
+  m_FalloffIntensity: 0.89
   m_Color: {r: 0.6, g: 0.35686275, b: 0.2, a: 1}
   m_Intensity: 2.85
   m_LightVolumeIntensity: 1

@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BugMovement : SpawnBugs 
+public class BugMovement : SpawnBugs
 {
     private float timer;
     private Vector2 randomDirection;
-    Vector3 parentPosition; 
+    Vector3 parentPosition;
     void Start()
     {
         // Initialize the timer and set the initial random direction
         timer = Random.Range(changeDirectionIntervalMin, changeDirectionIntervalMax);
         parentPosition = transform.parent.position;
         SetRandomDirection();
-        Debug.Log(moveRangeX);
+
 
     }
 
@@ -41,7 +41,7 @@ public class BugMovement : SpawnBugs
         // Generate a random direction vector
         randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
     }
-     void CheckBoundaries()
+    void CheckBoundaries()
     {
         // Get the current position
         Vector2 currentPosition = transform.position;

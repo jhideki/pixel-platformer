@@ -21,7 +21,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     private PlayerLife playerLife;
 
-    private enum MovementState { idle, running, jumping, falling, sliding, dashing }
+    private enum MovementState { idle, running, jumping, falling, sliding, dashing, doubleJumping}
 
     //Variables control the various actions the player can perform at any time.
     //These are fields which can are public allowing for other sctipts to read them
@@ -51,6 +51,7 @@ public class PlayerMovement2 : MonoBehaviour
     //Jump
     private bool _isJumpCut;
     private bool _isJumpFalling;
+    private bool IsDoubleJumping;
 
     //Dash
     private bool _dashRefilling;
@@ -195,7 +196,6 @@ public class PlayerMovement2 : MonoBehaviour
         #region JUMP CHECKS
         if (IsJumping && RB.velocity.y < 0)
         {
-            //trail.Stop();
             IsJumping = false;
 
             if (!IsWallJumping)
@@ -210,6 +210,7 @@ public class PlayerMovement2 : MonoBehaviour
         if (LastOnGroundTime > 0 && !IsJumping && !IsWallJumping)
         {
             _isJumpCut = false;
+            IsDoubleJumping = false;
 
             if (!IsJumping)
                 _isJumpFalling = false;
@@ -219,8 +220,13 @@ public class PlayerMovement2 : MonoBehaviour
         //Jump
         if (CanDoubleJump() && LastPressedJumpTime > 0)
         {
-            Debug.Log($"LastOnGroundTime: {LastOnGroundTime}, jumpsLeft: {jumpsLeft}");
-
+          if(jumpsLeft == 1)
+          {
+            IsDoubleJumping = true;
+          }else
+          {
+            IsDoubleJumping = false;
+          }
             if (IsJumping || IsWallJumping)
             {
                 // Double jump
@@ -236,7 +242,6 @@ public class PlayerMovement2 : MonoBehaviour
             }
             else
             {
-                // Debug.Log(LastOnGroundTime);
                 // Reset jumps if on the ground
                 IsJumping = true;
                 IsWallJumping = false;
@@ -337,12 +342,10 @@ public class PlayerMovement2 : MonoBehaviour
         if (isRunning)
         {
             CreateDust();
-            // Debug.Log("creating dust!!!!!!!!!!!!!!!!");
         }
         else if (IsJumping)
         {
             trail.Stop();
-            // Debug.Log("STOPPPPPPPPP");
         }
         else
         {
@@ -375,7 +378,6 @@ public class PlayerMovement2 : MonoBehaviour
         {
             isIdle = false;
         }
-
     }
 
     #region INPUT CALLBACKS
@@ -689,36 +691,34 @@ public class PlayerMovement2 : MonoBehaviour
             state = MovementState.idle;
         }
 
-        if (RB.velocity.y > 0.1f && !IsSliding)
+        if (LastOnGroundTime < 0 && !IsSliding && RB.velocity.y >= -.1f && !IsDoubleJumping)
         {
             state = MovementState.jumping;
         }
-        else if (RB.velocity.y < -.1f && !IsSliding)
+
+        if(!IsSliding && IsDoubleJumping)
+        {
+          state = MovementState.doubleJumping;
+        }
+
+        if (RB.velocity.y < -.1f && !IsSliding)
         {
             state = MovementState.falling;
         }
+
+        Debug.Log(state);
 
         anim.SetInteger("state", (int)state);
     }
     private void CreateDust()
     {
-        //Debug.Log("Creating dust!");
 
         if (trail != null)
         {
             if (!trail.isPlaying)
             {
-                //Debug.Log("Particle system is not playing. Playing now.");
                 trail.Play();
             }
-            else
-            {
-                //Debug.Log("Particle system is already playing.");
-            }
-        }
-        else
-        {
-            //Debug.LogWarning("Particle system variable 'trail' is not assigned.");
         }
     }
 }

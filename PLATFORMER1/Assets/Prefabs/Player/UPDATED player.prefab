@@ -5740,3 +5740,5 @@ MonoBehaviour:
   lightAttackDamage: 50
   heavyAttackDamage: 100
   hitbox: {fileID: 0}
+  chainedAttackTime: 2
+  secondAttackOffsetTime: 0

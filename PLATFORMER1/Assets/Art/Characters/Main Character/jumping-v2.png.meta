@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c89813d5c5eddc64e8dafd498df3e11b
+guid: c06c789ccc6ec4d41b84b888ce6dc77d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,43 +110,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: heartsss_0
+      name: jumping-v2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0bc475408f1500469dffad1996328dc
-      internalID: -1736246712
+      spriteID: fc4851859aab47542938ecd3a118d243
+      internalID: -1528250774
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: heartsss_1
+      name: jumping-v2_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 32
         y: 0
-        width: 16
-        height: 16
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 713430f740c3ff5438e6bb14b7e5d5dd
-      internalID: 1676442651
+      spriteID: 69a04da0cae48d5478c9e5e2a1019d13
+      internalID: 670973235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumping-v2_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a419575af0933245a53d40703bc1c74
+      internalID: -1284887021
       vertices: []
       indices: 
       edges: []
@@ -162,8 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      heartsss_0: -1736246712
-      heartsss_1: 1676442651
+      jumping-v2_0: -1528250774
+      jumping-v2_1: 670973235
+      jumping-v2_2: -1284887021
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

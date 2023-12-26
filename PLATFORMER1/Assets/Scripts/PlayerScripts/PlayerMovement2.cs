@@ -706,8 +706,6 @@ public class PlayerMovement2 : MonoBehaviour
             state = MovementState.falling;
         }
 
-        Debug.Log(state);
-
         anim.SetInteger("state", (int)state);
     }
     private void CreateDust()

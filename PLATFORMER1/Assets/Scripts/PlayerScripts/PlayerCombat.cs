@@ -19,7 +19,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private int heavyAttackDamage = 100;
     [SerializeField] private GameObject hitbox;
     [SerializeField] private float chainedAttackTime; // time period in which player must attack again to chain animations
-    [SerializeField] private float secondAttackOffsetTime; // time before second attack animation is enabled
+    [SerializeField] private float secondAttackOffsetTime; // time before second attack animation is enabled (prevents chain attack from occuring immediatly after the first attack)
+    [SerializeField] private float attackCooldownTime; // time before player can attack again 
 
     private bool isAttacking = false;
     private float attackCooldownlight = 1.0f;
@@ -28,17 +29,19 @@ public class PlayerCombat : MonoBehaviour
     private string animType; // animation trigger (set to singleAttack to not chain attacks)
     private float startTime;
     private bool isTiming;
+    private int numAttacks;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         RB = GetComponent<Rigidbody2D>();
         animType = "attack1";
+        numAttacks = 0;
     }
 
     void Update()
     {
-      if (Input.GetKeyDown(KeyCode.E))
+      if (Input.GetKeyDown(KeyCode.E) && numAttacks < 2)
       {
         //start defualt attack (this runs the first time player presses 'e')
         if(!isTiming)
@@ -47,29 +50,34 @@ public class PlayerCombat : MonoBehaviour
           isTiming = true;
           anim.SetTrigger("attack"); 
           anim.SetBool("isChainAttack",false); 
+          numAttacks++;
         }
         // player pressed 'e' again so set chain attack animation
         if(Time.time - startTime < chainedAttackTime && Time.time - startTime > secondAttackOffsetTime) 
         {
           anim.SetBool("isChainAttack",true); 
-        }
-        else if(Time.time - startTime >= chainedAttackTime)
-        {
+          numAttacks++;
+          startTime = Time.time; // reset the timer for attack cooldown
           isTiming = false;
         }
 
-        oldMovementDeacceleration = data.runDeccelAmount;
+        oldMovementDeacceleration = data.runAcceleration;
         attack();
+      }
+      // check if enough time has elapsed before player can attack again
+      if(Time.time - startTime >= attackCooldownTime)
+      {
+        numAttacks = 0;
+        isTiming = false;
       }
     }
 
-   
     void attack()
     {
       isAttacking = true;
       nextAttackTime = Time.time + attackCooldownlight;
-      data.runDeccelAmount *= 0.05f;
-      data.runDeccelAmount = oldMovementDeacceleration;
+      data.runAcceleration*= 0.05f;
+      data.runAcceleration = oldMovementDeacceleration;
       isAttacking = false;
     }
 

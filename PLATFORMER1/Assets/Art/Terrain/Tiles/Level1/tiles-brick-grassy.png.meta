@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6b4c36e77074db04992c8f62f908b0ff
+guid: 5ff78b43e87f536448812ec184348878
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,11 +123,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tileset_wall_0
+      name: bricks_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 48
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -137,18 +137,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 069bb1c6b3e32bd4aa25c8a541f60e7e
-      internalID: -2145898203
+      spriteID: 15d8b8610f480204398f6efbc3215609
+      internalID: -752033810
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_wall_1
+      name: bricks_1
       rect:
         serializedVersion: 2
         x: 16
-        y: 48
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -158,18 +158,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ff163af3a3514f4d96370b8196b5fe1
-      internalID: -2070582016
+      spriteID: 56b7b277ac60a4b409e732ec42a072f7
+      internalID: 1161096919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_wall_2
+      name: bricks_2
       rect:
         serializedVersion: 2
         x: 32
-        y: 48
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -179,18 +179,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56f9f9a7e85804440abbd124d9c3cfed
-      internalID: -784451462
+      spriteID: 9cc15959a4df18547803071ac5bbd884
+      internalID: -801678280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_wall_3
+      name: bricks_3
       rect:
         serializedVersion: 2
         x: 64
-        y: 48
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -200,18 +200,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 998c8ccf9d8f3c34faab2e622e1f54b9
-      internalID: 597022213
+      spriteID: 8a28beaab4a6b324bafc18e0d306db12
+      internalID: -2027416223
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_wall_4
+      name: bricks_4
       rect:
         serializedVersion: 2
         x: 80
-        y: 48
+        y: 112
         width: 16
         height: 16
       alignment: 0
@@ -221,18 +221,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0561965cf0646e54ea20742677c75dd7
-      internalID: 1448515438
+      spriteID: ba73a48dfff6d584a8323bda5d0bc057
+      internalID: -260566393
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_wall_5
+      name: bricks_5
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -242,18 +242,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb616905540e8f9498d21f0ba94e1406
-      internalID: 1975436716
+      spriteID: 5eeac02c8081ae944a0517cbc5dc1eba
+      internalID: -612656479
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_wall_6
+      name: bricks_6
       rect:
         serializedVersion: 2
         x: 16
-        y: 32
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -263,18 +263,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebd6c7f90975ead46b866202c686135c
-      internalID: -952509692
+      spriteID: 4b0ecdebc5075c1418e0ae4d634b2655
+      internalID: 1016461427
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_wall_7
+      name: bricks_7
       rect:
         serializedVersion: 2
         x: 32
-        y: 32
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -284,18 +284,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b9d8625563200a4ea7a641c8b195453
-      internalID: 570250123
+      spriteID: 125abc83449140b4c9371570ab5d4898
+      internalID: 1336089743
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_wall_8
+      name: bricks_8
       rect:
         serializedVersion: 2
         x: 64
-        y: 32
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -305,18 +305,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76640534b80aa1d499528ac4d55643b2
-      internalID: -86892024
+      spriteID: 6248e58ff814f6d4b9f576f9e3a129ec
+      internalID: 2044195136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_wall_9
+      name: bricks_9
       rect:
         serializedVersion: 2
         x: 80
-        y: 32
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -326,18 +326,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 034d6129fc4fc2f43a3b2c757b4c8b89
-      internalID: -877104921
+      spriteID: 8dd5a71da6c60af478e3039e9c8daaf6
+      internalID: -452244928
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_wall_10
+      name: bricks_10
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -347,18 +347,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 358cb112792ed9f42bc3412ef17f111a
-      internalID: -953751051
+      spriteID: 663607404ac05bc46bea910df29b51e1
+      internalID: -1681841909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_wall_11
+      name: bricks_11
       rect:
         serializedVersion: 2
         x: 16
-        y: 16
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -368,18 +368,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ec49bf5a8499e04fab1415052f0e718
-      internalID: 909941942
+      spriteID: f6ff4df68fab98644a6bb393e0a3d837
+      internalID: -110112911
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_wall_12
+      name: bricks_12
       rect:
         serializedVersion: 2
         x: 32
-        y: 16
+        y: 80
         width: 16
         height: 16
       alignment: 0
@@ -389,8 +389,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe0b92118b2b0fa4a9cfd6ac4627550f
-      internalID: 956178021
+      spriteID: e2e6edb681eee14489f32bb2db86a454
+      internalID: 540471851
       vertices: []
       indices: 
       edges: []
@@ -406,19 +406,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tileset_wall_0: -2145898203
-      tileset_wall_1: -2070582016
-      tileset_wall_10: -953751051
-      tileset_wall_11: 909941942
-      tileset_wall_12: 956178021
-      tileset_wall_2: -784451462
-      tileset_wall_3: 597022213
-      tileset_wall_4: 1448515438
-      tileset_wall_5: 1975436716
-      tileset_wall_6: -952509692
-      tileset_wall_7: 570250123
-      tileset_wall_8: -86892024
-      tileset_wall_9: -877104921
+      bricks_0: -752033810
+      bricks_1: 1161096919
+      bricks_10: -1681841909
+      bricks_11: -110112911
+      bricks_12: 540471851
+      bricks_2: -801678280
+      bricks_3: -2027416223
+      bricks_4: -260566393
+      bricks_5: -612656479
+      bricks_6: 1016461427
+      bricks_7: 1336089743
+      bricks_8: 2044195136
+      bricks_9: -452244928
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

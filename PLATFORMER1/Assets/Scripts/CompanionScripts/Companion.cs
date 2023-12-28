@@ -64,6 +64,10 @@ public class Companion : MonoBehaviour
             mag_lim++;
         }
 
+        if((player.position.x > transform.position.x  && transform.localScale.x < 0f) || player.position.x < transform.position.x || ( transform.localScale.x < 0f))
+        {
+          Turn();
+        }
     }
     
 
@@ -83,6 +87,13 @@ public class Companion : MonoBehaviour
     IEnumerator sleep()
     {
         yield return new WaitForSeconds(waitTime);
+    }
+
+    private void Turn()
+    {
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 
     void Shoot()

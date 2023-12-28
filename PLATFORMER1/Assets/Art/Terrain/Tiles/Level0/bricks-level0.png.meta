@@ -104,6 +104,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -136,7 +138,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 111af4a9bb53efb44859c4679a7452de
-      internalID: 1476691851
+      internalID: 2845513411211609436
       vertices: []
       indices: 
       edges: []
@@ -157,7 +159,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 9812917b456ec1f4ea367704fc5ca280
-      internalID: 1047409128
+      internalID: 7292050950568472325
       vertices: []
       indices: 
       edges: []
@@ -178,7 +180,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 574753f6b9686b44eba14d64b7853217
-      internalID: -1383132713
+      internalID: 6429069762365666166
       vertices: []
       indices: 
       edges: []
@@ -199,7 +201,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 335ddb7746d6e9f4f9d94d4855ba3b0c
-      internalID: 373436285
+      internalID: 142430142447078201
       vertices: []
       indices: 
       edges: []
@@ -220,7 +222,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: a17f08b2e79bce348a77f2297a486c89
-      internalID: -914332125
+      internalID: 5608904254715220082
       vertices: []
       indices: 
       edges: []
@@ -241,7 +243,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 3d75ce1800c20f2468ff64444a489519
-      internalID: 707040589
+      internalID: -8623496251778604394
       vertices: []
       indices: 
       edges: []
@@ -262,7 +264,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 46e2a52c2a03afa4e85be4253611ef2b
-      internalID: -1256084589
+      internalID: -7600511095878980928
       vertices: []
       indices: 
       edges: []
@@ -283,7 +285,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 3b4131badf5837d43aa3fd50d0a3ad13
-      internalID: 1557657408
+      internalID: -2865935843485635845
       vertices: []
       indices: 
       edges: []
@@ -304,7 +306,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 19d15e5be3e4aad44b6250f9c35c918d
-      internalID: -1910072405
+      internalID: 359836542850639463
       vertices: []
       indices: 
       edges: []
@@ -325,7 +327,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: b5512c1ea57c7a04390c97ec5487c271
-      internalID: 2006985263
+      internalID: -3253470150297923337
       vertices: []
       indices: 
       edges: []
@@ -346,7 +348,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: a747d961ac6beb54e88f43cbc17733ea
-      internalID: 947662338
+      internalID: 499738525944344897
       vertices: []
       indices: 
       edges: []
@@ -367,7 +369,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 84aed301830544148901380c46a5856f
-      internalID: -94971828
+      internalID: 8051231826920800442
       vertices: []
       indices: 
       edges: []
@@ -388,7 +390,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: a5aa16cec0ae4d049a296c413a645d31
-      internalID: -1962053696
+      internalID: 4111807325671633415
       vertices: []
       indices: 
       edges: []
@@ -404,32 +406,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-<<<<<<< HEAD:PLATFORMER1/Assets/Art/Terrain/Tiles/Level0/bricks-level0.png.meta
-      bricks-level0_0: 1476691851
-      bricks-level0_1: 1047409128
-      bricks-level0_10: 947662338
-      bricks-level0_11: -94971828
-      bricks-level0_12: -1962053696
-      bricks-level0_2: -1383132713
-      bricks-level0_3: 373436285
-      bricks-level0_4: -914332125
-      bricks-level0_5: 707040589
-      bricks-level0_6: -1256084589
-      bricks-level0_7: 1557657408
-      bricks-level0_8: -1910072405
-      bricks-level0_9: 2006985263
-=======
-      foliage_0: -175490099
-      foliage_1: -1730878359
-      foliage_2: 342309712
-      foliage_3: -538734452
-      foliage_4: -1519151885
-      foliage_5: -1049294844
-      foliage_6: 1254387344
-      foliage_7: -1662011089
-      foliage_8: 71748144
-      foliage_9: 1155232046
->>>>>>> companion-stun:PLATFORMER1/Assets/Art/Foreground/foliage.png.meta
+      bricks-level0_0: 2845513411211609436
+      bricks-level0_1: 7292050950568472325
+      bricks-level0_10: 499738525944344897
+      bricks-level0_11: 8051231826920800442
+      bricks-level0_12: 4111807325671633415
+      bricks-level0_2: 6429069762365666166
+      bricks-level0_3: 142430142447078201
+      bricks-level0_4: 5608904254715220082
+      bricks-level0_5: -8623496251778604394
+      bricks-level0_6: -7600511095878980928
+      bricks-level0_7: -2865935843485635845
+      bricks-level0_8: 359836542850639463
+      bricks-level0_9: -3253470150297923337
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

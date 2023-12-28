@@ -24457,6 +24457,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6f6af7820bcf5804492ecf1cdd990325, type: 2}
+    - target: {fileID: 8629409590079733707, guid: 296d7170d45d32b4187d3425460a0ccf, type: 3}
+      propertyPath: ShapeModule.arc.value
+      value: 352.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8629409590976678788, guid: 296d7170d45d32b4187d3425460a0ccf, type: 3}
       propertyPath: m_Name
       value: Mushroom Trap

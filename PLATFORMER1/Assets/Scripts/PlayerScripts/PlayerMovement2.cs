@@ -264,7 +264,11 @@ public class PlayerMovement2 : MonoBehaviour
             WallJump(_lastWallJumpDir);
         }
         #endregion
+<<<<<<< HEAD
 
+=======
+        //Debug.Log(LastOnGroundTime);
+>>>>>>> companion-stun
         if (LastOnGroundTime > 0)
         {
             jumpsLeft = 2;

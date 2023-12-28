@@ -104,6 +104,17 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -393,6 +404,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+<<<<<<< HEAD:PLATFORMER1/Assets/Art/Terrain/Tiles/Level0/bricks-level0.png.meta
       bricks-level0_0: 1476691851
       bricks-level0_1: 1047409128
       bricks-level0_10: 947662338
@@ -406,6 +418,18 @@ TextureImporter:
       bricks-level0_7: 1557657408
       bricks-level0_8: -1910072405
       bricks-level0_9: 2006985263
+=======
+      foliage_0: -175490099
+      foliage_1: -1730878359
+      foliage_2: 342309712
+      foliage_3: -538734452
+      foliage_4: -1519151885
+      foliage_5: -1049294844
+      foliage_6: 1254387344
+      foliage_7: -1662011089
+      foliage_8: 71748144
+      foliage_9: 1155232046
+>>>>>>> companion-stun:PLATFORMER1/Assets/Art/Foreground/foliage.png.meta
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -9,9 +9,10 @@ public class stun : MonoBehaviour
     private float timer;
     private bool hitEnemy = false;
 
-    // Start is called before the first frame update
+    
     public void Shoot(Vector2 shootDirection)
     {
+        Debug.Log("SHOOoooooooooottttttttttttt");
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = shootDirection.normalized * force;
 
@@ -41,9 +42,16 @@ public class stun : MonoBehaviour
         {
             // If the projectile hits an enemy, stop their movement for 5 seconds
             EnemyPatroll enemyMovement = other.GetComponent<EnemyPatroll>();
+            EnemyProj enemyAttack = other.GetComponent<EnemyProj>();
+            
             if (enemyMovement != null)
             {
                 enemyMovement.StopMovementForSeconds(5);
+            }
+
+            if(enemyAttack != null)
+            {
+                enemyAttack.StopAttackingForSeconds(5);
             }
 
             // Set the flag to indicate that the enemy is hit
@@ -54,9 +62,10 @@ public class stun : MonoBehaviour
             GetComponent<Collider2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
         }
-        else
+        else if(!other.CompareTag("Player")&&!other.CompareTag("Companion"))
         {
             // If the projectile hits anything other than an enemy, destroy it
+           
             Destroy(gameObject);
         }
     }

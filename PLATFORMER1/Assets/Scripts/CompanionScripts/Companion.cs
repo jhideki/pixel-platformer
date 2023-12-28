@@ -20,6 +20,7 @@ public class Companion : MonoBehaviour
     //for stun logic
     public GameObject bulletPrefab;
     public Transform firePoint;
+    private int mag_lim = 0;
 
     void Start()
     {
@@ -48,9 +49,13 @@ public class Companion : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKey(KeyCode.F))
         {
-            Shoot();
+            Debug.Log("F key pressed. Calling Shoot!");
+           
+                Shoot();
+            
+            mag_lim++;
         }
     }
 
@@ -79,10 +84,21 @@ public class Companion : MonoBehaviour
 
         // Get the BulletScript component and call the Shoot method to set the direction
         stun bulletScript = bulletObject.GetComponent<stun>();
+        
         if (bulletScript != null)
         {
-            Vector2 shootDirection = transform.right; // or any other direction based on your game logic
+            // Check if the player is facing right
+            bool isPlayerFacingRight = player.GetComponent<PlayerMovement2>().IsFacingRight;
+
+            // Determine the shoot direction based on player's facing direction
+            Vector2 shootDirection = isPlayerFacingRight ? transform.right : -transform.right;
+            Debug.Log("stun script loaded successfully!");
             bulletScript.Shoot(shootDirection);
         }
+        else
+        {
+            Debug.LogError("Error: stun script not found on bullet object!");
+        }
+        
     }
 }

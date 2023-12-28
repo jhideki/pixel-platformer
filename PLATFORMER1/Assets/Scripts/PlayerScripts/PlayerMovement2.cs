@@ -219,7 +219,7 @@ public class PlayerMovement2 : MonoBehaviour
         //Jump
         if ( CanDoubleJump() && LastPressedJumpTime > 0)
         {
-            Debug.Log($"LastOnGroundTime: {LastOnGroundTime}, jumpsLeft: {jumpsLeft}");
+            //Debug.Log($"LastOnGroundTime: {LastOnGroundTime}, jumpsLeft: {jumpsLeft}");
 
             if (IsJumping || IsWallJumping)
             {
@@ -259,7 +259,7 @@ public class PlayerMovement2 : MonoBehaviour
             WallJump(_lastWallJumpDir);
         }
         #endregion
-        Debug.Log(LastOnGroundTime);
+        //Debug.Log(LastOnGroundTime);
         if (LastOnGroundTime > 0)
         {
             jumpsLeft = 2;

@@ -10,6 +10,7 @@ TagManager:
   - Platform
   - Bullet
   - Enemy
+  - Companion
   layers:
   - Default
   - TransparentFX

@@ -24,8 +24,8 @@ public class Companion : MonoBehaviour
 
     void Start()
     {
-        mag_lim = 0;
-        movementScript = player.GetComponent<PlayerMovement2>();
+      mag_lim = 0;
+      movementScript = player.GetComponent<PlayerMovement2>();
     }
 
     void FixedUpdate()
@@ -53,21 +53,23 @@ public class Companion : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Debug.Log("F key pressed. Calling Shoot!");
+      if (Input.GetKeyDown(KeyCode.F))
+      {
+        Debug.Log("F key pressed. Calling Shoot!");
 
-            if(mag_lim < 3)
-            {
-                Shoot();
-            }
-            mag_lim++;
-        }
-
-        if((player.position.x > transform.position.x  && transform.localScale.x < 0f) || player.position.x < transform.position.x || ( transform.localScale.x < 0f))
+        if(mag_lim < 3)
         {
-          Turn();
+          Shoot();
         }
+        mag_lim++;
+      }
+      bool isPlayerOnRight = player.position.x > transform.position.x;
+      bool isCompanionFacingRight = transform.localScale.x > 0f;
+
+      if ((isPlayerOnRight && !isCompanionFacingRight) || (!isPlayerOnRight && isCompanionFacingRight))
+      {
+        Turn();
+      }
     }
     
 
@@ -91,9 +93,11 @@ public class Companion : MonoBehaviour
 
     private void Turn()
     {
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
+      // Get the player's scale
+      Vector3 playerScale = player.localScale;
+        
+        // Set the companion's scale to be the opposite of the player's scale
+        transform.localScale = new Vector3(-Mathf.Sign(playerScale.x) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
 
     void Shoot()

@@ -11,6 +11,7 @@ public class ElectricPlant : MonoBehaviour
     [SerializeField] GameObject lightOn;
     [SerializeField] private float timeIdle;
     [SerializeField] private float timeMaintain;
+    [SerializeField] private float startTimeOffset;
     private bool isTimingIdle;
     private bool isTimingMaintain;
     private float startTimeIdle;
@@ -38,6 +39,14 @@ public class ElectricPlant : MonoBehaviour
         lightOff.SetActive(true);
         lightOn.SetActive(false);
       }
+      if(Time.time > startTimeOffset)
+      {
+        startCurrentLoop();
+      }
+    }
+
+    void startCurrentLoop()
+    {
       if(!isTimingIdle)
       {
         startTimeIdle = Time.time;
@@ -49,16 +58,17 @@ public class ElectricPlant : MonoBehaviour
       {
         anim.SetTrigger("start"); 
         startTimeMaintain = Time.time;
-         Debug.Log(startTimeMaintain);
-         isTimingMaintain = true;
-         collider.enabled = true;
-       }
+        Debug.Log(startTimeMaintain);
+        isTimingMaintain = true;
+        collider.enabled = true;
+      }
 
-       if((Time.time - startTimeMaintain > timeMaintain) && isTimingMaintain)
-       {
-         anim.SetTrigger("end");
-         isTimingIdle = false;
-         isTimingMaintain = false;
-       }
+      if((Time.time - startTimeMaintain > timeMaintain) && isTimingMaintain)
+      {
+        anim.SetTrigger("end");
+        isTimingIdle = false;
+        isTimingMaintain = false;
+      }
     }
+
 }

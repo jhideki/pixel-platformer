@@ -92,7 +92,6 @@ public class PlayerMovement2 : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         playerLife = GetComponent<PlayerLife>();
-
     }
 
     private void Start()

@@ -58,7 +58,6 @@ public class ElectricPlant : MonoBehaviour
       {
         anim.SetTrigger("start"); 
         startTimeMaintain = Time.time;
-        Debug.Log(startTimeMaintain);
         isTimingMaintain = true;
         collider.enabled = true;
       }

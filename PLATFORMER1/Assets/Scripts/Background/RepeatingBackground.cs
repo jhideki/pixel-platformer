@@ -1,78 +1,63 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class RepeatingBackground : MonoBehaviour
-{
-    [SerializeField] private GameObject[] levels;
-    [SerializeField] private Camera mainCamera;
-    private Vector2 screenBounds;
-    public float choke;
-    public float scrollSpeed;
-
-    void Start()
-    {
-        screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
-        foreach (GameObject obj in levels)
-        {
-            loadChildObjects(obj);
-        }
-    }
-
-    void loadChildObjects(GameObject obj)
-    {
-        float objectWidth = obj.GetComponent<SpriteRenderer>().bounds.size.x - choke;
-
-        int childsNeeded = (int)Mathf.Ceil(screenBounds.x * 2 / objectWidth);
-        GameObject clone = Instantiate(obj) as GameObject;
-        for (int i = 0; i <= childsNeeded; i++)
-        {
-            GameObject c = Instantiate(clone) as GameObject;
-            c.transform.SetParent(obj.transform);
-            c.transform.position = new Vector3(objectWidth * i, obj.transform.position.y, obj.transform.position.z);
-            c.name = obj.name + i;
-        }
-        Destroy(clone);
-
-        // Remove the code for creating objects in the y direction
-
-        Destroy(obj.GetComponent<SpriteRenderer>());
-    }
-
-    void repositionChildObjects(GameObject obj)
-    {
-        Transform[] children = obj.GetComponentsInChildren<Transform>();
-        if (children.Length > 1)
-        {
-            GameObject firstChild = children[1].gameObject;
-            GameObject lastChild = children[children.Length - 1].gameObject;
-            float halfObjectWidth = lastChild.GetComponent<SpriteRenderer>().bounds.extents.x - choke;
-            if (transform.position.x + screenBounds.x > lastChild.transform.position.x + halfObjectWidth)
-            {
-                firstChild.transform.SetAsLastSibling();
-                firstChild.transform.position = new Vector3(lastChild.transform.position.x + halfObjectWidth * 2, lastChild.transform.position.y, lastChild.transform.position.z);
-            }
-            else if (transform.position.x - screenBounds.x < firstChild.transform.position.x - halfObjectWidth)
-            {
-                lastChild.transform.SetAsFirstSibling();
-                lastChild.transform.position = new Vector3(firstChild.transform.position.x - halfObjectWidth * 2, firstChild.transform.position.y, firstChild.transform.position.z);
-            }
-        }
-    }
-
-    void Update()
-    {
-        Vector3 velocity = Vector3.zero;
-        Vector3 desiredPosition = transform.position + new Vector3(scrollSpeed, 0, 0);
-        Vector3 smoothPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, 0.3f);
-        transform.position = smoothPosition;
-    }
-
-    void LateUpdate()
-    {
-        foreach (GameObject obj in levels)
-        {
-            repositionChildObjects(obj);
-        }
-    }
-}
+using System.Collections;
+using UnityEngine;
+
+public class RepeatingBackground : MonoBehaviour
+{
+    [SerializeField] private GameObject[] levels;
+    [SerializeField] private Camera mainCamera;
+    public float choke;
+    public float scrollSpeed;
+
+    private float objectWidth;
+
+    void Start()
+    {
+        objectWidth = levels[0].GetComponent<SpriteRenderer>().bounds.size.x - choke;
+        foreach (GameObject obj in levels)
+        {
+            LoadChildObjects(obj);
+        }
+    }
+
+    void LoadChildObjects(GameObject obj)
+    {
+        int childsNeeded = (int)Mathf.Ceil(mainCamera.orthographicSize * 2 / objectWidth);
+        for (int i = 0; i <= childsNeeded; i++)
+        {
+            GameObject c = Instantiate(obj, new Vector3(objectWidth * i, obj.transform.position.y, obj.transform.position.z), Quaternion.identity, obj.transform);
+            c.name = obj.name + i;
+        }
+    }
+
+    void RepositionChildObjects(GameObject obj)
+    {
+        Transform[] children = obj.GetComponentsInChildren<Transform>();
+        Transform firstChild = children[1];
+        Transform lastChild = children[children.Length - 1];
+        float halfObjectWidth = objectWidth / 2;
+
+        if (transform.position.x + mainCamera.orthographicSize > lastChild.position.x + halfObjectWidth)
+        {
+            firstChild.SetAsLastSibling();
+            firstChild.position = new Vector3(lastChild.position.x + objectWidth, lastChild.position.y, lastChild.position.z);
+        }
+        else if (transform.position.x - mainCamera.orthographicSize < firstChild.position.x - halfObjectWidth)
+        {
+            lastChild.SetAsFirstSibling();
+            lastChild.position = new Vector3(firstChild.position.x - objectWidth, firstChild.position.y, firstChild.position.z);
+        }
+    }
+
+    void Update()
+    {
+        transform.Translate(new Vector3(scrollSpeed * Time.deltaTime, 0, 0));
+    }
+
+    void LateUpdate()
+    {
+        foreach (GameObject obj in levels)
+        {
+            RepositionChildObjects(obj);
+        }
+    }
+}

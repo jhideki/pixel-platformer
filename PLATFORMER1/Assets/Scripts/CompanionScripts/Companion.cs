@@ -24,11 +24,11 @@ public class Companion : MonoBehaviour
 
     void Start()
     {
-      mag_lim = 0;
-      movementScript = player.GetComponent<PlayerMovement2>();
+        mag_lim = 0;
+        movementScript = player.GetComponent<PlayerMovement2>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         Vector3 targetPosition = new Vector3(player.position.x, player.position.y + yOffset, transform.position.z);
 
@@ -49,37 +49,33 @@ public class Companion : MonoBehaviour
                 reachedTarget = false;
             }
         }
-    }
-
-    void Update()
-    {
-      if (Input.GetKeyDown(KeyCode.F))
-      {
-        Debug.Log("F key pressed. Calling Shoot!");
-
-        if(mag_lim < 3)
+        if (Input.GetKeyDown(KeyCode.F))
         {
-          Shoot();
-        }
-        mag_lim++;
-      }
-      bool isPlayerOnRight = player.position.x > transform.position.x;
-      bool isCompanionFacingRight = transform.localScale.x > 0f;
+            Debug.Log("F key pressed. Calling Shoot!");
 
-      if ((isPlayerOnRight && !isCompanionFacingRight) || (!isPlayerOnRight && isCompanionFacingRight))
-      {
-        Turn();
-      }
+            if(mag_lim < 3)
+            {
+                Shoot();
+            }
+            mag_lim++;
+        }
+        bool isPlayerOnRight = player.position.x > transform.position.x;
+        bool isCompanionFacingRight = transform.localScale.x > 0f;
+
+        if (!movementScript.isIdle && ((isPlayerOnRight && !isCompanionFacingRight) || (!isPlayerOnRight && isCompanionFacingRight)))
+        {
+            Turn();
+        }
     }
-    
+
 
     void idleMovement()
     {
         // Change direction when reaching the target position
         if (Mathf.Abs(transform.position.x - targetIdlePosition) < 0.1f)
         {
-          idleMovementDistance *= -1;
-          targetIdlePosition = player.position.x + idleMovementDistance;
+            idleMovementDistance *= -1;
+            targetIdlePosition = player.position.x + idleMovementDistance;
         }
 
         Vector3 targetVector = new Vector3(targetIdlePosition,transform.position.y,transform.position.z);
@@ -93,9 +89,9 @@ public class Companion : MonoBehaviour
 
     private void Turn()
     {
-      // Get the player's scale
-      Vector3 playerScale = player.localScale;
-        
+        // Get the player's scale
+        Vector3 playerScale = player.localScale;
+
         // Set the companion's scale to be the opposite of the player's scale
         transform.localScale = new Vector3(-Mathf.Sign(playerScale.x) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
@@ -107,7 +103,7 @@ public class Companion : MonoBehaviour
 
         // Get the BulletScript component and call the Shoot method to set the direction
         stun bulletScript = bulletObject.GetComponent<stun>();
-        
+
         if (bulletScript != null)
         {
             // Check if the player is facing right
@@ -122,6 +118,6 @@ public class Companion : MonoBehaviour
         {
             //Debug.LogError("Error: stun script not found on bullet object!");
         }
-        
+
     }
 }

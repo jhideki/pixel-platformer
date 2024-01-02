@@ -554,8 +554,13 @@ public class PlayerMovement2 : MonoBehaviour
         //This means we'll always feel like we jump the same amount 
         //(setting the player's Y velocity to 0 beforehand will likely work the same, but I find this more elegant :D)
         float force = Data.jumpForce;
+        /*
         if (RB.velocity.y < 0)
             force -= RB.velocity.y;
+        */
+        Vector2 currentVelocity = RB.velocity;
+        currentVelocity.y = 0f;
+        RB.velocity = currentVelocity;
 
         RB.AddForce(Vector2.up * force, ForceMode2D.Impulse);
         #endregion

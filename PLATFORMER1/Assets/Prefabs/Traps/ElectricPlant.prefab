@@ -125,7 +125,8 @@ MonoBehaviour:
   lightOff: {fileID: 8430507379277946285}
   lightOn: {fileID: 7135816718171167501}
   timeIdle: 2
-  timeMaintain: 0.5
+  timeMaintain: 2
+  startTimeOffset: 0
 --- !u!61 &540564150811821222
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -158,7 +159,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.028588295, y: 0}
+  m_Offset: {x: -0.023568148, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -169,7 +170,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5235462, y: 4}
+  m_Size: {x: 0.17212947, y: 4}
   m_EdgeRadius: 0
 --- !u!1 &7135816718171167501
 GameObject:
@@ -302,7 +303,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 512a5275000000009fa91e42c16b6b54a30354a2

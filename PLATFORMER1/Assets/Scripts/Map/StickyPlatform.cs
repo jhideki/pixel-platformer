@@ -22,6 +22,8 @@ public class StickyPlatform : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.transform.SetParent(null);
+            GameObject companion = GameObject.FindWithTag("Companion");
+            companion.gameObject.transform.SetParent(null);
         }
     }
 }

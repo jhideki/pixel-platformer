@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -70,7 +70,7 @@ Camera:
   far clip plane: 50
   field of view: 60
   orthographic: 1
-  orthographic size: 5.625
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -115,7 +115,7 @@ MonoBehaviour:
   Camera_offy: 6
   lane: {fileID: 8657922815356897879, guid: d966449c59627f14fbc3f2f0d84cb40f, type: 3}
   numLanes: 5
-  spacing: 10
+  spacing: 7
   lanes: []
 --- !u!114 &3939869747782616400
 MonoBehaviour:

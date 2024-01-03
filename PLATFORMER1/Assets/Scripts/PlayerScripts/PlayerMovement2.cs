@@ -217,7 +217,7 @@ public class PlayerMovement2 : MonoBehaviour
 
 
         //Jump
-        if (CanDoubleJump() && LastPressedJumpTime > 0)
+        if (Data.canMove && CanDoubleJump() && LastPressedJumpTime > 0)
         {
           if(jumpsLeft == 1)
           {
@@ -358,7 +358,7 @@ public class PlayerMovement2 : MonoBehaviour
         {
             Run(Data.wallJumpRunLerp);
         }
-        else if (!blockMovement && !IsSliding)
+        else if (!blockMovement && !IsSliding && Data.canMove)
         {
             Run(1);
         }
@@ -681,11 +681,11 @@ public class PlayerMovement2 : MonoBehaviour
         {
             state = MovementState.dashing;
         }
-        else if (_moveInput.x > 0f && !IsSliding)
+        else if (_moveInput.x > 0f && !IsSliding && Data.canMove)
         {
             state = MovementState.running;
         }
-        else if (_moveInput.x < 0f && !IsSliding)
+        else if (_moveInput.x < 0f && !IsSliding && Data.canMove)
         {
             state = MovementState.running;
         }
@@ -694,12 +694,12 @@ public class PlayerMovement2 : MonoBehaviour
             state = MovementState.idle;
         }
 
-        if (LastOnGroundTime < 0 && !IsSliding && RB.velocity.y >= -.1f && !IsDoubleJumping)
+        if (Data.canMove && LastOnGroundTime < 0 && !IsSliding && RB.velocity.y >= -.1f && !IsDoubleJumping)
         {
             state = MovementState.jumping;
         }
 
-        if(!IsSliding && IsDoubleJumping)
+        if(!IsSliding && IsDoubleJumping && Data.canMove)
         {
           state = MovementState.doubleJumping;
         }

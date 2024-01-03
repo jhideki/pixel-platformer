@@ -48,6 +48,7 @@ public class PlayerRunData : ScriptableObject
     [Range(0f, 1)] public float deccelInAir;
     [Space(5)]
     public bool doConserveMomentum = true;
+    public bool canMove = true; //if false player cannot run or jump
 
     [Space(20)]
 

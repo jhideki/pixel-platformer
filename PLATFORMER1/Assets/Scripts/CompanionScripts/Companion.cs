@@ -22,10 +22,15 @@ public class Companion : MonoBehaviour
     public Transform firePoint;
     private int mag_lim;
 
+    //ammo ui
+    [SerializeField] private Transform Health; // Reference to the BulletCounter script
+    private BulletCounter ammoScript;
+
     void Start()
     {
         mag_lim = 0;
         movementScript = player.GetComponent<PlayerMovement2>();
+        ammoScript = Health.GetComponent<BulletCounter>();
     }
 
     void Update()
@@ -119,5 +124,9 @@ public class Companion : MonoBehaviour
             //Debug.LogError("Error: stun script not found on bullet object!");
         }
 
+        if (ammoScript != null)
+        {
+            ammoScript.ShootBullet();
+        }
     }
 }

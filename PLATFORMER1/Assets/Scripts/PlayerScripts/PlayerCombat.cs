@@ -85,7 +85,6 @@ public class PlayerCombat : MonoBehaviour
                 attack();
             }
 
-            oldMovementDeacceleration = data.runAcceleration;
         }
         // check if enough time has elapsed before player can attack again
         if(Time.time - startTime >= attackCooldownTime)
@@ -100,8 +99,6 @@ public class PlayerCombat : MonoBehaviour
         isAttacking = true;
         RB.AddForce(direction * impulseStrength, ForceMode2D.Impulse);
         nextAttackTime = Time.time + attackCooldownlight;
-        data.runAcceleration*= 0.05f;
-        data.runAcceleration = oldMovementDeacceleration;
         isAttacking = false;
     }
 

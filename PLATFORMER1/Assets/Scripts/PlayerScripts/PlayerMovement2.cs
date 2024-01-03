@@ -618,7 +618,7 @@ public class PlayerMovement2 : MonoBehaviour
             Turn();
     }
 
-    private bool CanJump()
+    public bool CanJump()
     {
         return LastOnGroundTime > 0 && !IsJumping;
     }

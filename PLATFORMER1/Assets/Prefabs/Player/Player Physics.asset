@@ -37,6 +37,7 @@ MonoBehaviour:
   accelInAir: 0.65
   deccelInAir: 0.65
   doConserveMomentum: 1
+  canMove: 1
   jumpHeight: 3
   jumpTimeToApex: 0.3
   jumpForce: 20

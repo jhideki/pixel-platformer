@@ -46,7 +46,6 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-
         if(isTiming)
         {
             data.canMove = false;

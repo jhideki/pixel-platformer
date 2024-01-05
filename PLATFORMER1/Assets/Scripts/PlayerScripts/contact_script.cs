@@ -10,12 +10,14 @@ public class contact_script : MonoBehaviour
     void Update()
     {
         // Check for key presses
+        /*
         if (Input.GetKeyDown(KeyCode.Q))
         {
             isHeavyAttack = true;
             isLightAttack = false;
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        */
+        if (Input.GetKeyDown(KeyCode.E))
         {
             isHeavyAttack = false;
             isLightAttack = true;
@@ -34,7 +36,7 @@ public class contact_script : MonoBehaviour
 
                 if (isHeavyAttack)
                 {
-                    damage = 200; // Heavy attack with 200 damage
+                    damage = 50; // Heavy attack with 200 damage
                     Debug.Log("Heavy attack - Dealt " + damage + " damage to enemy");
                 }
                 else if (isLightAttack)
@@ -44,8 +46,9 @@ public class contact_script : MonoBehaviour
                 }
                 else
                 {
-                    damage = 100; // Default damage for other cases
+                   /* damage = 50; // Default damage for other cases
                     Debug.Log("Dealt " + damage + " damage to enemy");
+                   */
                 }
 
                 enemyComponent.takeDamage(damage);

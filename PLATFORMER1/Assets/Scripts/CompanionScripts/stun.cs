@@ -8,8 +8,16 @@ public class stun : MonoBehaviour
     public float force;
     private float timer;
     private bool hitEnemy = false;
-
     
+    /*
+    [SerializeField ] private Transform Health; // Reference to the BulletCounter script
+    private BulletCounter ammoScript;
+    
+    void Start()
+    {
+        ammoScript = Health.GetComponent<BulletCounter>();
+    }
+    */
     public void Shoot(Vector2 shootDirection)
     {
         Debug.Log("SHOOoooooooooottttttttttttt");
@@ -19,6 +27,12 @@ public class stun : MonoBehaviour
         // Rotate the projectile to face the shooting direction
         float rot = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot);
+        /*
+        if (ammoScript != null)
+        {
+            ammoScript.ShootBullet();
+        }
+        */
 
     }
 

@@ -76,7 +76,17 @@ public class stun : MonoBehaviour
             GetComponent<Collider2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
         }
-        else if(!other.CompareTag("Player")&&!other.CompareTag("Companion"))
+        else if (other.CompareTag("Freeze"))
+        {
+            Pathing pathMovement = other.GetComponent<Pathing>();
+
+            if(pathMovement != null)
+            {
+                pathMovement.StopMovementForSeconds(5);
+            }
+            
+        }
+        else if(!other.CompareTag("Player"))
         {
             // If the projectile hits anything other than an enemy, destroy it
            

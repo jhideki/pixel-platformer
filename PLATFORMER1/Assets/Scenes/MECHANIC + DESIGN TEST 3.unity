@@ -131,9 +131,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 896351380}
     m_Modifications:
+    - target: {fileID: 5442948800538938099, guid: f51d7895c762e5d46b2b709ab0fad073, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5442948800538938105, guid: f51d7895c762e5d46b2b709ab0fad073, type: 3}
       propertyPath: m_Name
       value: freezable platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 5442948800538938105, guid: f51d7895c762e5d46b2b709ab0fad073, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5442948800538938105, guid: f51d7895c762e5d46b2b709ab0fad073, type: 3}
+      propertyPath: m_TagString
+      value: Freeze
+      objectReference: {fileID: 0}
+    - target: {fileID: 5442948800538938109, guid: f51d7895c762e5d46b2b709ab0fad073, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5442948800538938110, guid: f51d7895c762e5d46b2b709ab0fad073, type: 3}
       propertyPath: m_LocalPosition.x
@@ -187,7 +203,8 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5442948800538938111, guid: f51d7895c762e5d46b2b709ab0fad073, type: 3}
     m_RemovedGameObjects:
     - {fileID: 3515014215952452664, guid: f51d7895c762e5d46b2b709ab0fad073, type: 3}
     - {fileID: 2451678159983597296, guid: f51d7895c762e5d46b2b709ab0fad073, type: 3}
@@ -915,7 +932,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043269a6f18ff3045a9a40266e3ddc17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
+  waypoints:
+  - {fileID: 312504383}
+  - {fileID: 1611971593}
   speed: 2
 --- !u!114 &1189707302 stripped
 MonoBehaviour:

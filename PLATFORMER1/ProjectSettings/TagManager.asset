@@ -11,7 +11,6 @@ TagManager:
   - Bullet
   - Enemy
   - Companion
-  - Freeze
   layers:
   - Default
   - TransparentFX

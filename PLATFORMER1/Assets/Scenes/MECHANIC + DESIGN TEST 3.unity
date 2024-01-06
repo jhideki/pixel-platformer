@@ -1019,11 +1019,130 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4811947499f5fdf4cbd3fe01252ffd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1164784967 stripped
+--- !u!4 &1057794752 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5157719218380610320, guid: 2237c9ab8c3b8364587deb1c71edcd80, type: 3}
-  m_PrefabInstance: {fileID: 190619041}
+  m_CorrespondingSourceObject: {fileID: 1927322706424055596, guid: 56b0edff7fbf8f1478543655bcfa66d4, type: 3}
+  m_PrefabInstance: {fileID: 5629743296761278537}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1057794753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314165671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035e8f35fc4e53b4ca2e6e12c74bdc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxBullets: 3
+  bulletText: {fileID: 1876513198}
+--- !u!1 &1127906819 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4417343741002283001, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
+  m_PrefabInstance: {fileID: 2790144166289523795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &1127906824
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127906819}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.18618989, y: 0.2778157}
+      - {x: 0.15651369, y: 0.46779668}
+      - {x: 0.08910251, y: 0.69232154}
+      - {x: -0.041000426, y: 0.9474071}
+      - {x: -0.26193023, y: 1.1406356}
+      - {x: -0.26610935, y: 1.1862657}
+      - {x: -0.4067405, y: 1.3050004}
+      - {x: -0.5861241, y: 1.3724277}
+      - {x: -0.87825793, y: 1.518445}
+      - {x: -1.7084808, y: 1.6458564}
+      - {x: -2.315726, y: 1.3878765}
+      - {x: -2.6810937, y: 0.8514459}
+      - {x: -2.7109678, y: 0.5152875}
+      - {x: -2.6234233, y: 0.4589119}
+      - {x: -2.433569, y: 0.8315574}
+      - {x: -2.1814387, y: 1.1640389}
+      - {x: -1.8457316, y: 1.2730294}
+      - {x: -1.5682261, y: 1.3656665}
+      - {x: -1.3221972, y: 1.3413482}
+      - {x: -0.97074306, y: 1.2688423}
+      - {x: -0.7938711, y: 1.1504854}
+      - {x: -0.5981381, y: 1.0086619}
+      - {x: -0.34027678, y: 0.62396467}
+      - {x: -0.08, y: -0.08}
+      - {x: 0.074999996, y: -0.08}
+      - {x: 0.08, y: -0.06}
+      - {x: 0.08, y: 0.07}
+      - {x: 0.055, y: 0.08}
+  m_UseDelaunayMesh: 0
+--- !u!50 &1127906825
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127906819}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &1189707302 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2646571884297485295, guid: 1c96e3719e714f147992a49981fefae3, type: 3}

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1927322706424055596}
   - component: {fileID: 5236203234150588548}
+  - component: {fileID: 6631783111141400072}
   m_Layer: 0
   m_Name: HealthController
   m_TagString: Untagged
@@ -49,3 +50,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &6631783111141400072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117461296734714731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035e8f35fc4e53b4ca2e6e12c74bdc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxBullets: 3
+  bulletText: {fileID: 0}

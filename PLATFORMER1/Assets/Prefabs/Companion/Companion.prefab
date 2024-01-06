@@ -139,6 +139,7 @@ MonoBehaviour:
   idleMovementDistance: 1
   bulletPrefab: {fileID: 5574173516548076543, guid: 9616d4250a5e3724db523f793abd1962, type: 3}
   firePoint: {fileID: 1398235270733104147}
+  Health: {fileID: 0}
 --- !u!114 &7027148997369466336
 MonoBehaviour:
   m_ObjectHideFlags: 0

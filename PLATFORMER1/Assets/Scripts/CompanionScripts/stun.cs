@@ -27,12 +27,7 @@ public class stun : MonoBehaviour
         // Rotate the projectile to face the shooting direction
         float rot = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot);
-        /*
-        if (ammoScript != null)
-        {
-            ammoScript.ShootBullet();
-        }
-        */
+       
 
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class stun : MonoBehaviour
+public class Stun: MonoBehaviour
 {
     private Rigidbody2D rb;
     public float force;

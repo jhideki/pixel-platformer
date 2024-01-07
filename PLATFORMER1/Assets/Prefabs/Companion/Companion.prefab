@@ -41,8 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7720250568242023094}
   - component: {fileID: 4277121776863965446}
-  - component: {fileID: 4535646741971198140}
-  - component: {fileID: 7027148997369466336}
   - component: {fileID: 2296731046057014293}
   m_Layer: 0
   m_Name: Companion
@@ -119,39 +117,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4535646741971198140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8333407198034650699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7858b3c859f840243a295ad5e52f4ef9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  xOffset: 0.5
-  yOffset: 0.5
-  smoothing: 2
-  idleMoveSpeed: 0.4
-  idleMovementDistance: 1
-  bulletPrefab: {fileID: 5574173516548076543, guid: 9616d4250a5e3724db523f793abd1962, type: 3}
-  firePoint: {fileID: 1398235270733104147}
---- !u!114 &7027148997369466336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8333407198034650699}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a61443b3e45f0439d7165fd55b40ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 50
 --- !u!95 &2296731046057014293
 Animator:
   serializedVersion: 5

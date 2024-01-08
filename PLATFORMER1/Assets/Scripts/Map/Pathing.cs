@@ -32,7 +32,7 @@ public class Pathing : MonoBehaviour
         }
         else
         {
-            //transform.position = Vector2.zero;
+            
         }
     }
 

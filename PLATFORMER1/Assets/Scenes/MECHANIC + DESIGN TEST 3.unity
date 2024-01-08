@@ -3919,6 +3919,10 @@ PrefabInstance:
       propertyPath: _healthController
       value: 
       objectReference: {fileID: 1057794751}
+    - target: {fileID: 4417343741002283001, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7701798945265220602, guid: bdf3dbf253de14443adfcf20c990002b, type: 3}
       propertyPath: m_Name
       value: UPDATED player
@@ -4262,6 +4266,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b87bbe2dff8cda54e921f797fa41db88, type: 3}
+--- !u!1001 &6142368857304829486
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3244196111008676444, guid: 03c0e57c2b000914e94b7435efe13461, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244196111008676444, guid: 03c0e57c2b000914e94b7435efe13461, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 18.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244196111008676444, guid: 03c0e57c2b000914e94b7435efe13461, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.03355112
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244196111008676444, guid: 03c0e57c2b000914e94b7435efe13461, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244196111008676444, guid: 03c0e57c2b000914e94b7435efe13461, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244196111008676444, guid: 03c0e57c2b000914e94b7435efe13461, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244196111008676444, guid: 03c0e57c2b000914e94b7435efe13461, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244196111008676444, guid: 03c0e57c2b000914e94b7435efe13461, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244196111008676444, guid: 03c0e57c2b000914e94b7435efe13461, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3244196111008676444, guid: 03c0e57c2b000914e94b7435efe13461, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389172433842430129, guid: 03c0e57c2b000914e94b7435efe13461, type: 3}
+      propertyPath: m_Name
+      value: Freeze platform
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 03c0e57c2b000914e94b7435efe13461, type: 3}
 --- !u!1001 &6908775087289197057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28794,3 +28855,4 @@ SceneRoots:
   - {fileID: 932231318}
   - {fileID: 8902343455801748491}
   - {fileID: 1904604780}
+  - {fileID: 6142368857304829486}

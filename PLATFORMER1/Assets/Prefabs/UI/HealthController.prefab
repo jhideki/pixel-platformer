@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1927322706424055596}
   - component: {fileID: 5236203234150588548}
-  - component: {fileID: 6631783111141400072}
+  - component: {fileID: 4345015001253322028}
   m_Layer: 0
   m_Name: HealthController
   m_TagString: Untagged
@@ -50,7 +50,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &6631783111141400072
+--- !u!114 &4345015001253322028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

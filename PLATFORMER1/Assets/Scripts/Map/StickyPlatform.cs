@@ -5,7 +5,6 @@ using UnityEngine;
 public class StickyPlatform : MonoBehaviour
 {
 
-    private Companion companion;
     private void OnTriggerEnter2D(Collider2D collision)
     {
 

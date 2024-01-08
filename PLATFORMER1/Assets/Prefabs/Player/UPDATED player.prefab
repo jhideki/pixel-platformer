@@ -5123,8 +5123,8 @@ GameObject:
   - component: {fileID: 961014738417031228}
   - component: {fileID: 9002817577863105438}
   - component: {fileID: 7415191897861880743}
-  - component: {fileID: 7663357100067579246}
-  - component: {fileID: 8893928274039386302}
+  - component: {fileID: 808897404916401178}
+  - component: {fileID: 3894705168430783001}
   m_Layer: 0
   m_Name: hit_box
   m_TagString: Player
@@ -5256,7 +5256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2db10e764453414a83de64c70156987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &7663357100067579246
+--- !u!50 &808897404916401178
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -5283,7 +5283,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &8893928274039386302
+--- !u!60 &3894705168430783001
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

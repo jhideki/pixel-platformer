@@ -22,7 +22,6 @@ public class PlayerMovement2 : MonoBehaviour
     private PlayerLife playerLife;
 
     private enum MovementState { idle, running, jumping, falling, sliding, dashing, doubleJumping}
-
     //Variables control the various actions the player can perform at any time.
     //These are fields which can are public allowing for other sctipts to read them
     //but can only be privately written to.
@@ -114,9 +113,41 @@ public class PlayerMovement2 : MonoBehaviour
         #endregion
 
         #region INPUT HANDLER
+        if(PlayerManager.instance.GetCurrentState() != PlayerManager.PlayerState.companion)
+        {
+            _moveInput.x = Input.GetAxisRaw("Horizontal");
+            _moveInput.y = Input.GetAxisRaw("Vertical");
 
-        _moveInput.x = Input.GetAxisRaw("Horizontal");
-        _moveInput.y = Input.GetAxisRaw("Vertical");
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.J))
+            {
+
+                OnJumpInput();
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.J))
+            {
+                OnJumpUpInput();
+            }
+
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                OnDashInput();
+            }
+
+            if (Input.GetKeyUp(KeyCode.W))
+            {
+                OnUpdashInput();
+            }
+
+            if (_moveInput.y < 0 && !IsJumping)
+            {
+                isCrouching = true;
+            }
+            else if (_moveInput.y >= 0)
+            {
+                isCrouching = false;
+            }
+        }
 
         if (_moveInput.x != 0)
         {
@@ -126,36 +157,6 @@ public class PlayerMovement2 : MonoBehaviour
         else
         {
             isRunning = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.J))
-        {
-
-            OnJumpInput();
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.J))
-        {
-            OnJumpUpInput();
-        }
-
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            OnDashInput();
-        }
-
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            OnUpdashInput();
-        }
-
-        if (_moveInput.y < 0 && !IsJumping)
-        {
-            isCrouching = true;
-        }
-        else if (_moveInput.y >= 0)
-        {
-            isCrouching = false;
         }
         #endregion
 
@@ -173,7 +174,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             //Right Wall Check
             if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)
-                    || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
+                        || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)) && !IsWallJumping)
             {
                 LastOnWallRightTime = Data.coyoteTime;
 
@@ -181,7 +182,7 @@ public class PlayerMovement2 : MonoBehaviour
 
             //left Wall Check
             if (((Physics2D.OverlapBox(_frontWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && !IsFacingRight)
-                || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
+                        || (Physics2D.OverlapBox(_backWallCheckPoint.position, _wallCheckSize, 0, _groundLayer) && IsFacingRight)) && !IsWallJumping)
             {
                 LastOnWallLeftTime = Data.coyoteTime;
             }
@@ -221,13 +222,13 @@ public class PlayerMovement2 : MonoBehaviour
         //Jump
         if (Data.canMove && CanDoubleJump() && LastPressedJumpTime > 0)
         {
-          if(jumpsLeft == 1)
-          {
-            IsDoubleJumping = true;
-          }else
-          {
-            IsDoubleJumping = false;
-          }
+            if(jumpsLeft == 1)
+            {
+                IsDoubleJumping = true;
+            }else
+            {
+                IsDoubleJumping = false;
+            }
             if (IsJumping || IsWallJumping)
             {
                 // Double jump
@@ -337,8 +338,6 @@ public class PlayerMovement2 : MonoBehaviour
         }
         #endregion
 
-        // for animations
-        UpdateAnimationState();
 
         if (isRunning)
         {
@@ -352,6 +351,9 @@ public class PlayerMovement2 : MonoBehaviour
         {
             trail.Stop();
         }
+
+        // for animations
+        UpdateAnimationState();
     }
 
     private void FixedUpdate()
@@ -493,7 +495,7 @@ public class PlayerMovement2 : MonoBehaviour
             accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount : Data.runDeccelAmount;
         else
             accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount * Data.accelInAir : Data.runDeccelAmount * Data.deccelInAir;
-        #endregion
+            #endregion
 
         #region Add Bonus Jump Apex Acceleration
         //Increase are acceleration and maxSpeed when at the apex of their jump, makes the jump feel a bit more bouncy, responsive and natural
@@ -526,21 +528,24 @@ public class PlayerMovement2 : MonoBehaviour
 
 
         /*
-		 * For those interested here is what AddForce() will do
-		 * RB.velocity = new Vector2(RB.velocity.x + (Time.fixedDeltaTime  * speedDif * accelRate) / RB.mass, RB.velocity.y);
-		 * Time.fixedDeltaTime is by default in Unity 0.02 seconds equal to 50 FixedUpdate() calls per second
-		*/
+         * For those interested here is what AddForce() will do
+         * RB.velocity = new Vector2(RB.velocity.x + (Time.fixedDeltaTime  * speedDif * accelRate) / RB.mass, RB.velocity.y);
+         * Time.fixedDeltaTime is by default in Unity 0.02 seconds equal to 50 FixedUpdate() calls per second
+         */
     }
 
     private void Turn()
     {
         //CreateDust();
         //stores scale and flips the player along the x axis, 
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
+        if(PlayerManager.instance.GetCurrentState() != PlayerManager.PlayerState.companion)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
 
-        IsFacingRight = !IsFacingRight;
+            IsFacingRight = !IsFacingRight;
+        }
     }
     #endregion
 
@@ -558,9 +563,9 @@ public class PlayerMovement2 : MonoBehaviour
         //(setting the player's Y velocity to 0 beforehand will likely work the same, but I find this more elegant :D)
         float force = Data.jumpForce;
         /*
-        if (RB.velocity.y < 0)
-            force -= RB.velocity.y;
-        */
+           if (RB.velocity.y < 0)
+           force -= RB.velocity.y;
+           */
         Vector2 currentVelocity = RB.velocity;
         currentVelocity.y = 0f;
         RB.velocity = currentVelocity;
@@ -631,7 +636,7 @@ public class PlayerMovement2 : MonoBehaviour
     private bool CanWallJump()
     {
         return LastPressedJumpTime > 0 && LastOnWallTime > 0 && LastOnGroundTime <= 0 && (!IsWallJumping ||
-             (LastOnWallRightTime > 0 && _lastWallJumpDir == 1) || (LastOnWallLeftTime > 0 && _lastWallJumpDir == -1));
+                (LastOnWallRightTime > 0 && _lastWallJumpDir == 1) || (LastOnWallLeftTime > 0 && _lastWallJumpDir == -1));
     }
 
     private bool CanJumpCut()
@@ -674,51 +679,57 @@ public class PlayerMovement2 : MonoBehaviour
     }
     #endregion
 
+    //Will move animation code to sepearte script (eventually)
     private void UpdateAnimationState()
     {
         MovementState state;
+        //Messy asf rn. I will clean this up later
+        if(PlayerManager.instance.GetCurrentState() != PlayerManager.PlayerState.companion)
+        {
+            if (IsSliding)
+            {
+                state = MovementState.sliding;
+            }
+            else if (IsDashing)
+            {
+                state = MovementState.dashing;
+            }
+            else if (_moveInput.x > 0f && !IsSliding && Data.canMove)
+            {
+                state = MovementState.running;
+            }
+            else if (_moveInput.x < 0f && !IsSliding && Data.canMove)
+            {
+                state = MovementState.running;
+            }
+            else
+            {
+                state = MovementState.idle;
+            }
 
-        if (IsSliding)
-        {
-            state = MovementState.sliding;
-        }
-        else if (IsDashing)
-        {
-            state = MovementState.dashing;
-        }
-        else if (_moveInput.x > 0f && !IsSliding && Data.canMove)
-        {
-            state = MovementState.running;
-        }
-        else if (_moveInput.x < 0f && !IsSliding && Data.canMove)
-        {
-            state = MovementState.running;
+            if (Data.canMove && LastOnGroundTime < 0 && !IsSliding && RB.velocity.y >= -.1f && !IsDoubleJumping)
+            {
+                state = MovementState.jumping;
+            }
+
+            if(!IsSliding && IsDoubleJumping && Data.canMove)
+            {
+                state = MovementState.doubleJumping;
+            }
+
+            if (RB.velocity.y < -.1f && !IsSliding)
+            {
+                state = MovementState.falling;
+            }
         }
         else
         {
             state = MovementState.idle;
         }
-
-        if (Data.canMove && LastOnGroundTime < 0 && !IsSliding && RB.velocity.y >= -.1f && !IsDoubleJumping)
-        {
-            state = MovementState.jumping;
-        }
-
-        if(!IsSliding && IsDoubleJumping && Data.canMove)
-        {
-          state = MovementState.doubleJumping;
-        }
-
-        if (RB.velocity.y < -.1f && !IsSliding)
-        {
-            state = MovementState.falling;
-        }
-
         anim.SetInteger("state", (int)state);
     }
     private void CreateDust()
     {
-
         if (trail != null)
         {
             if (!trail.isPlaying)

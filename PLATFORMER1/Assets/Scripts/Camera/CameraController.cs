@@ -8,11 +8,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+
+    [SerializeField] private Transform mc;
+    [SerializeField] private Transform companion;
+    private Transform player;
     [SerializeField] private float Camera_maxx;
     [SerializeField] private float Camera_minx;
-
-    private PlayerMovement2 movementScript;
 
     private float Camera_up;
     private float Camera_down;
@@ -33,11 +34,11 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        movementScript = player.GetComponent<PlayerMovement2>();
         //Position of the first lane
         float offsety = lane.transform.position.y;
         float offsetx = lane.transform.position.x;
         float yVal;
+        player = mc;
 
         // Cycle through all lanes and add them to lanes list
         for (int i = 0; i < numLanes; i++)
@@ -45,11 +46,19 @@ public class CameraController : MonoBehaviour
             yVal = offsety + (i * spacing);
             lanes.Add(Object.Instantiate(lane, new Vector3(offsetx, yVal, 0), Quaternion.identity));
         }
-
     }
 
     private void Update()
     {
+        // set camera to follow either mc or companion
+        if (PlayerManager.instance.GetCurrentState() == PlayerManager.PlayerState.companion)
+        {
+            player = companion;
+        }
+        else
+        {
+            player = mc;
+        }
         if (player.position.x >= Camera_minx && player.position.x <= Camera_maxx)
         {
             Camerax_pos = player.position.x;
@@ -61,17 +70,19 @@ public class CameraController : MonoBehaviour
         //smooth in the x direction
         float smoothedPositionX = Mathf.Lerp(transform.position.x, Camerax_pos + Camera_offx, smoothingx * Time.deltaTime);
         //smooth when dashing in the x direction
-
-        if (movementScript.hasDashed)
-        {
-            Debug.Log("camera is smoothing");
-            transform.position = new Vector3(smoothedPositionX, smoothedPositionY, transform.position.z);
-        }
-        else if (!movementScript.hasDashed && !movementScript.IsDashing)
-        {
-            transform.position = new Vector3(Camerax_pos + Camera_offx, smoothedPositionY, transform.position.z);
-        }
-
+        transform.position = new Vector3(Camerax_pos + Camera_offx, smoothedPositionY, transform.position.z);
+        /*
+         * Dash logic
+           if (movementScript.hasDashed)
+           {
+           Debug.Log("camera is smoothing");
+           transform.position = new Vector3(smoothedPositionX, smoothedPositionY, transform.position.z);
+           }
+           else if (!movementScript.hasDashed && !movementScript.IsDashing)
+           {
+           transform.position = new Vector3(Camerax_pos + Camera_offx, smoothedPositionY, transform.position.z);
+       }
+       */
 
     }
 

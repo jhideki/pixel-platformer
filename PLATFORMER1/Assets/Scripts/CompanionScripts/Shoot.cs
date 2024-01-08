@@ -10,20 +10,21 @@ public class Shoot : MonoBehaviour
 
     // Reference to the BulletCounter script
     [SerializeField] private Transform Health;
+    [SerializeField] private Transform Player;
     private BulletCounter ammoScript;
+    private CompanionMovement companion;
 
     void Start()
     {
         mag_lim = 0;
         ammoScript = Health.GetComponent<BulletCounter>();
+        companion = GetComponent<CompanionMovement>();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("F key pressed. Calling Shoot!");
-
             if (mag_lim < 3)
             {
                 shoot();
@@ -39,8 +40,8 @@ public class Shoot : MonoBehaviour
 
         if (bulletScript != null)
         {
-            bool isPlayerFacingRight = GetComponent<PlayerMovement2>().IsFacingRight;
-            Vector2 shootDirection = isPlayerFacingRight ? transform.right : -transform.right;
+            bool isPlayerFacingRight = Player.GetComponent<PlayerMovement2>().IsFacingRight;
+            Vector2 shootDirection = companion.isFacingRight? transform.right : -transform.right;
             bulletScript.Shoot(shootDirection);
         }
 

@@ -42,6 +42,9 @@ GameObject:
   - component: {fileID: 7720250568242023094}
   - component: {fileID: 4277121776863965446}
   - component: {fileID: 2296731046057014293}
+  - component: {fileID: 8487303117235947294}
+  - component: {fileID: 6027785226150750977}
+  - component: {fileID: 3585717533529486536}
   m_Layer: 0
   m_Name: Companion
   m_TagString: Companion
@@ -138,3 +141,50 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8487303117235947294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333407198034650699}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2401ecb8ed04c74a8eea07aee9ca3d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 10
+  horizontalSpeed: 5
+--- !u!114 &6027785226150750977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333407198034650699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7858b3c859f840243a295ad5e52f4ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5574173516548076543, guid: 9616d4250a5e3724db523f793abd1962, type: 3}
+  firePoint: {fileID: 1398235270733104147}
+  Health: {fileID: 0}
+--- !u!114 &3585717533529486536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333407198034650699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b565839b7af1f42bb76df02f279d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  xOffset: 1
+  yOffset: 1
+  smoothing: 1
+  idleMoveSpeed: 0.2
+  idleMovementDistance: 1

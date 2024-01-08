@@ -17,12 +17,27 @@ public class FollowMC : MonoBehaviour
     private bool reachedTarget;
     private float waitTime = 0.25f;
 
+    private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+
     void Start()
     {
         movementScript = player.GetComponent<PlayerMovement2>();
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+
     void Update()
+    {
+        if(PlayerManager.instance.GetCurrentState() != PlayerManager.PlayerState.companion)
+        {
+            ComapnionMovement();
+            rb.simulated = false;
+        }
+    }
+
+    void ComapnionMovement()
     {
         Vector3 targetPosition = new Vector3(player.position.x, player.position.y + yOffset, transform.position.z);
 

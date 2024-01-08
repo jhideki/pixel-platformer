@@ -24,17 +24,14 @@ public class BulletCounter : MonoBehaviour
         if (bulletText != null)
         {
             bulletText.text = currentBullets.ToString() + "/" + maxBullets.ToString();
-            Debug.Log("Updated bullet text: " + bulletText.text);
         }
     }
 
     public void ShootBullet()
     {
-        Debug.Log(currentBullets);
         if (currentBullets > 0)
         {
             currentBullets--;
-            Debug.Log("Current Bullets: " + currentBullets);
             UpdateBulletText();
             // Add your bullet shooting logic here
         }

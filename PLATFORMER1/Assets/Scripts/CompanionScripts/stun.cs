@@ -9,31 +9,14 @@ public class Stun: MonoBehaviour
     private float timer;
     private bool hitEnemy = false;
     
-    /*
-    [SerializeField ] private Transform Health; // Reference to the BulletCounter script
-    private BulletCounter ammoScript;
-    
-    void Start()
-    {
-        ammoScript = Health.GetComponent<BulletCounter>();
-    }
-    */
     public void Shoot(Vector2 shootDirection)
     {
-        Debug.Log("SHOOoooooooooottttttttttttt");
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = shootDirection.normalized * force;
 
         // Rotate the projectile to face the shooting direction
         float rot = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot);
-        /*
-        if (ammoScript != null)
-        {
-            ammoScript.ShootBullet();
-        }
-        */
-
     }
 
     // Update is called once per frame
@@ -86,10 +69,9 @@ public class Stun: MonoBehaviour
             }
             
         }
-        else if(!other.CompareTag("Player"))
+        else if(!other.CompareTag("Player") && !other.CompareTag("Companion"))
         {
             // If the projectile hits anything other than an enemy, destroy it
-           
             Destroy(gameObject);
         }
     }

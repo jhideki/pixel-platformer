@@ -62,11 +62,12 @@ public class PlayerMovement2 : MonoBehaviour
     //Wall Jump
     private float _wallJumpStartTime;
     private int _lastWallJumpDir;
+    //public float airMovement { get; private set; }
 
     private Vector2 _moveInput;
     public float LastPressedJumpTime { get; private set; }
     public float LastPressedDashTime { get; private set; }
-
+    
 
     //Set all of these up in the inspector
 
@@ -166,6 +167,7 @@ public class PlayerMovement2 : MonoBehaviour
             if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, _groundLayer) && !IsJumping) //checks if set box overlaps with ground
             {
                 LastOnGroundTime = Data.coyoteTime; //if so sets the lastGrounded to coyoteTime
+                Data.accelInAir = 0.65f;//air movment is allowed again when ground is touched after wall jump
 
             }
 
@@ -261,6 +263,7 @@ public class PlayerMovement2 : MonoBehaviour
             _lastWallJumpDir = (LastOnWallRightTime > 0) ? -1 : 1;
 
             WallJump(_lastWallJumpDir);
+            
         }
         #endregion
         if (LastOnGroundTime > 0)
@@ -575,6 +578,7 @@ public class PlayerMovement2 : MonoBehaviour
         LastOnWallLeftTime = 0;
 
         #region Perform Wall Jump
+        Data.accelInAir = 0f;
         Vector2 force = new Vector2(Data.wallJumpForce.x, Data.wallJumpForce.y);
         force.x *= dir; //apply force in opposite direction of wall
 
@@ -587,6 +591,7 @@ public class PlayerMovement2 : MonoBehaviour
         //Unlike in the run we want to use the Impulse mode.
         //The default mode will apply are force instantly ignoring masss
         RB.AddForce(force, ForceMode2D.Impulse);
+       
         #endregion
     }
     private bool CanDoubleJump()

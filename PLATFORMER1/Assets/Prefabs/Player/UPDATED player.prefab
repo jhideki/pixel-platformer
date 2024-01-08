@@ -5123,6 +5123,8 @@ GameObject:
   - component: {fileID: 961014738417031228}
   - component: {fileID: 9002817577863105438}
   - component: {fileID: 7415191897861880743}
+  - component: {fileID: 808897404916401178}
+  - component: {fileID: 3894705168430783001}
   m_Layer: 0
   m_Name: hit_box
   m_TagString: Untagged
@@ -5139,7 +5141,7 @@ Transform:
   m_GameObject: {fileID: 4417343741002283001}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.026, y: -0.121, z: 0}
+  m_LocalPosition: {x: -0.008, y: -0.145, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5229,7 +5231,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.031278938, y: -0.01452601}
+  m_Offset: {x: 0.024461448, y: -0.00833261}
   m_SpriteTilingProperty:
     border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
@@ -5240,7 +5242,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.31536776, y: 0.20996785}
+  m_Size: {x: 0.25343382, y: 0.19758105}
   m_EdgeRadius: 0
 --- !u!114 &7415191897861880743
 MonoBehaviour:
@@ -5254,6 +5256,106 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2db10e764453414a83de64c70156987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &808897404916401178
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4417343741002283001}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!60 &3894705168430783001
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4417343741002283001}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.18618989, y: 0.2778157}
+      - {x: 0.15651369, y: 0.46779668}
+      - {x: 0.08910251, y: 0.69232154}
+      - {x: -0.041000426, y: 0.9474071}
+      - {x: -0.26193023, y: 1.1406356}
+      - {x: -0.26610935, y: 1.1862657}
+      - {x: -0.4067405, y: 1.3050004}
+      - {x: -0.5861241, y: 1.3724277}
+      - {x: -0.87825793, y: 1.518445}
+      - {x: -1.7084808, y: 1.6458564}
+      - {x: -2.315726, y: 1.3878765}
+      - {x: -2.6810937, y: 0.8514459}
+      - {x: -2.7109678, y: 0.5152875}
+      - {x: -2.6234233, y: 0.4589119}
+      - {x: -2.433569, y: 0.8315574}
+      - {x: -2.1814387, y: 1.1640389}
+      - {x: -1.8457316, y: 1.2730294}
+      - {x: -1.5682261, y: 1.3656665}
+      - {x: -1.3221972, y: 1.3413482}
+      - {x: -0.97074306, y: 1.2688423}
+      - {x: -0.7938711, y: 1.1504854}
+      - {x: -0.5981381, y: 1.0086619}
+      - {x: -0.34027678, y: 0.62396467}
+      - {x: -0.08, y: -0.08}
+      - {x: 0.074999996, y: -0.08}
+      - {x: 0.08, y: -0.06}
+      - {x: 0.08, y: 0.07}
+      - {x: 0.055, y: 0.08}
+  m_UseDelaunayMesh: 0
 --- !u!1 &4452591346499341652
 GameObject:
   m_ObjectHideFlags: 0
@@ -5870,7 +5972,9 @@ MonoBehaviour:
   hitbox: {fileID: 0}
   chainedAttackTime: 0.5
   secondAttackOffsetTime: 0.25
-  attackCooldownTime: 0.75
+  attackCooldownTime: 0.9
+  impulseStrength: 8
+  impulseFriction: 6.9
 --- !u!114 &1958830391794411138
 MonoBehaviour:
   m_ObjectHideFlags: 0

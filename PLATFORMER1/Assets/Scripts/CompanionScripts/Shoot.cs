@@ -16,7 +16,8 @@ public class Shoot : MonoBehaviour
 
     // Trajectory preview variables
     public LineRenderer trajectoryLine;
-    public float launchForce = 10f;
+    //private Stun match_force;
+    public float launchForce = 15f;
     public float timeToDisplayTrajectory = 2f;
 
     private Vector3[] trajectoryPoints;
@@ -27,10 +28,14 @@ public class Shoot : MonoBehaviour
         mag_lim = 0;
         ammoScript = Health.GetComponent<BulletCounter>();
         companion = GetComponent<CompanionMovement>();
+        //match_force = GetComponent<Stun>();
 
         // Initialize trajectory preview settings
         trajectoryPoints = new Vector3[10];
         trajectoryLine.positionCount = trajectoryPoints.Length;
+
+        trajectoryLine.startColor = Color.white;  // Set your desired color
+        trajectoryLine.endColor = Color.white;
     }
 
     void Update()
@@ -91,7 +96,7 @@ public class Shoot : MonoBehaviour
     {
         Debug.Log("Updating trajectory preview...");
         Vector3 initialPosition = firePoint.position;
-        Vector3 initialVelocity = firePoint.right * launchForce;
+        Vector3 initialVelocity = companion.isFacingRight? firePoint.right * launchForce: -firePoint.right * launchForce;
 
         for (int i = 0; i < trajectoryPoints.Length; i++)
         {

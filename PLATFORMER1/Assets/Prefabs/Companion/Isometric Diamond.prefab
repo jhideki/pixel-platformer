@@ -172,4 +172,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 15
-  bulletCounter: {fileID: 0}

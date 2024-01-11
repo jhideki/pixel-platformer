@@ -14,22 +14,53 @@ public class Shoot : MonoBehaviour
     private BulletCounter ammoScript;
     private CompanionMovement companion;
 
+    // Trajectory preview variables
+    public LineRenderer trajectoryLine;
+    public float launchForce = 10f;
+    public float timeToDisplayTrajectory = 2f;
+
+    private Vector3[] trajectoryPoints;
+    private bool isTrajectoryPreviewActive = false;
+
     void Start()
     {
         mag_lim = 0;
         ammoScript = Health.GetComponent<BulletCounter>();
         companion = GetComponent<CompanionMovement>();
+
+        // Initialize trajectory preview settings
+        trajectoryPoints = new Vector3[10];
+        trajectoryLine.positionCount = trajectoryPoints.Length;
     }
 
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (mag_lim < 3)
+            if (mag_lim < 10)
             {
-                shoot();
+                StartTrajectoryPreview();
             }
-            mag_lim++;
+        }
+
+        if (isTrajectoryPreviewActive)
+        {
+            UpdateTrajectoryPreview();
+        }
+
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            if (isTrajectoryPreviewActive)
+            {
+                if (mag_lim < 10)
+                {
+                    shoot();
+                    mag_lim++;
+                    isTrajectoryPreviewActive = false;
+                    trajectoryLine.positionCount = 0;
+                }
+            }
         }
     }
 
@@ -50,4 +81,32 @@ public class Shoot : MonoBehaviour
             ammoScript.ShootBullet();
         }
     }
+
+    void StartTrajectoryPreview()
+    {
+        isTrajectoryPreviewActive = true;
+    }
+
+    void UpdateTrajectoryPreview()
+    {
+        Debug.Log("Updating trajectory preview...");
+        Vector3 initialPosition = firePoint.position;
+        Vector3 initialVelocity = firePoint.right * launchForce;
+
+        for (int i = 0; i < trajectoryPoints.Length; i++)
+        {
+            float time = i * timeToDisplayTrajectory / trajectoryPoints.Length;
+            float gravity = Physics2D.gravity.y;
+
+            float x = initialPosition.x + initialVelocity.x * time;
+            float y = initialPosition.y + initialVelocity.y * time + 0.5f * gravity * time * time;
+
+            trajectoryPoints[i] = new Vector3(x, y, 0);
+        }
+
+        trajectoryLine.positionCount = trajectoryPoints.Length;
+        trajectoryLine.SetPositions(trajectoryPoints);
+
+    }
+
 }

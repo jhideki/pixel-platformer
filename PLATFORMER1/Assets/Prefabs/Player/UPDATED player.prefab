@@ -5189,7 +5189,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6862745, g: 0.6862745, b: 0.6862745, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5939,6 +5939,7 @@ MonoBehaviour:
   isIdle: 0
   blockMovementTime: 0.3
   hasDashed: 0
+  accelInAirResetDelay: 0.45
   _groundCheckPoint: {fileID: 5313785995854144441}
   _groundCheckSize: {x: 0.5, y: 0.3}
   _frontWallCheckPoint: {fileID: 3359425576067036290}

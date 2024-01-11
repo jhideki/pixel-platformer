@@ -58,9 +58,11 @@ public class PlayerMovement2 : MonoBehaviour
     private bool _isDashAttacking;
     private int _dashesLeft;
     public bool hasDashed;
+
     //Wall Jump
     private float _wallJumpStartTime;
     private int _lastWallJumpDir;
+    [SerializeField] private float accelInAirResetDelay = 2.0f;
     //public float airMovement { get; private set; }
 
     private Vector2 _moveInput;
@@ -229,7 +231,7 @@ public class PlayerMovement2 : MonoBehaviour
             {
                 IsDoubleJumping = false;
             }
-            if (IsJumping || IsWallJumping)
+            if (IsJumping)
             {
                 // Double jump
                 if (jumpsLeft > 0)
@@ -264,6 +266,7 @@ public class PlayerMovement2 : MonoBehaviour
             _lastWallJumpDir = (LastOnWallRightTime > 0) ? -1 : 1;
 
             WallJump(_lastWallJumpDir);
+            jumpsLeft = 1;
             
         }
         #endregion
@@ -596,7 +599,8 @@ public class PlayerMovement2 : MonoBehaviour
         //Unlike in the run we want to use the Impulse mode.
         //The default mode will apply are force instantly ignoring masss
         RB.AddForce(force, ForceMode2D.Impulse);
-       
+
+        StartCoroutine(ResetAccelInAir());
         #endregion
     }
     private bool CanDoubleJump()
@@ -738,5 +742,13 @@ public class PlayerMovement2 : MonoBehaviour
             }
         }
     }
+
+    //didnt have a place to put this caroutine that resets the accel in air on wall jump afte ra certain amount of time 
+    private IEnumerator ResetAccelInAir()
+    {
+        yield return new WaitForSeconds(accelInAirResetDelay);
+        Data.accelInAir = 0.65f;
+    }
 }
+
 

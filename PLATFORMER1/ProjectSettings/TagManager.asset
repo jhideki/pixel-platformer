@@ -24,7 +24,7 @@ TagManager:
   - Enemy
   - CollideTerrain
   - CollidePlayer
-  - 
+  - PostProcessing
   - 
   - 
   - 
@@ -63,4 +63,7 @@ TagManager:
     locked: 0
   - name: Particles
     uniqueID: 2723414947
+    locked: 0
+  - name: PostProcessing
+    uniqueID: 2148903045
     locked: 0

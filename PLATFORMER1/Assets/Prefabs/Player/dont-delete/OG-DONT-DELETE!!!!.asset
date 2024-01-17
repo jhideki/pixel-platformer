@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f142479512ea442973140d283a3eff, type: 3}
+  m_Name: OG-DONT-DELETE!!!!
+  m_EditorClassIdentifier: 
+  gravityStrength: -66.666664
+  gravityScale: 6.795786
+  fallGravityMult: 1
+  maxFallSpeed: 20
+  fastFallGravityMult: 1
+  maxFastFallSpeed: 20
+  numDashes: 1
+  dashIntialSpeed: 100
+  dashAccelerationTime: 0.1
+  dashSpeed: 200
+  dashSleepTime: 0.1
+  dashTime: 0.05
+  dashEndTime: 0.05
+  dashEndSpeed: {x: 50, y: 100}
+  dashEndRunLerp: 0
+  dashRefillTime: 1
+  dashInputBufferTime: 0.114
+  runMaxSpeed: 14
+  runAcceleration: 2
+  runAccelAmount: 7.142857
+  runDecceleration: 5
+  runDeccelAmount: 17.857143
+  accelInAir: 0
+  deccelInAir: 0.65
+  doConserveMomentum: 0
+  canMove: 1
+  jumpHeight: 3
+  jumpTimeToApex: 0.3
+  jumpForce: 20
+  jumpCutGravityMult: 1
+  jumpHangGravityMult: 0.503
+  jumpHangTimeThreshold: 0
+  jumpHangAccelerationMult: 0
+  jumpHangMaxSpeedMult: 0
+  wallJumpForce: {x: 10, y: 20}
+  wallJumpRunLerp: 0.089
+  wallJumpTime: 0.048
+  doTurnOnWallJump: 1
+  slideSpeed: -6
+  slideAccel: 12
+  coyoteTime: 0.1
+  jumpInputBufferTime: 0.1

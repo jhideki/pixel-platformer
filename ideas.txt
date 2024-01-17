@@ -1,3 +1,13 @@
 General game mechanic ideas:
     - player can control companion to enter areas inaccesible otherwise
     - have area that is completly dark and companion lights it up
+
+Things we need:
+ - novelity 
+- pacing (not one gameplay style the entire game)
+- mystery
+- challenge
+- anticipation
+- goals
+- positive feedback loop (progression)
+- 

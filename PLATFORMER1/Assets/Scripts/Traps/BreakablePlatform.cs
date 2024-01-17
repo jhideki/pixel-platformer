@@ -14,11 +14,11 @@ public class BreakablePlatform : MonoBehaviour
     private BoxCollider2D[] colliders;
     private Animator anim;
     private bool isTiming;
-    
+
 
     void Start()
     {
-        playerScript = player.GetComponent<PlayerMovement2>(); 
+        playerScript = player.GetComponent<PlayerMovement2>();
         colliders = GetComponents<BoxCollider2D>();
         anim = GetComponent<Animator>();
     }
@@ -27,29 +27,28 @@ public class BreakablePlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && playerScript.CanJump())
         {
-            Debug.Log("collided with player");
             startTimer = true;
         }
 
     }
     void Update()
     {
-        if(startTimer)
+        if (startTimer)
         {
             startTime = Time.time;
             startTimer = false;
             isTiming = true;
         }
 
-        if(Time.time - startTime > duration && isTiming)
+        if (Time.time - startTime > duration && isTiming)
         {
             GetComponent<Renderer>().enabled = false;
-            foreach(var collider in colliders)
+            foreach (var collider in colliders)
             {
                 collider.enabled = false;
             }
         }
-        if(Time.time - startTime > animOffset && isTiming)
+        if (Time.time - startTime > animOffset && isTiming)
         {
             anim.SetTrigger("Break");
         }

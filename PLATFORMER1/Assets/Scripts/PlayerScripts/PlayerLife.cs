@@ -20,7 +20,7 @@ public class PlayerLife : MonoBehaviour
     //Take hearts
     [SerializeField] private HealthController _healthController;
 
-    public UnityEvent <GameObject> OnDamageReference, OnDeathReference;
+    public UnityEvent<GameObject> OnDamageReference, OnDeathReference;
     // Start is called before the first frame update
     private void Start()
     {
@@ -33,7 +33,7 @@ public class PlayerLife : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("Bat"))
         {
             GameObject other = collision.gameObject;
             takeDamage(other);
@@ -63,7 +63,7 @@ public class PlayerLife : MonoBehaviour
         _healthController.playerHealth--;
         _healthController.UpdateHealth();
         currentLives--;
-        if(currentLives <= 0)
+        if (currentLives <= 0)
         {
             Die();
         }

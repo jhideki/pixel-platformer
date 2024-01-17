@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Companion
   - Freeze
+  - Bat
   layers:
   - Default
   - TransparentFX
